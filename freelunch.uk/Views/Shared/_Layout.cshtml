@@ -1,5 +1,5 @@
 ﻿@{ 
-    ViewBag.twitter = "@freelunch.uk";
+    ViewBag.twitter = "@meetfreelunch";
 }
 
 <!DOCTYPE html>
@@ -10,6 +10,8 @@
     <title>@ViewBag.Title - freelunch.uk</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="stylesheet" href="css/font-awesome.min.css">
 
 </head>
 <body>
@@ -26,8 +28,9 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Find an expert", "Contact", "Home")</li>
-                </ul>
                     <li>@Html.ActionLink("Propose a lunch", "About", "Home")</li>
+                </ul>
+
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
@@ -37,8 +40,8 @@
         <hr />
         <footer>
             <p>
-                Contact us at: <a href="mailto:info@brownbaglunch.fr"><span class="glyphicon glyphicon-envelope"></span> info@brownbaglunch.fr</a> 
-                | <a href="https://twitter.com/freelunch.uk"><span class="glyphicon glyphicon-twitter"></span> @ViewBag.twitter</a>
+                Contact us at: <a href="mailto:info@freelunch.uk"><i class="fa fa-envelope"></i> info@freelunch.uk</a> 
+                | <a href="https://twitter.com/meetfreelunch"><i class="fa fa-twitter"></i> @ViewBag.twitter</a>
             </p>
             <p>&copy; @DateTime.Now.Year - freelunch.uk</p>
         </footer>
