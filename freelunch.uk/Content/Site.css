@@ -22,3 +22,13 @@ select,
 textarea {
     max-width: 280px;
 }
+
+    .fl-text-center {
+        text-align: left;
+    }
+
+@media (min-width:992px) {
+    .fl-text-center {
+        text-align: center;
+    }
+}
