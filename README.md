@@ -1,3 +1,3 @@
 # freelunch.uk
 
-match organisations with experts to share kn owledge over lunch
+An ASP.Net MVC website that matches organisations with experts to share knowledge over lunch
