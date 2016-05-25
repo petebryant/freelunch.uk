@@ -13,16 +13,16 @@ namespace freelunch.uk.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Lunch()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Arrange a lunch.";
 
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Expert()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Find an expert.";
 
             return View();
         }
