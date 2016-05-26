@@ -11,6 +11,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using freelunch.uk.Models;
+using Twilio;
+using System.Diagnostics;
 
 namespace freelunch.uk
 {
@@ -27,8 +29,18 @@ namespace freelunch.uk
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Plug in your SMS service here to send a text message.
-            return Task.FromResult(0);
+             var Twilio = new TwilioRestClient(
+               System.Configuration.ConfigurationManager.AppSettings["SMSAccountIdentification"],
+               System.Configuration.ConfigurationManager.AppSettings["SMSAccountPassword"]);
+             
+            var result = Twilio.SendMessage(
+               System.Configuration.ConfigurationManager.AppSettings["SMSAccountFrom"],
+               message.Destination, message.Body
+             );
+             // Status is one of Queued, Sending, Sent, Failed or null if the number is not valid
+             Trace.TraceInformation(result.Status);
+
+             return Task.FromResult(0);
         }
     }
 
