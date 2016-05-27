@@ -13,7 +13,6 @@ namespace freelunch.uk.Controllers
             return View();
         }
 
-        [Authorize]
         public ActionResult Lunch()
         {
             ViewBag.Message = "Arrange a lunch.";
@@ -21,7 +20,6 @@ namespace freelunch.uk.Controllers
             return View();
         }
 
-        [Authorize]
         public ActionResult Expert()
         {
             ViewBag.Message = "Find an expert.";
