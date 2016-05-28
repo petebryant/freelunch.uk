@@ -61,8 +61,8 @@ namespace freelunch.uk
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "283551136203-ou600ibnsds9cu4t6rb1huq2q2ccp3on.apps.googleusercontent.com",
-                ClientSecret = "gcl8oU5yhHsUE8JwW6rn9cQ-"
+                ClientId = System.Configuration.ConfigurationManager.AppSettings["GoogleClientId"],
+                ClientSecret = System.Configuration.ConfigurationManager.AppSettings["GoogleSecret"]
             });
         }
     }
