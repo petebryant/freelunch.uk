@@ -1,7 +1,7 @@
 ﻿@model freelunch.uk.Models.ExternalLoginListViewModel
 @using Microsoft.Owin.Security
 
-<h4>Use another service to log in.</h4>
+<h4>Connect with</h4>
 <hr />
 @{
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
@@ -16,7 +16,7 @@
     else {
         using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl })) {
             @Html.AntiForgeryToken()
-            <div id="socialLoginList">
+            <div id="socialLoginList" class="social">
                 <p>
                     @foreach (AuthenticationDescription p in loginProviders)
                     {
@@ -30,18 +30,17 @@
                                 iClass = "fa fa-windows";
                                 break;
                             case "Facebook":
-                                iClass="fa fa-facebook";
+                                iClass = "fa fa-facebook";
                                 break;
                             case "Twitter":
                                 iClass = "fa fa-twitter";
                                 break;
-                        } 
-                        <div class="row">
-                            <button type="submit" class="btn btn-link" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType"
-                                    title="Log in using your @p.Caption account" style="text-decoration: none">
-                                <i class="@iClass" aria-hidden="true"></i> @p.AuthenticationType
-                                </button>
-                        </div>
+                        }
+                       
+                        <button type="submit" class="btn btn-link" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType"
+                                title="Log in using your @p.Caption account" style="text-decoration: none">
+                            <i class="@iClass" aria-hidden="true"></i> @p.AuthenticationType
+                        </button>
                     }
                 </p> 
             </div>
