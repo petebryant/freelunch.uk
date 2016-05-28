@@ -10,13 +10,34 @@
     <title>@ViewBag.Title - freelunch.uk</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
-    
+    @Scripts.Render("~/bundles/jquery")
 
 </head>
 <body>
+    <script type="text/javascript">
+    $(function () {
+        if (document.cookie.indexOf("cookies") < 0) {
+            $('#cookie-consent').slideDown('slow');
+        }
+        else {
+            $('#cookie-consent');
+        }
+
+        $('#consent').on('click', function () {
+            document.cookie = "cookies=yes; max-age=" + (5 * 365 * 24 * 60 * 60);
+            $('#cookie-consent').slideUp('slow');
+        });
+        $('#learn-more').on('click', function () {
+            location.href = '@Url.Action("Privacy", "Home")';
+        })
+    });
+</script>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
+            <div id="cookie-consent" class="cookie-consent">
+                This site uses cookies to personalise content and adverts, to provide social media features and to analyse traffic.
+                <button class="btn btn-xs btn-white" id="consent">I'm happy with this</button> <button class="btn btn-xs btn-white" id="learn-more">Learn more</button>
+            </div>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>

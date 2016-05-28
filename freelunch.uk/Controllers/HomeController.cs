@@ -27,5 +27,12 @@ namespace freelunch.uk.Controllers
 
             return View();
         }
+
+        public ActionResult Privacy()
+        {
+            ViewBag.Message = "Privacy Statement";
+
+            return View();
+        }
     }
 }

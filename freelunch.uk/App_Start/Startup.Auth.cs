@@ -47,17 +47,17 @@ namespace freelunch.uk
 
             //TODO get id's and secrets from M$ Twitter Facebook and Google
             // Uncomment the following lines to enable logging in with third party login providers
-            app.UseMicrosoftAccountAuthentication(
-                clientId: "test",
-                clientSecret: "test");
+            //app.UseMicrosoftAccountAuthentication(
+            //    clientId: "test",
+            //    clientSecret: "test");
 
-            app.UseTwitterAuthentication(
-               consumerKey: "test",
-               consumerSecret: "test");
+            //app.UseTwitterAuthentication(
+            //   consumerKey: "test",
+            //   consumerSecret: "test");
 
-            app.UseFacebookAuthentication(
-               appId: "test",
-               appSecret: "test");
+            //app.UseFacebookAuthentication(
+            //   appId: "test",
+            //   appSecret: "test");
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
