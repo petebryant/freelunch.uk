@@ -66,6 +66,7 @@ namespace freelunch.uk.Controllers
 
             var userId = User.Identity.GetUserId();
             var user = await UserManager.FindByIdAsync(userId);
+
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
@@ -73,8 +74,7 @@ namespace freelunch.uk.Controllers
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
-                Name = user.Name,
-                Description = user.Description
+                IsExpert = user.Expert != null
             };
             return View(model);
         }
@@ -337,8 +337,7 @@ namespace freelunch.uk.Controllers
                 {
                     return View("Error");
                 }
-                user.Name = model.Name;
-                user.Description = model.Description;
+
                 var result = await UserManager.UpdateAsync(user);
                 if (result.Succeeded)
                 {

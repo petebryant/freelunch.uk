@@ -12,15 +12,7 @@ namespace freelunch.uk.Models
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
-
-        [Required]
-        [DataType(DataType.Text)]
-        [Display(Name = "Display Name")]
-        public string Name { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "Description")]
-        public string Description { get; set; }
+        public bool IsExpert { get; set; }
     }
 
     public class ManageLoginsViewModel

@@ -11,6 +11,8 @@ namespace freelunch.uk.Migrations
         {
             AutomaticMigrationsEnabled = false;
             ContextKey = "freelunch.uk.Models.ApplicationDbContext";
+
+
         }
 
         protected override void Seed(freelunch.uk.Models.ApplicationDbContext context)

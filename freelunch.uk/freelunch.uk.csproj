@@ -183,6 +183,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ExpertController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -204,8 +205,27 @@
     <Compile Include="Migrations\201605281709395_UpdateUser.Designer.cs">
       <DependentUpon>201605281709395_UpdateUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605291226530_Expert.cs" />
+    <Compile Include="Migrations\201605291226530_Expert.Designer.cs">
+      <DependentUpon>201605291226530_Expert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605291335096_LinkExperttoUser.cs" />
+    <Compile Include="Migrations\201605291335096_LinkExperttoUser.Designer.cs">
+      <DependentUpon>201605291335096_LinkExperttoUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605291442415_ExpertSpecialisations.cs" />
+    <Compile Include="Migrations\201605291442415_ExpertSpecialisations.Designer.cs">
+      <DependentUpon>201605291442415_ExpertSpecialisations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605291452322_ExpertLinks.cs" />
+    <Compile Include="Migrations\201605291452322_ExpertLinks.Designer.cs">
+      <DependentUpon>201605291452322_ExpertLinks.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\ExpertModels.cs" />
+    <Compile Include="Models\ExpertViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -279,6 +299,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\Info.cshtml" />
     <Content Include="Views\Home\Privacy.cshtml" />
+    <Content Include="Views\Expert\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -302,6 +323,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605281709395_UpdateUser.resx">
       <DependentUpon>201605281709395_UpdateUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605291226530_Expert.resx">
+      <DependentUpon>201605291226530_Expert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605291335096_LinkExperttoUser.resx">
+      <DependentUpon>201605291335096_LinkExperttoUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605291442415_ExpertSpecialisations.resx">
+      <DependentUpon>201605291442415_ExpertSpecialisations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605291452322_ExpertLinks.resx">
+      <DependentUpon>201605291452322_ExpertLinks.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
