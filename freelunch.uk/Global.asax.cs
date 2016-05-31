@@ -17,5 +17,13 @@ namespace freelunch.uk
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            //TODO should log the error
+            Exception exception = Server.GetLastError();
+            Server.ClearError();
+            Response.Redirect("/Home/Error");
+        }
     }
 }

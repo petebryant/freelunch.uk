@@ -10,6 +10,7 @@ using freelunch.uk.Models;
 
 namespace freelunch.uk.Controllers
 {
+    [RedirectOnError]
     [Authorize]
     public class ExpertController : Controller
     {
@@ -17,6 +18,20 @@ namespace freelunch.uk.Controllers
         {
             UpdateSuccess,
             Error
+        }
+
+        private ApplicationUserManager _userManager;
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
         }
 
         private ApplicationDbContext context = new ApplicationDbContext();
@@ -29,9 +44,9 @@ namespace freelunch.uk.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
-            var expert = context.Experts.FirstOrDefault(x => x.User.Id == userId);
+            var expert = context.Experts.FirstOrDefault(x => x.UserId == userId);
             var model = new ExpertViewModel();
-            model.Id = userId;
+            model.UserId = expert.UserId;
 
             if (expert != null)
             {
@@ -51,19 +66,39 @@ namespace freelunch.uk.Controllers
         // GET: Expert/Create
         public ActionResult Create()
         {
+
             return View();
         }
 
         // POST: Expert/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ExpertViewModel model)
+        public async Task<ActionResult> Create(ExpertViewModel model)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (!ModelState.IsValid)
+                {
+                    return View("Index", model);
+                }
 
-                return RedirectToAction("Index");
+                var userId = User.Identity.GetUserId();
+                var user = await UserManager.FindByIdAsync(userId);
+
+                if (user == null)
+                {
+                    return View("Error");
+                }
+
+                Expert expert = new Expert();
+                expert.UserId = userId;
+                expert.Name = model.Name;
+                expert.Description = model.Description;
+
+                context.Experts.Add(expert);
+                context.SaveChanges();
+
+                return RedirectToAction("Index", new { Message = ExpertMessageId.UpdateSuccess });
             }
             catch
             {
@@ -72,20 +107,47 @@ namespace freelunch.uk.Controllers
         }
 
         // GET: Expert/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            return View();
+            var expert = context.Experts.FirstOrDefault(x => x.UserId == id);
+            var model = new ExpertViewModel();
+
+            //if (expert == null)
+            //{
+            //    return View("Error");
+            //}
+
+            model.UserId = expert.UserId;
+            model.Name = expert.Name;
+            model.Description = expert.Description;
+
+            return View(model);
         }
 
         // POST: Expert/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(ExpertViewModel model)
         {
             try
             {
-                // TODO: Add update logic here
+                if (!ModelState.IsValid)
+                {
+                    return View("Index", model);
+                }
 
-                return RedirectToAction("Index");
+                var expert = context.Experts.FirstOrDefault(x => x.UserId == model.UserId);
+
+                if (expert == null)
+                {
+                    return View("Error");
+                }
+
+                expert.Name = model.Name;
+                expert.Description = model.Description;
+
+                context.SaveChanges();
+
+                return RedirectToAction("Index", new { Message = ExpertMessageId.UpdateSuccess });
             }
             catch
             {

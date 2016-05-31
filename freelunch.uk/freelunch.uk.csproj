@@ -186,6 +186,7 @@
     <Compile Include="Controllers\ExpertController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="RedirectOnErrorAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -220,6 +221,18 @@
     <Compile Include="Migrations\201605291452322_ExpertLinks.cs" />
     <Compile Include="Migrations\201605291452322_ExpertLinks.Designer.cs">
       <DependentUpon>201605291452322_ExpertLinks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605310535233_experts.cs" />
+    <Compile Include="Migrations\201605310535233_experts.Designer.cs">
+      <DependentUpon>201605310535233_experts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605310648569_ExpertUserRelationship.cs" />
+    <Compile Include="Migrations\201605310648569_ExpertUserRelationship.Designer.cs">
+      <DependentUpon>201605310648569_ExpertUserRelationship.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605310730175_RemoveExpertUserRelationship.cs" />
+    <Compile Include="Migrations\201605310730175_RemoveExpertUserRelationship.Designer.cs">
+      <DependentUpon>201605310730175_RemoveExpertUserRelationship.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -300,6 +313,8 @@
     <Content Include="Views\Shared\Info.cshtml" />
     <Content Include="Views\Home\Privacy.cshtml" />
     <Content Include="Views\Expert\Index.cshtml" />
+    <Content Include="Views\Expert\Edit.cshtml" />
+    <Content Include="Views\Expert\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -335,6 +350,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605291452322_ExpertLinks.resx">
       <DependentUpon>201605291452322_ExpertLinks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605310535233_experts.resx">
+      <DependentUpon>201605310535233_experts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605310648569_ExpertUserRelationship.resx">
+      <DependentUpon>201605310648569_ExpertUserRelationship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605310730175_RemoveExpertUserRelationship.resx">
+      <DependentUpon>201605310730175_RemoveExpertUserRelationship.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

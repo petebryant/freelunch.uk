@@ -14,6 +14,11 @@ namespace freelunch.uk.Controllers
             return View();
         }
 
+        public ActionResult Error()
+        {
+            return View();
+        }
+
         public ActionResult Lunch()
         {
             ViewBag.Message = "Arrange a lunch.";

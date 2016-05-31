@@ -15,6 +15,7 @@ namespace freelunch.uk.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext context = new ApplicationDbContext();
 
         public ManageController()
         {
@@ -66,15 +67,17 @@ namespace freelunch.uk.Controllers
 
             var userId = User.Identity.GetUserId();
             var user = await UserManager.FindByIdAsync(userId);
+            Expert expert = context.Experts.SingleOrDefault(e => e.UserId == userId);
 
             var model = new IndexViewModel
             {
+                UserId = userId,
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
-                IsExpert = user.Expert != null
+                IsExpert = expert != null
             };
             return View(model);
         }
@@ -322,33 +325,6 @@ namespace freelunch.uk.Controllers
             }
             var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
-        }
-
-        //
-        // POST: /Manage/SetPassword
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ExpertDetails(IndexViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                if (user == null)
-                {
-                    return View("Error");
-                }
-
-                var result = await UserManager.UpdateAsync(user);
-                if (result.Succeeded)
-                {
-
-                    return RedirectToAction("Index", new { Message = ManageMessageId.UpdateSuccess });
-                }
-                AddErrors(result);
-            }
-
-            // If we got this far, something failed, redisplay form
-            return View(model);
         }
 
         protected override void Dispose(bool disposing)

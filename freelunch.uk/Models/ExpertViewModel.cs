@@ -8,7 +8,7 @@ namespace freelunch.uk.Models
 {
     public class ExpertViewModel
     {
-        public string Id { get; set; }
+        public string UserId { get; set; }
 
         [Required]
         [DataType(DataType.Text)]

@@ -72,11 +72,11 @@
         <div class="row">
             @if (Model.IsExpert)
             {
-                @Html.ActionLink("Update you details", "Index", "Expert")
+                @Html.ActionLink("Update you details", "Edit", "Expert", new { id = Model.UserId } , null)
             }
             else
             {
-                @Html.ActionLink("Become an expert", "Index", "Expert")
+                @Html.ActionLink("Become an expert", "Create", "Expert")
             }
         </div>
     </div>

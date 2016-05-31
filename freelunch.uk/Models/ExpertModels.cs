@@ -9,12 +9,11 @@ namespace freelunch.uk.Models
 {
     public class Expert
     {
-        public string ExportId { get; set; }
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public string UserId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 
-        [Required]
-        public virtual ApplicationUser User {get; set;}
         public virtual ICollection<Specialisation> Specialisations { get; set; }
         public virtual ICollection<Link> Links { get; set; }
     }
