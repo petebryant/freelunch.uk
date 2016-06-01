@@ -10,6 +10,7 @@ namespace freelunch.uk.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Expert> Experts { get; set; }
+        public DbSet<Link> Links { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

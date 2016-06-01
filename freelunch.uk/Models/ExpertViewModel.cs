@@ -8,6 +8,10 @@ namespace freelunch.uk.Models
 {
     public class ExpertViewModel
     {
+        public ExpertViewModel()
+        {
+            Links = new List<Link>();
+        }
         public string UserId { get; set; }
 
         [Required]
@@ -18,5 +22,7 @@ namespace freelunch.uk.Models
         [DataType(DataType.Text)]
         [Display(Name = "Description")]
         public string Description { get; set; }
+
+        public virtual ICollection<Link> Links { get; set; }
     }
 }

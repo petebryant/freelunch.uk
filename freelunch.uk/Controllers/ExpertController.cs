@@ -109,17 +109,32 @@ namespace freelunch.uk.Controllers
         // GET: Expert/Edit/5
         public ActionResult Edit(string id)
         {
-            var expert = context.Experts.FirstOrDefault(x => x.UserId == id);
+            var expert = context.Experts.Include("Links").FirstOrDefault(x => x.UserId == id);
             var model = new ExpertViewModel();
 
-            //if (expert == null)
-            //{
-            //    return View("Error");
-            //}
+            if (expert == null)
+            {
+                return View("Error");
+            }
+
+            Link link = new Link();
+            link.Id = "1";
+            link.Text = "hello...";
+            link.URL = "go here...";
+            link.LinkType = LinkType.Twitter;
+            expert.Links.Add(link);
+
+            Link link2 = new Link();
+            link2.Id = "2";
+            link2.Text = "blog...";
+            link2.URL = "or there...";
+            link2.LinkType = LinkType.Blog;
+            expert.Links.Add(link2);
 
             model.UserId = expert.UserId;
             model.Name = expert.Name;
             model.Description = expert.Description;
+            model.Links = expert.Links;
 
             return View(model);
         }

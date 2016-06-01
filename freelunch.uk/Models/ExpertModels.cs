@@ -9,6 +9,11 @@ namespace freelunch.uk.Models
 {
     public class Expert
     {
+        public Expert()
+        {
+            Links = new List<Link>();
+        }
+
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string UserId { get; set; }
         public string Name { get; set; }
