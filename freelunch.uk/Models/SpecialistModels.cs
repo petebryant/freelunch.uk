@@ -36,7 +36,10 @@ namespace freelunch.uk.Models
     {
         public string Id { get; set; }
         public string Text { get; set; }
+
+        [Display(Name = "Link")]
         public string URL { get; set; }
+
 
         [Display(Name = "Type")]
         public LinkType LinkType { get; set; }
