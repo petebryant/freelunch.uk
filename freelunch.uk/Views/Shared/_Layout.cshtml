@@ -1,6 +1,13 @@
 ﻿@{ 
+    
     ViewBag.twitter = "@meetfreelunch";
+
+    string _username = @User.Identity.GetUserName();
+    string _userid = @User.Identity.GetUserId();
 }
+
+@using Microsoft.AspNet.Identity
+@using freelunch.uk.Common
 
 <!DOCTYPE html>
 <html>
@@ -50,20 +57,74 @@
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="@Url.Action("Expert", "Home")">
-                            <i class="fa fa-user" aria-hidden="true"></i> Experts
+                            <i class="fa fa-user" aria-hidden="true"></i> Expert
                         </a>
                     </li>
                     <li>
                         <a href="@Url.Action("Lunch", "Home")">
-                            <i class="fa fa-cutlery" aria-hidden="true"></i> Lunchers
+                            <i class="fa fa-cutlery" aria-hidden="true"></i> Lunch
                         </a>
                     </li>
                 </ul>
 
-                @Html.Partial("_LoginPartial")
+                @if (Request.IsAuthenticated)
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="" data-toggle="modal" data-target="#editTarget">
+                               @_username
+                            </a>
+                        </li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                    </ul>
+                }
+
             </div>
         </div>
     </div>
+
+    <div id="editTarget" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">User Preferences</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        @Html.ActionLink("Hello " + _username, "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @style = "text-decoration: none" })
+                    </div>
+                    <div>
+                        @if (Functions.IsExpert(_userid))
+                        {
+                            @Html.ActionLink("Update your details", "Edit", "Expert", new { id = _userid }, htmlAttributes: new { @style = "text-decoration: none" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Become an expert", "Create", "Expert", null, htmlAttributes: new { @style = "text-decoration: none" })
+                        }
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div>
+                            <a href="javascript:document.getElementById('logoutForm').submit()" style="text-decoration: none">Log off</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container body-content">
         @RenderBody()
         <hr />
