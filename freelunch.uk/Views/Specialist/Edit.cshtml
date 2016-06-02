@@ -41,83 +41,8 @@
             }
     </div>
 </div>
-<div class="row">
-    <h4>Links to websites, blogs and social media</h4>
-    <hr />
-    @foreach (var link in Model.Links)
-    {
-        string iClass = "";
-        string editTarget = "edit" + link.Id;
-        string deleteTarget = "delete" + link.Id;
-        
-        switch (link.LinkType)
-        {
-            case freelunch.uk.Models.LinkType.Facebook:
-                iClass = "fa fa-facebook";
-                break;
-            case freelunch.uk.Models.LinkType.GitHub:
-                iClass = "fa fa-github";
-                break;
-            case freelunch.uk.Models.LinkType.LinkedIn:
-                iClass = "fa fa-linkedin";
-                break;
-            case freelunch.uk.Models.LinkType.Twitter:
-                iClass = "fa fa-twitter";
-                break;
-            default:
-                iClass = "fa fa-book";
-                break;
-        }
-        <div class="row">
-            <div class="col-md-8">
-                <i class="fa @iClass" aria-hidden="true"></i>
-                <a href="@link.URL" style="text-decoration: none" title="@link.Text"> @link.Text</a>
-            </div>
-            <div class="col-md-4">
-                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#@editTarget">Edit</button>
-                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#@deleteTarget">Delete</button>
-            </div>
 
-            <div id="@editTarget" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Edit Header</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>Link = @link.Text</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div id="@deleteTarget" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Delete Header</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>Link = @link.Text</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    }
-</div>
+@Html.Partial("_Links")
 
 
 

@@ -104,7 +104,7 @@
                     <div>
                         @if (Functions.IsSpecialist(_userid))
                         {
-                            @Html.ActionLink("We already know you're special", "Edit", "Specialist", new { id = _userid }, htmlAttributes: new { @style = "text-decoration: none" })
+                            @Html.ActionLink("We already know you're special", "Index", "Specialist", new { id = _userid }, htmlAttributes: new { @style = "text-decoration: none" })
                         }
                         else
                         {

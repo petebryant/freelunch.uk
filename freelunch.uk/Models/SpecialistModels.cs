@@ -37,6 +37,8 @@ namespace freelunch.uk.Models
         public string Id { get; set; }
         public string Text { get; set; }
         public string URL { get; set; }
+
+        [Display(Name = "Type")]
         public LinkType LinkType { get; set; }
 
         public virtual Specialist Specialist { get; set; }

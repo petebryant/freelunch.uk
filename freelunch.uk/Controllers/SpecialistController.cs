@@ -48,10 +48,26 @@ namespace freelunch.uk.Controllers
             var model = new SpecialistViewModel();
             model.UserId = specialist.UserId;
 
+            Link link = new Link();
+            link.Id = "1";
+            link.Text = "hello...";
+            link.URL = "go here...";
+            link.LinkType = LinkType.Twitter;
+            specialist.Links.Add(link);
+
+            Link link2 = new Link();
+            link2.Id = "2";
+            link2.Text = "blog...";
+            link2.URL = "or there...";
+            link2.LinkType = LinkType.Blog;
+            specialist.Links.Add(link2);
+
             if (specialist != null)
             {
+                model.UserId = specialist.UserId;
                 model.Name = specialist.Name;
                 model.Description = specialist.Description;
+                model.Links = specialist.Links;
             }
 
             return View(model);
@@ -120,7 +136,7 @@ namespace freelunch.uk.Controllers
             Link link = new Link();
             link.Id = "1";
             link.Text = "hello...";
-            link.URL = "go here...";
+            link.URL = @"http://www.google.com";
             link.LinkType = LinkType.Twitter;
             specialist.Links.Add(link);
 
@@ -179,6 +195,36 @@ namespace freelunch.uk.Controllers
         // POST: Specialist/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EditLink(string id, FormCollection collection )
+        {
+            try
+            {
+                // TODO: Add delete logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult DeleteLink(string id)
         {
             try
             {

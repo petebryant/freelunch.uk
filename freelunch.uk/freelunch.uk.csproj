@@ -320,6 +320,7 @@
     <Content Include="Views\Specialist\Index.cshtml" />
     <Content Include="Views\Specialist\Edit.cshtml" />
     <Content Include="Views\Specialist\Create.cshtml" />
+    <Content Include="Views\Specialist\_Links.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
