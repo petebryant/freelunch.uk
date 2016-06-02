@@ -7,9 +7,9 @@ using System.Web;
 
 namespace freelunch.uk.Models
 {
-    public class Expert
+    public class Specialist
     {
-        public Expert()
+        public Specialist()
         {
             Links = new List<Link>();
         }
@@ -29,7 +29,7 @@ namespace freelunch.uk.Models
         public string Subject { get; set; }
         public string Description { get; set; }
 
-        public virtual Expert Expert { get; set; }
+        public virtual Specialist Specialist { get; set; }
     }
 
     public class Link
@@ -39,7 +39,7 @@ namespace freelunch.uk.Models
         public string URL { get; set; }
         public LinkType LinkType { get; set; }
 
-        public virtual Expert Expert { get; set; }
+        public virtual Specialist Specialist { get; set; }
     }
 
     public enum LinkType

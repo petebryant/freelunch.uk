@@ -56,8 +56,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="@Url.Action("Expert", "Home")">
-                            <i class="fa fa-user" aria-hidden="true"></i> Expert
+                        <a href="@Url.Action("Specialist", "Home")">
+                            <i class="fa fa-user" aria-hidden="true"></i> Specialist
                         </a>
                     </li>
                     <li>
@@ -102,13 +102,13 @@
                         @Html.ActionLink("Hello " + _username, "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @style = "text-decoration: none" })
                     </div>
                     <div>
-                        @if (Functions.IsExpert(_userid))
+                        @if (Functions.IsSpecialist(_userid))
                         {
-                            @Html.ActionLink("Update your details", "Edit", "Expert", new { id = _userid }, htmlAttributes: new { @style = "text-decoration: none" })
+                            @Html.ActionLink("We already know you're special", "Edit", "Specialist", new { id = _userid }, htmlAttributes: new { @style = "text-decoration: none" })
                         }
                         else
                         {
-                            @Html.ActionLink("Become an expert", "Create", "Expert", null, htmlAttributes: new { @style = "text-decoration: none" })
+                            @Html.ActionLink("Become a specialist", "Create", "Specialist", null, htmlAttributes: new { @style = "text-decoration: none" })
                         }
                     </div>
                 </div>

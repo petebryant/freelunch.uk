@@ -1,6 +1,6 @@
-﻿@model freelunch.uk.Models.ExpertViewModel
+﻿@model freelunch.uk.Models.SpecialistViewModel
 @{
-    ViewBag.Title = "Expert";
+    ViewBag.Title = "Specialist";
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -10,7 +10,7 @@
     <div class="col-md-8">
         <h4>Create your details</h4>
         <hr />
-        @using (Html.BeginForm("Create", "Expert", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        @using (Html.BeginForm("Create", "Specialist", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })

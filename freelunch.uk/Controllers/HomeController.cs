@@ -26,9 +26,9 @@ namespace freelunch.uk.Controllers
             return View();
         }
 
-        public ActionResult Expert()
+        public ActionResult Specialist()
         {
-            ViewBag.Message = "Find an expert.";
+            ViewBag.Message = "Find an specialist.";
 
             return View();
         }

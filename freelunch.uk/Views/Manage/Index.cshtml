@@ -70,13 +70,13 @@
             </dd>
         </dl>
         <div class="row">
-            @if (Model.IsExpert)
+            @if (Model.IsSpecialist)
             {
-                @Html.ActionLink("Update you details", "Edit", "Expert", new { id = Model.UserId } , null)
+                @Html.ActionLink("Update you details", "Edit", "Specialist", new { id = Model.UserId } , null)
             }
             else
             {
-                @Html.ActionLink("Become an expert", "Create", "Expert")
+                @Html.ActionLink("Become a specialist", "Create", "Specialist")
             }
         </div>
     </div>

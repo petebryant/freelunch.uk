@@ -12,9 +12,9 @@ namespace freelunch.uk.Controllers
 {
     [RedirectOnError]
     [Authorize]
-    public class ExpertController : Controller
+    public class SpecialistController : Controller
     {
-        public enum ExpertMessageId
+        public enum SpecialistMessageId
         {
             UpdateSuccess,
             Error
@@ -35,45 +35,45 @@ namespace freelunch.uk.Controllers
         }
 
         private ApplicationDbContext context = new ApplicationDbContext();
-        // GET: Expert
-        public ActionResult Index(ExpertMessageId? message)
+        // GET: Specialist
+        public ActionResult Index(SpecialistMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ExpertMessageId.Error ? "An error has occurred."
-                : message == ExpertMessageId.UpdateSuccess ? "You details have been updated."
+                message == SpecialistMessageId.Error ? "An error has occurred."
+                : message == SpecialistMessageId.UpdateSuccess ? "You details have been updated."
                 : "";
 
             var userId = User.Identity.GetUserId();
-            var expert = context.Experts.FirstOrDefault(x => x.UserId == userId);
-            var model = new ExpertViewModel();
-            model.UserId = expert.UserId;
+            var specialist = context.Specialist.FirstOrDefault(x => x.UserId == userId);
+            var model = new SpecialistViewModel();
+            model.UserId = specialist.UserId;
 
-            if (expert != null)
+            if (specialist != null)
             {
-                model.Name = expert.Name;
-                model.Description = expert.Description;
+                model.Name = specialist.Name;
+                model.Description = specialist.Description;
             }
 
             return View(model);
         }
 
-        // GET: Expert/Details/5
+        // GET: Specialist/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Expert/Create
+        // GET: Specialist/Create
         public ActionResult Create()
         {
 
             return View();
         }
 
-        // POST: Expert/Create
+        // POST: Specialist/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(ExpertViewModel model)
+        public async Task<ActionResult> Create(SpecialistViewModel model)
         {
             try
             {
@@ -90,15 +90,15 @@ namespace freelunch.uk.Controllers
                     return View("Error");
                 }
 
-                Expert expert = new Expert();
-                expert.UserId = userId;
-                expert.Name = model.Name;
-                expert.Description = model.Description;
+                Specialist specialist = new Specialist();
+                specialist.UserId = userId;
+                specialist.Name = model.Name;
+                specialist.Description = model.Description;
 
-                context.Experts.Add(expert);
+                context.Specialist.Add(specialist);
                 context.SaveChanges();
 
-                return RedirectToAction("Index", new { Message = ExpertMessageId.UpdateSuccess });
+                return RedirectToAction("Index", new { Message = SpecialistMessageId.UpdateSuccess });
             }
             catch
             {
@@ -106,13 +106,13 @@ namespace freelunch.uk.Controllers
             }
         }
 
-        // GET: Expert/Edit/5
+        // GET: Specialist/Edit/5
         public ActionResult Edit(string id)
         {
-            var expert = context.Experts.Include("Links").FirstOrDefault(x => x.UserId == id);
-            var model = new ExpertViewModel();
+            var specialist = context.Specialist.Include("Links").FirstOrDefault(x => x.UserId == id);
+            var model = new SpecialistViewModel();
 
-            if (expert == null)
+            if (specialist == null)
             {
                 return View("Error");
             }
@@ -122,26 +122,26 @@ namespace freelunch.uk.Controllers
             link.Text = "hello...";
             link.URL = "go here...";
             link.LinkType = LinkType.Twitter;
-            expert.Links.Add(link);
+            specialist.Links.Add(link);
 
             Link link2 = new Link();
             link2.Id = "2";
             link2.Text = "blog...";
             link2.URL = "or there...";
             link2.LinkType = LinkType.Blog;
-            expert.Links.Add(link2);
+            specialist.Links.Add(link2);
 
-            model.UserId = expert.UserId;
-            model.Name = expert.Name;
-            model.Description = expert.Description;
-            model.Links = expert.Links;
+            model.UserId = specialist.UserId;
+            model.Name = specialist.Name;
+            model.Description = specialist.Description;
+            model.Links = specialist.Links;
 
             return View(model);
         }
 
-        // POST: Expert/Edit/5
+        // POST: Specialist/Edit/5
         [HttpPost]
-        public ActionResult Edit(ExpertViewModel model)
+        public ActionResult Edit(SpecialistViewModel model)
         {
             try
             {
@@ -150,19 +150,19 @@ namespace freelunch.uk.Controllers
                     return View("Index", model);
                 }
 
-                var expert = context.Experts.FirstOrDefault(x => x.UserId == model.UserId);
+                var specialist = context.Specialist.FirstOrDefault(x => x.UserId == model.UserId);
 
-                if (expert == null)
+                if (specialist == null)
                 {
                     return View("Error");
                 }
 
-                expert.Name = model.Name;
-                expert.Description = model.Description;
+                specialist.Name = model.Name;
+                specialist.Description = model.Description;
 
                 context.SaveChanges();
 
-                return RedirectToAction("Index", new { Message = ExpertMessageId.UpdateSuccess });
+                return RedirectToAction("Index", new { Message = SpecialistMessageId.UpdateSuccess });
             }
             catch
             {
@@ -170,13 +170,13 @@ namespace freelunch.uk.Controllers
             }
         }
 
-        // GET: Expert/Delete/5
+        // GET: Specialist/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Expert/Delete/5
+        // POST: Specialist/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

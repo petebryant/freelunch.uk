@@ -67,7 +67,7 @@ namespace freelunch.uk.Controllers
 
             var userId = User.Identity.GetUserId();
             var user = await UserManager.FindByIdAsync(userId);
-            Expert expert = context.Experts.SingleOrDefault(e => e.UserId == userId);
+            Specialist Specialist = context.Specialist.SingleOrDefault(e => e.UserId == userId);
 
             var model = new IndexViewModel
             {
@@ -77,7 +77,7 @@ namespace freelunch.uk.Controllers
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
-                IsExpert = expert != null
+                IsSpecialist = Specialist != null
             };
             return View(model);
         }

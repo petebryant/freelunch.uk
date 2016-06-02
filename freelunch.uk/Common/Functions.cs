@@ -21,13 +21,13 @@ namespace freelunch.uk.Common
 {
     public class Functions
     {
-        public static bool IsExpert(string userId)
+        public static bool IsSpecialist(string userId)
         {
             ApplicationDbContext context = new ApplicationDbContext();
 
-            var expert = context.Experts.FirstOrDefault(x => x.UserId == userId);
+            var specialist = context.Specialist.FirstOrDefault(x => x.UserId == userId);
 
-            return (expert != null);
+            return (specialist != null);
         }
     }
 }

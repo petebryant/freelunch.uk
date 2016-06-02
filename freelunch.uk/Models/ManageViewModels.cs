@@ -13,7 +13,7 @@ namespace freelunch.uk.Models
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
-        public bool IsExpert { get; set; }
+        public bool IsSpecialist { get; set; }
     }
 
     public class ManageLoginsViewModel

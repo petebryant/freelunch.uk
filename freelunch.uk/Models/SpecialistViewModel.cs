@@ -6,9 +6,9 @@ using System.Web;
 
 namespace freelunch.uk.Models
 {
-    public class ExpertViewModel
+    public class SpecialistViewModel
     {
-        public ExpertViewModel()
+        public SpecialistViewModel()
         {
             Links = new List<Link>();
         }
