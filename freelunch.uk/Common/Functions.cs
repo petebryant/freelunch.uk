@@ -23,11 +23,14 @@ namespace freelunch.uk.Common
     {
         public static bool IsSpecialist(string userId)
         {
-            ApplicationDbContext context = new ApplicationDbContext();
+            if (userId == null) return false;
 
-            var specialist = context.Specialist.FirstOrDefault(x => x.UserId == userId);
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                var specialist = context.Specialist.FirstOrDefault(x => x.UserId == userId);
 
-            return (specialist != null);
+                return (specialist != null);
+            }
         }
     }
 }

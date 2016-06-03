@@ -191,6 +191,14 @@
     <Compile Include="Migrations\201606020746354_experttospecialist.Designer.cs">
       <DependentUpon>201606020746354_experttospecialist.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606030717443_requiredtext.cs" />
+    <Compile Include="Migrations\201606030717443_requiredtext.Designer.cs">
+      <DependentUpon>201606030717443_requiredtext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606030723429_requiredfileds.cs" />
+    <Compile Include="Migrations\201606030723429_requiredfileds.Designer.cs">
+      <DependentUpon>201606030723429_requiredfileds.cs</DependentUpon>
+    </Compile>
     <Compile Include="RedirectOnErrorAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -368,6 +376,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606020746354_experttospecialist.resx">
       <DependentUpon>201606020746354_experttospecialist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606030717443_requiredtext.resx">
+      <DependentUpon>201606030717443_requiredtext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606030723429_requiredfileds.resx">
+      <DependentUpon>201606030723429_requiredfileds.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

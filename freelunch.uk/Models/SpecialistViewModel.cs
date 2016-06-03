@@ -24,5 +24,6 @@ namespace freelunch.uk.Models
         public string Description { get; set; }
 
         public virtual ICollection<Link> Links { get; set; }
+
     }
 }

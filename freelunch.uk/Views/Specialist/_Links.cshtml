@@ -74,8 +74,8 @@
                                 </div>
                                 <div class="form-group">
                                     @Html.LabelFor(m => m.Links.First(l => l.Id == link.Id).LinkType, new { @class = "col-md-2 control-label" })
-                                    <div class="col-md-10">
-                                        @Html.TextBoxFor(m => m.Links.First(l => l.Id == link.Id).LinkType, new { @class = "form-control" })
+                                    <div class="col-md-10">     
+                                        @Html.DropDownListFor(m => m.Links.First(l => l.Id == link.Id).LinkType, EnumHelper.GetSelectList(typeof(freelunch.uk.Models.LinkType)), null, new { @class = "form-control" })
                                         @Html.ValidationMessageFor(m => m.Links.First(l => l.Id == link.Id).LinkType, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -101,7 +101,7 @@
                         <section id="loginForm">
                             @using (Html.BeginForm("DeleteLink", "Specialist", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                             {
-                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })                                   
                                 @Html.HiddenFor(m => m.Links.First(l => l.Id == link.Id).Id)
 
                                 <div class="form-group">
@@ -122,4 +122,5 @@
         </div>
     }
 </div>
+
 
