@@ -213,7 +213,13 @@ namespace freelunch.uk.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
+                var link = context.Links.FirstOrDefault(x => x.Id == id);
+
+                if (link == null) return View("Error");
+
+                link.Text = collection["Text"];
+                link.URL = collection["URL"];
+                link.LinkType = (LinkType)Enum.Parse(typeof(LinkType), collection["LinkType"]);
 
                 return RedirectToAction("Index");
             }
