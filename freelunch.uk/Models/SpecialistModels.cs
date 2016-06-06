@@ -41,7 +41,7 @@ namespace freelunch.uk.Models
         public string Text { get; set; }
 
         [Required]
-        [DataType(DataType.Url)]
+        [Url]
         [Display(Name = "Link")]
         public string URL { get; set; }
 
