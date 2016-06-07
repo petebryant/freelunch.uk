@@ -34,6 +34,11 @@ namespace freelunch.uk.Models
 
     public class Link
     {
+        public Link()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
+
         public string Id { get; set; }
 
         [Required]

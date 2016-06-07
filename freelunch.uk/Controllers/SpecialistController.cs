@@ -7,6 +7,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using freelunch.uk.Models;
+using System.Data.Entity;
+using freelunch.uk.Common;
 
 namespace freelunch.uk.Controllers
 {
@@ -17,6 +19,8 @@ namespace freelunch.uk.Controllers
         public enum SpecialistMessageId
         {
             UpdateSuccess,
+            DeleteSuccess,
+            AddSucess,
             Error
         }
 
@@ -40,6 +44,8 @@ namespace freelunch.uk.Controllers
         {
             ViewBag.StatusMessage =
                 message == SpecialistMessageId.Error ? "An error has occurred."
+                : message == SpecialistMessageId.DeleteSuccess ? "The record has been deleted."
+                : message == SpecialistMessageId.AddSucess ? "The record has been created."
                 : message == SpecialistMessageId.UpdateSuccess ? "You details have been updated."
                 : "";
 
@@ -47,20 +53,6 @@ namespace freelunch.uk.Controllers
             var specialist = context.Specialist.FirstOrDefault(x => x.UserId == userId);
             var model = new SpecialistViewModel();
             model.UserId = specialist.UserId;
-
-            Link link = new Link();
-            link.Id = "1";
-            link.Text = "hello...";
-            link.URL = "go here...";
-            link.LinkType = LinkType.Twitter;
-            specialist.Links.Add(link);
-
-            Link link2 = new Link();
-            link2.Id = "2";
-            link2.Text = "blog...";
-            link2.URL = "or there...";
-            link2.LinkType = LinkType.Blog;
-            specialist.Links.Add(link2);
 
             if (specialist != null)
             {
@@ -132,20 +124,6 @@ namespace freelunch.uk.Controllers
             {
                 return View("Error");
             }
-
-            Link link = new Link();
-            link.Id = "1";
-            link.Text = "hello...";
-            link.URL = @"http://www.google.com";
-            link.LinkType = LinkType.Twitter;
-            specialist.Links.Add(link);
-
-            Link link2 = new Link();
-            link2.Id = "2";
-            link2.Text = "blog...";
-            link2.URL = "or there...";
-            link2.LinkType = LinkType.Blog;
-            specialist.Links.Add(link2);
 
             model.UserId = specialist.UserId;
             model.Name = specialist.Name;
@@ -221,7 +199,9 @@ namespace freelunch.uk.Controllers
                 link.URL = collection["URL"];
                 link.LinkType = (LinkType)Enum.Parse(typeof(LinkType), collection["LinkType"]);
 
-                return RedirectToAction("Index");
+                context.SaveChanges();
+
+                return RedirectToAction("Index", new { Message = SpecialistMessageId.UpdateSuccess });
             }
             catch
             {
@@ -234,9 +214,46 @@ namespace freelunch.uk.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
+                var link = context.Links.FirstOrDefault(x => x.Id == id);
 
-                return RedirectToAction("Index");
+                if (link == null) return View("Error");
+
+                context.Links.Remove(link);
+                context.SaveChanges();
+
+                return RedirectToAction("Index", new { Message = SpecialistMessageId.DeleteSuccess });
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult CreateLink(string UserId, FormCollection collection)
+        {
+            try
+            {
+                var specialist = context.Specialist.FirstOrDefault(x => x.UserId == UserId);
+
+                if (specialist == null) return View("Error");
+
+                Link link = new Link();
+                link.Text = collection["DummyLink.Text"];
+                link.URL = collection["DummyLink.URL"];
+                link.LinkType = (LinkType)Enum.Parse(typeof(LinkType), collection["DummyLink.LinkType"]);
+                link.Specialist = specialist;
+
+                context.Specialist.Attach(specialist);
+                context.Links.Add(link);
+
+                string result = ValidationHelper.GetValidationResults(link);
+
+                if (!string.IsNullOrEmpty(result)) return View("Error"); 
+                
+                context.SaveChanges();
+
+                return RedirectToAction("Index", new { Message = SpecialistMessageId.AddSucess });
             }
             catch
             {

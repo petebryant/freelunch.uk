@@ -25,5 +25,9 @@ namespace freelunch.uk.Models
 
         public virtual ICollection<Link> Links { get; set; }
 
+        public Link DummyLink
+        {
+            get { return new Link(); }
+        }
     }
 }
