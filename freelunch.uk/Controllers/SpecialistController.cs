@@ -172,7 +172,7 @@ namespace freelunch.uk.Controllers
 
         // POST: Specialist/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(string UserId)
         {
             try
             {
