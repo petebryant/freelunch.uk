@@ -7,24 +7,29 @@
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div class="row">
-    <div class="col-md-8">
-        <h4>Your specialist details</h4>
-        <hr />
+    <h4>Your specialist details</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-8">
             <div class="form-group">
                 @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
-                 @Model.Name
+                @Model.Name
             </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
-            @Model.Description
+            <div class="form-group">
+                @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
+                @Model.Description
+            </div>
         </div>
-
-        <div class="row">
+        <div class="col-md-4">
             @if (Model.Name != null)
             {
                 <div>
-                    @Html.ActionLink("Edit", "Edit", new { id = Model.UserId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = Model.UserId })
+                    <a href="@Url.Action("Edit", "Specialist", new { id = Model.UserId })" class="btn btn-default">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true" title="Edit"></span>
+                    </a>
+                    <a href="@Url.Action("Delete", "Specialist", new { id = Model.UserId })" class="btn btn-default">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete"></span>
+                    </a>
                 </div>
             }
             else
@@ -34,5 +39,6 @@
         </div>
     </div>
 </div>
-
+<p>
 @Html.Partial("_Links")
+</p>
