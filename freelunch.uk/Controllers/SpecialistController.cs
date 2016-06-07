@@ -115,9 +115,17 @@ namespace freelunch.uk.Controllers
         }
 
         // GET: Specialist/Edit/5
-        public ActionResult Edit(string id)
+        public async Task<ActionResult> Edit()
         {
-            var specialist = context.Specialist.Include("Links").FirstOrDefault(x => x.UserId == id);
+            var userId = User.Identity.GetUserId();
+            var user = await UserManager.FindByIdAsync(userId);
+
+            if (user == null)
+            {
+                return View("Error");
+            }
+
+            var specialist = context.Specialist.Include("Links").FirstOrDefault(x => x.UserId == userId);
             var model = new SpecialistViewModel();
 
             if (specialist == null)
@@ -135,7 +143,7 @@ namespace freelunch.uk.Controllers
 
         // POST: Specialist/Edit/5
         [HttpPost]
-        public ActionResult Edit(SpecialistViewModel model)
+        public async Task<ActionResult> Edit(SpecialistViewModel model)
         {
             try
             {
@@ -144,7 +152,16 @@ namespace freelunch.uk.Controllers
                     return View("Index", model);
                 }
 
-                var specialist = context.Specialist.FirstOrDefault(x => x.UserId == model.UserId);
+                var userId = User.Identity.GetUserId();
+                var user = await UserManager.FindByIdAsync(userId);
+
+                if (user == null)
+                {
+                    return View("Error");
+                }
+
+
+                var specialist = context.Specialist.FirstOrDefault(x => x.UserId == userId);
 
                 if (specialist == null)
                 {
@@ -164,19 +181,21 @@ namespace freelunch.uk.Controllers
             }
         }
 
-        // GET: Specialist/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Specialist/Delete/5
+        // POST: Specialist/Delete
         [HttpPost]
-        public ActionResult Delete(string UserId)
+        public async Task<ActionResult> Delete()
         {
             try
             {
-                // TODO: Add delete logic here
+                var userId = User.Identity.GetUserId();
+                var user = await UserManager.FindByIdAsync(userId);
+
+                if (user == null)
+                {
+                    return View("Error");
+                }
+
+                //TODO add delete logic here...
 
                 return RedirectToAction("Index");
             }
