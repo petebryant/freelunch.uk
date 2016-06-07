@@ -61,6 +61,7 @@
                         <section id="loginForm">
                             @using (Html.BeginForm("EditLink", "Specialist", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                             {
+                                @Html.AntiForgeryToken()
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                 @Html.HiddenFor(m => m.Links.First(l => l.Id == link.Id).Id)
                                 <div class="form-group">
@@ -106,6 +107,7 @@
                         <section id="loginForm">
                             @using (Html.BeginForm("DeleteLink", "Specialist", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                             {
+                                @Html.AntiForgeryToken()
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })                                   
                                 @Html.HiddenFor(m => m.Links.First(l => l.Id == link.Id).Id)
 
