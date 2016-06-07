@@ -27,6 +27,9 @@ namespace freelunch.uk
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/css/font-awesome.min.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/freelunch").Include(
+                      "~/Scripts/freelunch.*"));
         }
     }
 }

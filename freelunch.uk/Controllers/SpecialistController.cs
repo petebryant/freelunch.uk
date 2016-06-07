@@ -52,7 +52,6 @@ namespace freelunch.uk.Controllers
             var userId = User.Identity.GetUserId();
             var specialist = context.Specialist.FirstOrDefault(x => x.UserId == userId);
             var model = new SpecialistViewModel();
-            model.UserId = specialist.UserId;
 
             if (specialist != null)
             {
@@ -195,9 +194,31 @@ namespace freelunch.uk.Controllers
                     return View("Error");
                 }
 
-                //TODO add delete logic here...
+                var specialist = context.Specialist.FirstOrDefault(x => x.UserId == userId);
 
-                return RedirectToAction("Index");
+                if (specialist == null)
+                {
+                    return View("Error");
+                }
+
+                int count = specialist.Links.Count - 1;
+                for(int i=count; i >= 0; i--)
+                {
+                    Link link = specialist.Links.ElementAt(i);
+                    specialist.Links.Remove(link);
+                    context.Links.Remove(link);
+                }
+
+                context.Specialist.Attach(specialist);
+                context.Specialist.Remove(specialist);
+
+                string result = ValidationHelper.GetValidationResults(specialist);
+
+                if (!string.IsNullOrEmpty(result)) return View("Error"); 
+
+                context.SaveChanges();
+
+                return RedirectToAction("Index", new { Message = SpecialistMessageId.DeleteSuccess });
             }
             catch
             {
@@ -249,11 +270,19 @@ namespace freelunch.uk.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateLink(string UserId, FormCollection collection)
+        public async Task<ActionResult> CreateLink(FormCollection collection)
         {
             try
             {
-                var specialist = context.Specialist.FirstOrDefault(x => x.UserId == UserId);
+                var userId = User.Identity.GetUserId();
+                var user = await UserManager.FindByIdAsync(userId);
+
+                if (user == null)
+                {
+                    return View("Error");
+                }
+
+                var specialist = context.Specialist.FirstOrDefault(x => x.UserId == userId);
 
                 if (specialist == null) return View("Error");
 

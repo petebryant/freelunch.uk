@@ -11,6 +11,8 @@
     <hr />
     <div class="row">
         <div class="col-md-8">
+            @if (Model.Name != null)
+            {
             <div class="form-group">
                 @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
                 @Model.Name
@@ -19,6 +21,11 @@
                 @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
                 @Model.Description
             </div>
+            }
+            else
+            {
+                @Html.ActionLink("Become a specialist", "Create", "Specialist")
+            }
         </div>
         <div class="col-md-4">
             @if (Model.Name != null)
@@ -31,10 +38,6 @@
                         <span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete"></span>
                     </button>
                 </div>
-            }
-            else
-            {
-                @Html.ActionLink("Become a specialist", "Create", "Specialist")
             }
         </div>
     </div>

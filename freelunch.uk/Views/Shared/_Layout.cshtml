@@ -19,6 +19,7 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/freelunch")
 
 </head>
 <body>
@@ -105,7 +106,7 @@
                     <div>
                         @if (Functions.IsSpecialist(_userid))
                         {
-                            @Html.ActionLink("We already know you're special", "Index", "Specialist", new { id = _userid }, htmlAttributes: new { @style = "text-decoration: none" })
+                            @Html.ActionLink("We already know you're special", "Index", "Specialist", null, htmlAttributes: new { @style = "text-decoration: none" })
                         }
                         else
                         {
