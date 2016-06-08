@@ -61,10 +61,8 @@
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                    <div class="form-group">
-                        <div class="col-md-10 col-md-offset-2">
-                            Are you sure you no longer want to be special?
-                        </div>
+                    <div class="modal-body">
+                        <p> Are you sure you no longer want to be special?</p>
                     </div>
 
                     <div class="modal-footer">
@@ -96,32 +94,34 @@
             <section id="loginForm">
                 @using (Html.BeginForm("Edit", "Specialist", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
-                    @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="modal-body">
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Name, new { @class = "col-md-3 col-md-offset-1 control-label" })
-                        <div class="col-md-7">
-                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Name, new { @class = "col-md-3 col-md-offset-1 control-label" })
+                            <div class="col-md-7">
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Description, new { @class = "col-md-3 col-md-offset-1 control-label" })
-                        <div class="col-md-7">
-                            @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
 
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-default">
-                            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
-                        </button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">
-                            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel
-                        </button>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Description, new { @class = "col-md-3 col-md-offset-1 control-label" })
+                            <div class="col-md-7">
+                                @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-default">
+                                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
+                            </button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel
+                            </button>
+                        </div>
                     </div>
                 }
             </section>
