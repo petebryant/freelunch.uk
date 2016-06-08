@@ -118,9 +118,9 @@
                     @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
                     {
                         @Html.AntiForgeryToken()
-                        <div>
-                            <a href="javascript:document.getElementById('logoutForm').submit()" class="btn btn-default">Log off</a>
-                        </div>
+                        <button type="submit" class="btn btn-default btn-default">
+                            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Log off
+                        </button>
                     }
                 </div>
             </div>

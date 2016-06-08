@@ -328,7 +328,6 @@
     <Content Include="Views\Shared\Info.cshtml" />
     <Content Include="Views\Home\Privacy.cshtml" />
     <Content Include="Views\Specialist\Index.cshtml" />
-    <Content Include="Views\Specialist\Edit.cshtml" />
     <Content Include="Views\Specialist\Create.cshtml" />
     <Content Include="Views\Specialist\_Links.cshtml" />
   </ItemGroup>

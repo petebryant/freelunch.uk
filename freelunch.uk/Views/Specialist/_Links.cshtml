@@ -6,7 +6,7 @@
 <div class="row">
     <h4>Links to websites, blogs and social media 
         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addTarget">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true" title="Add"></span>
+            <span class="glyphicon glyphicon-plus" aria-hidden="true" title="Add a link"></span>
         </button>
     </h4>
     
@@ -42,10 +42,10 @@
             </div>
             <div class="col-md-4"> 
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#@editTarget">
-                    <span class="glyphicon glyphicon-pencil" aria-hidden="true" title="Edit"> </span>
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true" title="Edit this link"> </span>
                 </button>
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#@deleteTarget">
-                    <span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete"> </span>
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete this link"> </span>
                 </button>
             </div>
 
@@ -86,7 +86,9 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <input type="submit" value="Save" class="btn btn-default" />
+                                    <button type="submit" class="btn btn-default btn-default">
+                                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
+                                    </button>
                                 </div>
                             }
                         </section>
@@ -118,7 +120,9 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <input type="submit" value="Delete" class="btn btn-default" />
+                                    <button type="submit" class="btn btn-default btn-default">
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
+                                    </button>
                                 </div>
                             }
                         </section>
@@ -164,7 +168,9 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <input type="submit" value="Save" class="btn btn-default" />
+                            <button type="submit" class="btn btn-default btn-default">
+                                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
+                            </button>
                         </div>
                     }
                 </section>

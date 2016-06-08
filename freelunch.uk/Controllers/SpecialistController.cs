@@ -113,32 +113,6 @@ namespace freelunch.uk.Controllers
             }
         }
 
-        // GET: Specialist/Edit/5
-        public async Task<ActionResult> Edit()
-        {
-            var userId = User.Identity.GetUserId();
-            var user = await UserManager.FindByIdAsync(userId);
-
-            if (user == null)
-            {
-                return View("Error");
-            }
-
-            var specialist = context.Specialist.Include("Links").FirstOrDefault(x => x.UserId == userId);
-            var model = new SpecialistViewModel();
-
-            if (specialist == null)
-            {
-                return View("Error");
-            }
-
-            model.UserId = specialist.UserId;
-            model.Name = specialist.Name;
-            model.Description = specialist.Description;
-            model.Links = specialist.Links;
-
-            return View(model);
-        }
 
         // POST: Specialist/Edit/5
         [HttpPost]

@@ -29,7 +29,7 @@ namespace freelunch.uk
                       "~/css/font-awesome.min.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/freelunch").Include(
-                      "~/Scripts/freelunch.*"));
+                      "~/Scripts/freelunch.uk.js"));
         }
     }
 }
