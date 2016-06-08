@@ -23,7 +23,7 @@ textarea {
     max-width: 280px;
 }
 
-    .fl-text-center {
+.fl-text-center {
         text-align: left;
     }
 
@@ -38,5 +38,17 @@ textarea {
   color: white;
   display: none;
   }
+
+.close-button {
+    color: black; 
+    opacity: 1;
+    position: relative;
+    left: 12px;
+    top:-12px;
+}
+
+.close-button:hover {
+  opacity: 0.50;
+}
 
 
