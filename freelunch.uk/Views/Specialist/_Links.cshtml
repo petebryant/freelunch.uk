@@ -22,9 +22,6 @@
             case freelunch.uk.Models.LinkType.Facebook:
                 iClass = "fa fa-facebook";
                 break;
-            case freelunch.uk.Models.LinkType.GitHub:
-                iClass = "fa fa-github";
-                break;
             case freelunch.uk.Models.LinkType.LinkedIn:
                 iClass = "fa fa-linkedin";
                 break;
@@ -82,10 +79,25 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        @Html.LabelFor(m => m.Links.First(l => l.Id == link.Id).LinkType, new { @class = "col-md-2 control-label" })
-                                        <div class="col-md-10">
-                                            @Html.EnumDropDownListFor(m => m.Links.First(l => l.Id == link.Id).LinkType, new { @class = "form-control" })
-                                            @Html.ValidationMessageFor(m => m.Links.First(l => l.Id == link.Id).LinkType, "", new { @class = "text-danger" })
+                                        <div class="row">
+                                            <div class="col-md-6 col-md-offset-2">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">Select the type of link</div>
+                                                    <div class="panel-body">
+                                                        @foreach (var linkType in Enum.GetValues(typeof(freelunch.uk.Models.LinkType)))
+                                                        {
+                                                            string type = linkType.ToString();
+                                                            string id = "edit" + linkType.ToString();
+                                                            <p>
+                                                                @Html.RadioButtonFor(m => m.Links.First(l => l.Id == link.Id).LinkType, @linkType, new { id = @id })
+                                                                <label for="@id" class="control-label"> @type </label>
+                                                            </p>
+
+
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -173,10 +185,25 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(m => m.DummyLink.LinkType, new { @class = "col-md-2 control-label" })
-                                <div class="col-md-10">
-                                    @Html.EnumDropDownListFor(m => m.DummyLink.LinkType, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(m => m.DummyLink.LinkType, "", new { @class = "text-danger" })
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-2">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">Select the type of link</div>
+                                            <div class="panel-body">
+                                                @foreach (var linkType in Enum.GetValues(typeof(freelunch.uk.Models.LinkType)))
+                                                {
+                                                    string type = linkType.ToString();
+                                                    string id = "add" + linkType.ToString();
+                                                    <p>
+                                                        @Html.RadioButtonFor(m => m.DummyLink.LinkType, @linkType, new { id = @id })
+                                                        <label for="@id" class="control-label"> @type </label>
+                                                    </p>
+
+
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer">

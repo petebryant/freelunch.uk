@@ -59,11 +59,9 @@ namespace freelunch.uk.Models
 
     public enum LinkType
     { 
-        GitHub,
-        Twitter,
-        Blog,
-        Website,
         Facebook,
-        LinkedIn
+        LinkedIn,
+        Twitter,
+        Website
     }
 }
