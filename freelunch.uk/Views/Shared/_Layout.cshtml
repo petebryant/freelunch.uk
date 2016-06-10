@@ -102,19 +102,12 @@
                     <h4 class="modal-title">User Preferences</h4>
                 </div>
                 <div class="modal-body">
-                    <div>
+                    <p>
                         @Html.ActionLink("Hello " + _username, "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @style = "text-decoration: none" })
-                    </div>
-                    <div>
-                        @if (Functions.IsSpecialist(_userid))
-                        {
-                            @Html.ActionLink("We already know you're special", "Index", "Specialist", null, htmlAttributes: new { @style = "text-decoration: none" })
-                        }
-                        else
-                        {
-                            @Html.ActionLink("Become a specialist", "Create", "Specialist", null, htmlAttributes: new { @style = "text-decoration: none" })
-                        }
-                    </div>
+                    </p>
+                    <p>
+                        @Html.Partial("_SpecialistLink")
+                    </p>
                 </div>
                 <div class="modal-footer">
                     @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))

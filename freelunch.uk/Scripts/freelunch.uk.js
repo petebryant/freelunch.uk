@@ -1,5 +1,6 @@
-﻿$(document).ready(function () {
-	$(this).find('input:text:visible:first').focus();
+﻿//TODO only set focus to first visible field if there are no validation errors
+$(document).ready(function () {
+	    $(this).find('input:text:visible:first').focus();
 });
 
 $(document).ready(function () {

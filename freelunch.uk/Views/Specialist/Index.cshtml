@@ -24,7 +24,9 @@
             }
             else
             {
-                @Html.ActionLink("Become a specialist", "Create", "Specialist")
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createSpecialist">
+                    <i class="fa fa-user" aria-hidden="true" title="Become a specialist"></i> Become a specialist
+                </button>
             }
         </div>
         <div class="col-md-4">
@@ -55,7 +57,7 @@
                 <h4 class="modal-title">Delete the details</h4>
             </div>
             <p></p>
-            <section id="loginForm">
+            <section id="deleteForm">
                 @using (Html.BeginForm("Delete", "Specialist", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
                     @Html.AntiForgeryToken()
@@ -91,7 +93,7 @@
                 <h4 class="modal-title">Edit the details</h4>
             </div>
             <p></p>
-            <section id="loginForm">
+            <section id="editForm">
                 @using (Html.BeginForm("Edit", "Specialist", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
                     <div class="modal-body">
@@ -127,6 +129,54 @@
             </section>
         </div>
 
+    </div>
+</div>
+
+<div id="createSpecialist" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close close-button" data-dismiss="modal">
+                    <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                </button>
+                <h4 class="modal-title">Create your details</h4>
+            </div>
+            <p></p>
+            <section id="createForm">
+                @using (Html.BeginForm("Create", "Specialist", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    <div class="modal-body">
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-7">
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-7">
+                                @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">
+                            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
+                        </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel
+                        </button>
+                    </div>
+                }
+            </section>
+        </div>
     </div>
 </div>
 

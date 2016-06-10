@@ -27,6 +27,7 @@ namespace freelunch.uk.Models
     {
         public string Id { get; set; }
         public string Subject { get; set; }
+
         public string Description { get; set; }
 
         public virtual Specialist Specialist { get; set; }
@@ -51,7 +52,7 @@ namespace freelunch.uk.Models
         public string URL { get; set; }
 
         [Required]
-        [Display(Name = "Type")]
+        [Display(Name = "Type of link")]
         public LinkType LinkType { get; set; }
 
         public virtual Specialist Specialist { get; set; }

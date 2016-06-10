@@ -16,11 +16,9 @@ namespace freelunch.uk.Models
 
         [Required]
         [DataType(DataType.Text)]
-        [Display(Name = "Display Name")]
         public string Name { get; set; }
 
         [DataType(DataType.Text)]
-        [Display(Name = "Description")]
         public string Description { get; set; }
 
         public virtual ICollection<Link> Links { get; set; }

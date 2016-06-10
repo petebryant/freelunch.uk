@@ -70,14 +70,7 @@
             </dd>
         </dl>
         <div class="row">
-            @if (Model.IsSpecialist)
-            {
-                @Html.ActionLink("Update you details", "Index", "Specialist")
-            }
-            else
-            {
-                @Html.ActionLink("Become a specialist", "Create", "Specialist")
-            }
+            @Html.Partial("_SpecialistLink")
         </div>
     </div>
 </div>
