@@ -74,7 +74,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <a href="" data-toggle="modal" data-target="#editTarget">
-                               @_username
+                                <span class="glyphicon glyphicon-cog" aria-hidden="true" style="font-size: 18px" title="Account: @_username"></span>
                             </a>
                         </li>
                     </ul>
@@ -102,12 +102,17 @@
                     <h4 class="modal-title">User Preferences</h4>
                 </div>
                 <div class="modal-body">
-                    <p>
-                        @Html.ActionLink("Hello " + _username, "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @style = "text-decoration: none" })
-                    </p>
-                    <p>
+                    <div class="row">
+                        <div class="col-md-8">
+                            @Html.ActionLink("Hello " + _username, "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @style = "text-decoration: none" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.ActionLink("Privacy", "Privacy", "Home")
+                        </div>
+                    </div>
+                    <div class="row">
                         @Html.Partial("_SpecialistLink")
-                    </p>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
