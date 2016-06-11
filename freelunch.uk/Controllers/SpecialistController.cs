@@ -116,6 +116,7 @@ namespace freelunch.uk.Controllers
 
         // POST: Specialist/Edit/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(SpecialistViewModel model)
         {
             try
@@ -156,6 +157,7 @@ namespace freelunch.uk.Controllers
 
         // POST: Specialist/Delete
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete()
         {
             try
@@ -201,6 +203,7 @@ namespace freelunch.uk.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult EditLink(string id, FormCollection collection )
         {
             try
@@ -224,6 +227,7 @@ namespace freelunch.uk.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult DeleteLink(string id)
         {
             try
@@ -244,6 +248,7 @@ namespace freelunch.uk.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateLink(FormCollection collection)
         {
             try

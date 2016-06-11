@@ -168,6 +168,7 @@
                 <section id="addForm">
                     @using (Html.BeginForm("CreateLink", "Specialist", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                     {
+                        @Html.AntiForgeryToken()
                         <div class="modal-body">
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="form-group">
