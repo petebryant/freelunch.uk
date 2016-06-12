@@ -25,5 +25,15 @@ namespace freelunch.uk
             Server.ClearError();
             Response.Redirect("/Home/Error");
         }
+
+        protected void Application_PreSendRequestHeaders(object sender, EventArgs e)
+        {
+            // OWASP recommendation to remove the headers
+
+            HttpContext.Current.Response.Headers.Remove("X-Powered-By");
+            HttpContext.Current.Response.Headers.Remove("X-AspNet-Version");
+            HttpContext.Current.Response.Headers.Remove("X-AspNetMvc-Version");
+            HttpContext.Current.Response.Headers.Remove("Server");
+        }
     }
 }

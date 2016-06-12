@@ -10,6 +10,8 @@ using freelunch.uk.Models;
 
 namespace freelunch.uk.Controllers
 {
+    [RedirectOnError]
+    [RequireHttps]
     [Authorize]
     public class ManageController : Controller
     {

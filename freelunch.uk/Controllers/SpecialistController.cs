@@ -13,6 +13,7 @@ using freelunch.uk.Common;
 namespace freelunch.uk.Controllers
 {
     [RedirectOnError]
+    [RequireHttps]
     [Authorize]
     public class SpecialistController : Controller
     {

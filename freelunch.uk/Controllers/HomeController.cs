@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace freelunch.uk.Controllers
 {
+    [RedirectOnError]
     [RequireHttps]
     public class HomeController : Controller
     {
