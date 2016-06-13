@@ -288,5 +288,45 @@ namespace freelunch.uk.Controllers
                 return View();
             }
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> CreateSubject(FormCollection collection)
+        {
+            try
+            {
+                var userId = User.Identity.GetUserId();
+                var user = await UserManager.FindByIdAsync(userId);
+
+                if (user == null)
+                {
+                    return View("Error");
+                }
+
+                var specialist = context.Specialist.FirstOrDefault(x => x.UserId == userId);
+
+                if (specialist == null) return View("Error");
+
+                Specialism specialism = new Specialism();
+                specialism.Subject = collection["DummySpecialism.Subject"];
+                specialism.Description = collection["DummySpecialism.Description"];
+                specialism.Specialist = specialist;
+
+                context.Specialist.Attach(specialist);
+                context.Specialisms.Add(specialism);
+
+                string result = ValidationHelper.GetValidationResults(specialism);
+
+                if (!string.IsNullOrEmpty(result)) return View("Error");
+
+                context.SaveChanges();
+
+                return RedirectToAction("Index", new { Message = SpecialistMessageId.AddSucess });
+            }
+            catch
+            {
+                return View();
+            }
+        }
     }
 }

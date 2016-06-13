@@ -1,5 +1,4 @@
 ﻿@{
-
     string _userid = @User.Identity.GetUserId();
 }
 
@@ -15,12 +14,9 @@
             }
             else
             {
-
-                <a class="btn btn-default" href="/Specialist/Create" role="button">
-                    <i class="fa fa-user" aria-hidden="true" title="Become a specialist"></i> Become a specialist
-                </a>
-
+                @Html.ActionLink("Become a specialist", "Create", "Specialist", null, htmlAttributes: new { @style = "text-decoration: none" })
             }
         </p>
     </div>
 </div>
+

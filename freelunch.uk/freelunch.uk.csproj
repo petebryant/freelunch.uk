@@ -200,6 +200,10 @@
     <Compile Include="Migrations\201606030723429_requiredfileds.Designer.cs">
       <DependentUpon>201606030723429_requiredfileds.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606130747558_specialism.cs" />
+    <Compile Include="Migrations\201606130747558_specialism.Designer.cs">
+      <DependentUpon>201606130747558_specialism.cs</DependentUpon>
+    </Compile>
     <Compile Include="RedirectOnErrorAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -331,6 +335,7 @@
     <Content Include="Views\Specialist\Create.cshtml" />
     <Content Include="Views\Specialist\_Links.cshtml" />
     <Content Include="Views\Shared\_SpecialistLink.cshtml" />
+    <Content Include="Views\Home\Terms.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -384,6 +389,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606030723429_requiredfileds.resx">
       <DependentUpon>201606030723429_requiredfileds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606130747558_specialism.resx">
+      <DependentUpon>201606130747558_specialism.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

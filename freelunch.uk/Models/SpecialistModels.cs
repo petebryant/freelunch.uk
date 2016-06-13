@@ -19,12 +19,17 @@ namespace freelunch.uk.Models
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public virtual ICollection<Specialisation> Specialisations { get; set; }
+        public virtual ICollection<Specialism> Specialisms { get; set; }
         public virtual ICollection<Link> Links { get; set; }
     }
 
-    public class Specialisation
+    public class Specialism
     {
+        public Specialism()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
+
         public string Id { get; set; }
         public string Subject { get; set; }
 

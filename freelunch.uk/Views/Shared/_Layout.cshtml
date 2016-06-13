@@ -21,6 +21,23 @@
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/freelunch")
 
+    <style type="text/css">
+      /* Custom page CSS
+      -------------------------------------------------- */
+      /* Not required for template or sticky footer method. */
+
+      #wrap > .container {
+        padding-top: 60px;
+      }
+      .container .credit {
+        margin: 20px 0;
+      }
+
+      code {
+        font-size: 80%;
+      }
+
+    </style>
 </head>
 <body>
     <script type="text/javascript">
@@ -90,7 +107,7 @@
                         <li>
                             <a href="@Url.Action("Login", "Account")">
                                 <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>  Log in
-                            </a>
+                            </a>        
                         </li>
                     </ul>
                 }
@@ -106,20 +123,25 @@
                     <button type="button" class="close close-button" data-dismiss="modal">
                         <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
                     </button>
-                    <h4 class="modal-title">User Preferences</h4>
+                    <h4 class="modal-title">Account</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-8">
-                            @Html.ActionLink("Hello " + _username, "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @style = "text-decoration: none" })
+                        <div class="col-md-10">
+                            <h4>
+                                @_username
+                            </h4>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             @Html.ActionLink("Privacy", "Privacy", "Home")
                         </div>
+                        <div class="col-md-10">
+                            <p>
+                                @Html.ActionLink("Manage your account", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @style = "text-decoration: none" })
+                            </p>
+                        </div>
                     </div>
-                    <div class="row">
-                        @Html.Partial("_SpecialistLink")
-                    </div>
+                    @Html.Partial("_SpecialistLink")
                 </div>
                 <div class="modal-footer">
                     @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
@@ -141,13 +163,22 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>
-                Contact us at: <i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:info@meetfreelunch.uk" style="text-decoration: none" title="Send us an email"> info@meetfreelunch.uk</a> 
-                | <i class="fa fa-twitter" aria-hidden="true"></i><a href="https://twitter.com/meetfreelunch" style="text-decoration: none" title="Connect with us on twitter"> @ViewBag.twitter</a>
-            </p>
-            <p>&copy; @DateTime.Now.Year - meetfreelunch.uk</p>
+            <div class="row">
+                <div class="col-md-4">
+                    &copy; @DateTime.Now.Year - meetfreelunch.uk
+                </div>
+                <div class="col-md-6">
+                    Contact us at: <i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:info@meetfreelunch.uk" style="text-decoration: none" title="Send us an email"> info@meetfreelunch.uk</a>
+                    | <i class="fa fa-twitter" aria-hidden="true"></i><a href="https://twitter.com/meetfreelunch" style="text-decoration: none" title="Connect with us on twitter"> @ViewBag.twitter</a>
+                </div>
+                <div class="col-md-2">
+                    @Html.ActionLink("Privacy", "Privacy", "Home") | 
+                    @Html.ActionLink("Terms", "Terms", "Home")
+                </div>
+            </div>
         </footer>
     </div>
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

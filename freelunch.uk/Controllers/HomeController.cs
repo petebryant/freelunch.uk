@@ -40,5 +40,12 @@ namespace freelunch.uk.Controllers
 
             return View();
         }
+
+        public ActionResult Terms()
+        {
+            ViewBag.Message = "Terms and Conditions";
+
+            return View();
+        }
     }
 }
