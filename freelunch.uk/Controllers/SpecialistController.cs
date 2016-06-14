@@ -60,6 +60,7 @@ namespace freelunch.uk.Controllers
                 model.Name = specialist.Name;
                 model.Description = specialist.Description;
                 model.Links = specialist.Links;
+                model.Specialisms = specialist.Specialisms;
             }
 
             return View(model);

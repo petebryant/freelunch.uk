@@ -21,12 +21,14 @@ namespace freelunch.uk
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/bootstrap-table.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/css/font-awesome.min.css"));
+                      "~/css/font-awesome.min.css",
+                      "~/css/bootstrap-table.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/freelunch").Include(
                       "~/Scripts/freelunch.uk.js"));

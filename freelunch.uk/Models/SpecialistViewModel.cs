@@ -11,6 +11,7 @@ namespace freelunch.uk.Models
         public SpecialistViewModel()
         {
             Links = new List<Link>();
+            Specialisms = new List<Specialism>();
         }
         public string UserId { get; set; }
 
