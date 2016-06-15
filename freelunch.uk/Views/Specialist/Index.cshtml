@@ -356,40 +356,39 @@
                                     <span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete this link"> </span>
                                 </button>
                             </div>
+                            <div id="@editSubject" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close close-button" data-dismiss="modal">
+                                                <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                                            </button>
+                                            <h4 class="modal-title">Edit a subject</h4>
+                                            @editSubject
+                                        </div>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="@deleteSubject" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close close-button" data-dismiss="modal">
+                                                <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                                            </button>
+                                            <h4 class="modal-title">Delete a subject</h4>
+                                            @deleteSubject
+                                        </div>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                     </tr>
-
-                    <div id="@editSubject" class="modal fade" role="dialog">
-                        <div class="modal-dialog">
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close close-button" data-dismiss="modal">
-                                        <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
-                                    </button>
-                                    <h4 class="modal-title">Edit a subject</h4>
-                                    @editSubject
-                                </div>
-                                <p></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="@deleteSubject" class="modal fade" role="dialog">
-                        <div class="modal-dialog">
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close close-button" data-dismiss="modal">
-                                        <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
-                                    </button>
-                                    <h4 class="modal-title">Delete a subject</h4>
-                                    @deleteSubject
-                                </div>
-                                <p></p>
-                            </div>
-                        </div>
-                    </div>
                 }
             </tbody>
         </table>
