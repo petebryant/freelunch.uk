@@ -6,11 +6,298 @@
 <h2>@ViewBag.Title.</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
+
 <div class="row">
-    <h4>Your specialist details</h4>
-    <hr />
+    <h5>Your specialist details and some other blurb ...</h5>
+
     <div class="row">
-        <div class="col-md-8">
+
+            @if (Model.Name != null)
+            {
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#editSpecialist">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true" title="Edit"></span> Edit
+                    </button>
+
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#deleteSpecialist">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete"></span> Delete
+                    </button>
+                </div>
+
+                <div id="deleteSpecialist" class="modal fade" role="dialog" tabindex='-1'>
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close close-button" data-dismiss="modal">
+                                    <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                                </button>
+                                <h4 class="modal-title">Delete the details</h4>
+                            </div>
+                            <p></p>
+                            <section id="deleteForm">
+                                @using (Html.BeginForm("Delete", "Specialist", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                    <div class="modal-body">
+                                        <p> Are you sure you no longer want to be special?</p>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-default">
+                                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
+                                        </button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                                            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel
+                                        </button>
+                                    </div>
+                                }
+                            </section>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="editSpecialist" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close close-button" data-dismiss="modal">
+                                    <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                                </button>
+                                <h4 class="modal-title">Edit the details</h4>
+                            </div>
+                            <p></p>
+                            <section id="editForm">
+                                @using (Html.BeginForm("Edit", "Specialist", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                {
+                                    <div class="modal-body">
+                                        @Html.AntiForgeryToken()
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.Name, new { @class = "col-md-3 col-md-offset-1 control-label" })
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.Description, new { @class = "col-md-3 col-md-offset-1 control-label" })
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-default">
+                                                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
+                                            </button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel
+                                            </button>
+                                        </div>
+                                    </div>
+                                }
+                            </section>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            More <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" data-toggle="modal" data-target="#addSubject">Add a Specialist subject</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#addLink">Add a Link to...</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="addLink" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close close-button" data-dismiss="modal">
+                                    <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                                </button>
+                                <h4 class="modal-title">Add a link</h4>
+                            </div>
+                            <p></p>
+                            <section id="addForm">
+                                @using (Html.BeginForm("CreateLink", "Specialist", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="modal-body">
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.DummyLink.Text, new { @class = "col-md-2 control-label" })
+                                            <div class="col-md-10">
+                                                @Html.TextBoxFor(m => m.DummyLink.Text, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.DummyLink.Text, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.DummyLink.URL, new { @class = "col-md-2 control-label" })
+                                            <div class="col-md-10">
+                                                @Html.TextBoxFor(m => m.DummyLink.URL, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.DummyLink.URL, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-6 col-md-offset-2">
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-heading">Select the type of link</div>
+                                                        <div class="panel-body">
+                                                            @foreach (var linkType in Enum.GetValues(typeof(freelunch.uk.Models.LinkType)))
+                                                            {
+                                                                string type = linkType.ToString();
+                                                                string id = "add" + linkType.ToString();
+                                                                <p>
+                                                                    @Html.RadioButtonFor(m => m.DummyLink.LinkType, @linkType, new { id = @id })
+                                                                    <label for="@id" class="control-label"> @type </label>
+                                                                </p>
+
+
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-default">
+                                                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
+                                            </button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel
+                                            </button>
+                                        </div>
+                                    </div>
+                                }
+                            </section>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="addSubject" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close close-button" data-dismiss="modal">
+                                    <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                                </button>
+                                <h4 class="modal-title">Add a subject</h4>
+                            </div>
+                            <p></p>
+                            <section id="addForm">
+                                @using (Html.BeginForm("CreateSubject", "Specialist", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="modal-body">
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.DummySpecialism.Subject, new { @class = "col-md-2 control-label" })
+                                            <div class="col-md-10">
+                                                @Html.TextBoxFor(m => m.DummySpecialism.Subject, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.DummySpecialism.Subject, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.DummySpecialism.Description, new { @class = "col-md-2 control-label" })
+                                            <div class="col-md-10">
+                                                @Html.TextBoxFor(m => m.DummySpecialism.Description, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.DummySpecialism.Description, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-default">
+                                                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
+                                            </button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel
+                                            </button>
+                                        </div>
+                                    </div>
+                                }
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createSpecialist">
+                        <i class="fa fa-user" aria-hidden="true" title="Become a specialist"></i> Become a specialist
+                    </button>
+                </div>
+
+                <div id="createSpecialist" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close close-button" data-dismiss="modal">
+                                    <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                                </button>
+                                <h4 class="modal-title">Create your details</h4>
+                            </div>
+                            <p></p>
+                            <section id="createForm">
+                                @using (Html.BeginForm("Create", "Specialist", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                {
+                                    <div class="modal-body">
+                                        @Html.AntiForgeryToken()
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-default">
+                                            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
+                                        </button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                                            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel
+                                        </button>
+                                    </div>
+                                }
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            }
+    </div>
+    
+    <hr />
+
+    <div class="row">
+        <div class="col-md-10">
             @if (Model.Name != null)
             {
             <div class="form-group">
@@ -22,160 +309,6 @@
                 @Model.Description
             </div>
             }
-            else
-            {
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createSpecialist">
-                    <i class="fa fa-user" aria-hidden="true" title="Become a specialist"></i> Become a specialist
-                </button>
-            }
-        </div>
-        <div class="col-md-4">
-            @if (Model.Name != null)
-            {
-                <div>
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#editSpecialist">
-                        <span class="glyphicon glyphicon-pencil" aria-hidden="true" title="Edit these details"></span>
-                    </button>
-
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#deleteSpecialist">
-                        <span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete these details"></span>
-                    </button>
-                </div>
-            }
-        </div>
-    </div>
-</div>
-
-<div id="deleteSpecialist" class="modal fade" role="dialog" tabindex='-1'>
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close close-button" data-dismiss="modal">
-                    <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
-                </button>
-                <h4 class="modal-title">Delete the details</h4>
-            </div>
-            <p></p>
-            <section id="deleteForm">
-                @using (Html.BeginForm("Delete", "Specialist", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                {
-                    @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-                    <div class="modal-body">
-                        <p> Are you sure you no longer want to be special?</p>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-default">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
-                        </button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">
-                            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel
-                        </button>
-                    </div>
-                }
-            </section>
-        </div>
-
-    </div>
-</div>
-
-<div id="editSpecialist" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close close-button" data-dismiss="modal">
-                    <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
-                </button>
-                <h4 class="modal-title">Edit the details</h4>
-            </div>
-            <p></p>
-            <section id="editForm">
-                @using (Html.BeginForm("Edit", "Specialist", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                {
-                    <div class="modal-body">
-                        @Html.AntiForgeryToken()
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.Name, new { @class = "col-md-3 col-md-offset-1 control-label" })
-                            <div class="col-md-7">
-                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.Description, new { @class = "col-md-3 col-md-offset-1 control-label" })
-                            <div class="col-md-7">
-                                @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-default">
-                                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
-                            </button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">
-                                <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel
-                            </button>
-                        </div>
-                    </div>
-                }
-            </section>
-        </div>
-
-    </div>
-</div>
-
-<div id="createSpecialist" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close close-button" data-dismiss="modal">
-                    <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
-                </button>
-                <h4 class="modal-title">Create your details</h4>
-            </div>
-            <p></p>
-            <section id="createForm">
-                @using (Html.BeginForm("Create", "Specialist", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                {
-                    <div class="modal-body">
-                        @Html.AntiForgeryToken()
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
-                            <div class="col-md-7">
-                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
-                            <div class="col-md-7">
-                                @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-default">
-                            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
-                        </button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">
-                            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel
-                        </button>
-                    </div>
-                }
-            </section>
         </div>
     </div>
 </div>
@@ -183,105 +316,90 @@
 <hr />
 
 <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#subjects">Specialist subjects</a></li>
+    <li class="active">
+        <a href="#subjects" data-toggle="tab">Specialist subjects</a>
+    </li>
     <li><a data-toggle="tab" href="#links">Links to websites, blogs and social media</a></li>
 </ul>
 
 
-
 <div class="tab-content">
     <div id="subjects" class="tab-pane fade in active">
-        <div class="row">
-            <h4>Specialist subjects</h4>
+        <hr/>
+        <table data-toggle="table">
+            <thead>
+                <tr>
+                    <th class="col-md-4">
+                        @Html.LabelFor(m => Model.DummySpecialism.Subject)
 
-            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addSubject">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true" title="Add a link"></span> Add a subject
-            </button>
-            <p></p>
-            <div class="row">
-                <table data-toggle="table">
-                    <thead>
-                        <tr>
-                            @foreach (var specialism in Model.Specialisms)
-                            {
-                                <th>@Html.LabelFor(m => specialism.Subject)</th>
-                            }
-                            <th> </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var specialism in Model.Specialisms)
-                        {
-                            <tr>
-                                <td>@specialism.Subject</td>
-                                <td>@specialism.Description</td>
-                                <td>
-                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#editSpecialism">
-                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true" title="Edit this link"> </span>
-                                    </button>
-                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#deleteSpecialism">
-                                        <span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete this link"> </span>
-                                    </button>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                    </th>
+                    <th class="col-md-6">@Html.LabelFor(m => Model.DummySpecialism.Description)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var specialism in Model.Specialisms)
+                {
+                    string editSubject = "editSubject" + specialism.Id;
+                    string deleteSubject = "deleteSubject" + specialism.Id;
 
-        <div id="addSubject" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close close-button" data-dismiss="modal">
-                            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
-                        </button>
-                        <h4 class="modal-title">Add a subject</h4>
-                    </div>
-                    <p></p>
-                    <section id="addForm">
-                        @using (Html.BeginForm("CreateSubject", "Specialist", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                        {
-                            @Html.AntiForgeryToken()
-                            <div class="modal-body">
-                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.DummySpecialism.Subject, new { @class = "col-md-2 control-label" })
-                                    <div class="col-md-10">
-                                        @Html.TextBoxFor(m => m.DummySpecialism.Subject, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(m => m.DummySpecialism.Subject, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.DummySpecialism.Description, new { @class = "col-md-2 control-label" })
-                                    <div class="col-md-10">
-                                        @Html.TextBoxFor(m => m.DummySpecialism.Description, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(m => m.DummySpecialism.Description, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-default">
-                                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
-                                    </button>
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">
-                                        <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel
-                                    </button>
-                                </div>
+                    <tr>
+                        <td class="col-md-4">@specialism.Subject</td>
+                        <td class="col-md-6">
+                            <div class="col-md-8">
+                                @specialism.Description
                             </div>
-                        }
-                    </section>
-                </div>
-            </div>
-        </div>
+                            <div class="btn-group col-md-2">
+                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#@editSubject">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true" title="Edit this link"> </span>
+                                </button>
+                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#@deleteSubject">
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete this link"> </span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
 
-        <div id="editSubject" class="modal fade" role="dialog"></div>
+                    <div id="@editSubject" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close close-button" data-dismiss="modal">
+                                        <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                                    </button>
+                                    <h4 class="modal-title">Edit a subject</h4>
+                                    @editSubject
+                                </div>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
 
-        <div id="deleteSubject" class="modal fade" role="dialog"></div>
+                    <div id="@deleteSubject" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close close-button" data-dismiss="modal">
+                                        <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                                    </button>
+                                    <h4 class="modal-title">Delete a subject</h4>
+                                    @deleteSubject
+                                </div>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </tbody>
+        </table>
     </div>
 
     <div id="links" class="tab-pane fade">
+        <hr/>
         @Html.Partial("_Links")
     </div>
 </div>
+
+
+

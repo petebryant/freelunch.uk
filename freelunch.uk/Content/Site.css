@@ -51,5 +51,8 @@ textarea {
   opacity: 0.50;
 }
 
+table.table tr td div.btn-group { display:none;}
+table.table tr:hover td div.btn-group { display:inline-block;}
+
 
 
