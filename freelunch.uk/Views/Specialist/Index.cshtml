@@ -5,13 +5,8 @@
 
 <h2>@ViewBag.Title.</h2>
 
-<p class="text-success">@ViewBag.StatusMessage</p>
-
 <div class="row">
-    <h5>Your specialist details and some other blurb ...</h5>
-
-    <div class="row">
-
+    <div id="toolbar" class="row">
             @if (Model.Name != null)
             {
                 <div class="col-md-2">
@@ -117,7 +112,7 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li><a href="#" data-toggle="modal" data-target="#addSubject">Add a Specialist subject</a></li>
-                            <li><a href="#" data-toggle="modal" data-target="#addLink">Add a Link to...</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#addLink">Add a Links to...</a></li>
                         </ul>
                     </div>
                 </div>
@@ -202,7 +197,7 @@
                             </div>
                             <p></p>
                             <section id="addForm">
-                                @using (Html.BeginForm("CreateSubject", "Specialist", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                @using (Html.BeginForm("CreateSpecialism", "Specialist", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                                 {
                                     @Html.AntiForgeryToken()
                                     <div class="modal-body">
@@ -292,9 +287,15 @@
                     </div>
                 </div>
             }
+
+        <p class="text-success">@ViewBag.StatusMessage</p>
     </div>
     
-    <hr />
+    <br />
+
+    <h5>Your specialist details and some other blurb ...</h5>
+
+    <br/>
 
     <div class="row">
         <div class="col-md-10">
@@ -313,91 +314,55 @@
     </div>
 </div>
 
-<hr />
+<br />
 
 <ul class="nav nav-tabs">
+    @if (ViewBag.Tab ==0)
+    { 
     <li class="active">
         <a href="#subjects" data-toggle="tab">Specialist subjects</a>
     </li>
-    <li><a data-toggle="tab" href="#links">Links to websites, blogs and social media</a></li>
+    <li>
+        <a data-toggle="tab" href="#links">Links to websites, blogs and social media</a>
+    </li>
+    }
+    else
+    { 
+    <li>
+        <a href="#subjects" data-toggle="tab">Specialist subjects</a>
+    </li>
+    <li class="active">
+        <a data-toggle="tab" href="#links">Links to websites, blogs and social media</a>
+    </li>
+    }
 </ul>
 
 
 <div class="tab-content">
+    @if (ViewBag.Tab ==0)
+    {
     <div id="subjects" class="tab-pane fade in active">
-        <hr/>
-        <table data-toggle="table">
-            <thead>
-                <tr>
-                    <th class="col-md-4">
-                        @Html.LabelFor(m => Model.DummySpecialism.Subject)
-
-                    </th>
-                    <th class="col-md-6">@Html.LabelFor(m => Model.DummySpecialism.Description)</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var specialism in Model.Specialisms)
-                {
-                    string editSubject = "editSubject" + specialism.Id;
-                    string deleteSubject = "deleteSubject" + specialism.Id;
-
-                    <tr>
-                        <td class="col-md-4">@specialism.Subject</td>
-                        <td class="col-md-6">
-                            <div class="col-md-8">
-                                @specialism.Description
-                            </div>
-                            <div class="btn-group col-md-2">
-                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#@editSubject">
-                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true" title="Edit this link"> </span>
-                                </button>
-                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#@deleteSubject">
-                                    <span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete this link"> </span>
-                                </button>
-                            </div>
-                            <div id="@editSubject" class="modal fade" role="dialog">
-                                <div class="modal-dialog">
-                                    <!-- Modal content-->
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close close-button" data-dismiss="modal">
-                                                <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
-                                            </button>
-                                            <h4 class="modal-title">Edit a subject</h4>
-                                            @editSubject
-                                        </div>
-                                        <p></p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="@deleteSubject" class="modal fade" role="dialog">
-                                <div class="modal-dialog">
-                                    <!-- Modal content-->
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close close-button" data-dismiss="modal">
-                                                <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
-                                            </button>
-                                            <h4 class="modal-title">Delete a subject</h4>
-                                            @deleteSubject
-                                        </div>
-                                        <p></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+        <br/>
+        @Html.Partial("_Subjects")
     </div>
 
     <div id="links" class="tab-pane fade">
-        <hr/>
+        <br/>
         @Html.Partial("_Links")
     </div>
+    }
+    else
+    {
+        <div id="subjects" class="tab-pane fade">
+            <br />
+            @Html.Partial("_Subjects")
+        </div>
+
+        <div id="links" class="tab-pane fade in active">
+            <br />
+            @Html.Partial("_Links")
+        </div>
+    }
 </div>
 
 

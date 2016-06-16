@@ -41,15 +41,16 @@ namespace freelunch.uk.Controllers
 
         private ApplicationDbContext context = new ApplicationDbContext();
         // GET: Specialist
-        public ActionResult Index(SpecialistMessageId? message)
+        public ActionResult Index(SpecialistMessageId? message, int tab = 0)
         {
             ViewBag.StatusMessage =
                 message == SpecialistMessageId.Error ? "An error has occurred."
                 : message == SpecialistMessageId.DeleteSuccess ? "The record has been deleted."
                 : message == SpecialistMessageId.AddSucess ? "The record has been created."
-                : message == SpecialistMessageId.UpdateSuccess ? "You details have been updated."
+                : message == SpecialistMessageId.UpdateSuccess ? "The record have been updated."
                 : "";
 
+            ViewBag.Tab = tab;
             var userId = User.Identity.GetUserId();
             var specialist = context.Specialist.FirstOrDefault(x => x.UserId == userId);
             var model = new SpecialistViewModel();
@@ -220,7 +221,7 @@ namespace freelunch.uk.Controllers
 
                 context.SaveChanges();
 
-                return RedirectToAction("Index", new { Message = SpecialistMessageId.UpdateSuccess });
+                return RedirectToAction("Index", new { Message = SpecialistMessageId.UpdateSuccess, Tab = 1 });
             }
             catch
             {
@@ -241,7 +242,7 @@ namespace freelunch.uk.Controllers
                 context.Links.Remove(link);
                 context.SaveChanges();
 
-                return RedirectToAction("Index", new { Message = SpecialistMessageId.DeleteSuccess });
+                return RedirectToAction("Index", new { Message = SpecialistMessageId.DeleteSuccess, Tab = 1 });
             }
             catch
             {
@@ -282,7 +283,7 @@ namespace freelunch.uk.Controllers
                 
                 context.SaveChanges();
 
-                return RedirectToAction("Index", new { Message = SpecialistMessageId.AddSucess });
+                return RedirectToAction("Index", new { Message = SpecialistMessageId.AddSucess, Tab = 1 });
             }
             catch
             {
@@ -323,6 +324,50 @@ namespace freelunch.uk.Controllers
                 context.SaveChanges();
 
                 return RedirectToAction("Index", new { Message = SpecialistMessageId.AddSucess });
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteSubject(string id)
+        {
+            try
+            {
+                var specialism = context.Specialisms.FirstOrDefault(x => x.Id == id);
+
+                if (specialism == null) return View("Error");
+
+                context.Specialisms.Remove(specialism);
+                context.SaveChanges();
+
+                return RedirectToAction("Index", new { Message = SpecialistMessageId.DeleteSuccess });
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditSubject(string id, FormCollection collection)
+        {
+            try
+            {
+                var specialism = context.Specialisms.FirstOrDefault(x => x.Id == id);
+
+                if (specialism == null) return View("Error");
+
+                specialism.Description = collection["Description"];
+                specialism.Subject = collection["Subject"];
+
+                context.SaveChanges();
+
+                return RedirectToAction("Index", new { Message = SpecialistMessageId.UpdateSuccess });
             }
             catch
             {

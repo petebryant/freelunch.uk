@@ -2,11 +2,10 @@
 @{
     ViewBag.Title = "Websites, blogs and social media etc...";
 }
-        <table data-toggle="table borderless">
+        <table data-toggle="table">
             <thead>
                 <tr>
                     <th class="col-md-10">Link</th>
-                    <th class="col-md-2"></th>
                 </tr>
             </thead>
             <tbody>
@@ -33,123 +32,123 @@
                     }
                     <tr>
                         <td class="col-md-10">
-                            <i class="fa @iClass" aria-hidden="true"></i>
-                            <a href="@link.URL" style="text-decoration: none" title="@link.Text" target="_blank"> @link.Text</a>
-                        </td>
-                        <td class="col-md-2">
-                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#@editTarget">
-                                <span class="glyphicon glyphicon-pencil" aria-hidden="true" title="Edit this link"> </span>
-                            </button>
-                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#@deleteTarget">
-                                <span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete this link"> </span>
-                            </button>
-                        </td>
+                            <div class="col-md-8">
+                                <i class="fa @iClass" aria-hidden="true"></i>
+                                <a href="@link.URL" style="text-decoration: none" title="@link.Text" target="_blank"> @link.Text</a>
+                            </div>
+                            <div class="btn-group  col-md-2">
+                                <button type="button" class="btn btn-default btn-tool" data-toggle="modal" data-target="#@editTarget">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true" title="Edit this link"> </span>
+                                </button>
+                                <button type="button" class="btn btn-default btn-tool" data-toggle="modal" data-target="#@deleteTarget">
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete this link"> </span>
+                                </button>
+                            </div>
 
-                        <div id="@editTarget" class="modal fade" role="dialog">
-                            <div class="modal-dialog">
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close close-button" data-dismiss="modal">
-                                            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
-                                        </button>
-                                        <h4 class="modal-title">Edit the link</h4>
-                                    </div>
-                                    <p></p>
-                                    <section id="editForm">
-                                        @using (Html.BeginForm("EditLink", "Specialist", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                                        {
-                                        <div class="modal-body">
-                                            @Html.AntiForgeryToken()
-                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                            @Html.HiddenFor(m => m.Links.First(l => l.Id == link.Id).Id)
-                                            <div class="form-group">
-                                                @Html.LabelFor(m => m.Links.First(l => l.Id == link.Id).Text, new { @class = "col-md-2 control-label" })
-                                                <div class="col-md-10">
-                                                    @Html.TextBoxFor(m => m.Links.First(l => l.Id == link.Id).Text, new { @class = "form-control" })
-                                                    @Html.ValidationMessageFor(m => m.Links.First(l => l.Id == link.Id).Text, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                @Html.LabelFor(m => m.Links.First(l => l.Id == link.Id).URL, new { @class = "col-md-2 control-label" })
-                                                <div class="col-md-10">
-                                                    @Html.TextBoxFor(m => m.Links.First(l => l.Id == link.Id).URL, new { @class = "form-control" })
-                                                    @Html.ValidationMessageFor(m => m.Links.First(l => l.Id == link.Id).URL, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-md-6 col-md-offset-2">
-                                                        <div class="panel panel-default">
-                                                            <div class="panel-heading">Select the type of link</div>
-                                                            <div class="panel-body">
-                                                                @foreach (var linkType in Enum.GetValues(typeof(freelunch.uk.Models.LinkType)))
-                                                                    {
-                                                                        string type = linkType.ToString();
-                                                                        string id = "edit" + linkType.ToString();
-                                                                    <p>
-                                                                        @Html.RadioButtonFor(m => m.Links.First(l => l.Id == link.Id).LinkType, @linkType, new { id = @id })
-                                                                        <label for="@id" class="control-label"> @type </label>
-                                                                    </p>
-
-
-                                                                    }
+                            <div id="@editTarget" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close close-button" data-dismiss="modal">
+                                                <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                                            </button>
+                                            <h4 class="modal-title">Edit the link</h4>
+                                        </div>
+                                        <p></p>
+                                        <section id="editForm">
+                                            @using (Html.BeginForm("EditLink", "Specialist", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                            {
+                                                <div class="modal-body">
+                                                    @Html.AntiForgeryToken()
+                                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                                    @Html.HiddenFor(m => m.Links.First(l => l.Id == link.Id).Id)
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(m => m.Links.First(l => l.Id == link.Id).Text, new { @class = "col-md-2 control-label" })
+                                                        <div class="col-md-10">
+                                                            @Html.TextBoxFor(m => m.Links.First(l => l.Id == link.Id).Text, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(m => m.Links.First(l => l.Id == link.Id).Text, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(m => m.Links.First(l => l.Id == link.Id).URL, new { @class = "col-md-2 control-label" })
+                                                        <div class="col-md-10">
+                                                            @Html.TextBoxFor(m => m.Links.First(l => l.Id == link.Id).URL, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(m => m.Links.First(l => l.Id == link.Id).URL, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-md-6 col-md-offset-2">
+                                                                <div class="panel panel-default">
+                                                                    <div class="panel-heading">Select the type of link</div>
+                                                                    <div class="panel-body">
+                                                                        @foreach (var linkType in Enum.GetValues(typeof(freelunch.uk.Models.LinkType)))
+                                                                        {
+                                                                            string type = linkType.ToString();
+                                                                            string id = "edit" + linkType.ToString();
+                                                                            <p>
+                                                                                @Html.RadioButtonFor(m => m.Links.First(l => l.Id == link.Id).LinkType, @linkType, new { id = @id })
+                                                                                <label for="@id" class="control-label"> @type </label>
+                                                                            </p>
+                                                                        }
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-default">
+                                                            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
+                                                        </button>
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="submit" class="btn btn-default">
-                                                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
-                                                </button>
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">
-                                                    <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel
-                                                </button>
-                                            </div>
-                                        </div>
-                                        }
-                                    </section>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="@deleteTarget" class="modal fade" role="dialog" tabindex='-1'>
-                            <div class="modal-dialog">
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close close-button" data-dismiss="modal">
-                                            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
-                                        </button>
-                                        <h4 class="modal-title">Delete the link</h4>
+                                            }
+                                        </section>
                                     </div>
-                                    <p></p>
-                                    <section id="deleteForm">
-                                        @using (Html.BeginForm("DeleteLink", "Specialist", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                                        {
-                                        @Html.AntiForgeryToken()
-                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                        @Html.HiddenFor(m => m.Links.First(l => l.Id == link.Id).Id)
-
-                                        <div class="modal-body">
-                                            <p>Delete your link <b>@link.Text</b> to <b>@link.URL</b> ?</p>
-                                        </div>
-
-                                        <div class="modal-footer">
-                                            <button type="submit" class="btn btn-default">
-                                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
-                                            </button>
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">
-                                                <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel
-                                            </button>
-                                        </div>
-                                        }
-                                    </section>
                                 </div>
-
                             </div>
-                        </div>
+
+                            <div id="@deleteTarget" class="modal fade" role="dialog" tabindex='-1'>
+                                <div class="modal-dialog">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close close-button" data-dismiss="modal">
+                                                <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                                            </button>
+                                            <h4 class="modal-title">Delete the link</h4>
+                                        </div>
+                                        <p></p>
+                                        <section id="deleteForm">
+                                            @using (Html.BeginForm("DeleteLink", "Specialist", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                                @Html.HiddenFor(m => m.Links.First(l => l.Id == link.Id).Id)
+
+                                                <div class="modal-body">
+                                                    <p>Delete your link <b>@link.Text</b> to <b>@link.URL</b> ?</p>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-default">
+                                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
+                                                    </button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                        <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel
+                                                    </button>
+                                                </div>
+                                            }
+                                        </section>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                 }
             </tbody>
