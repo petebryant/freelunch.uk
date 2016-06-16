@@ -16,7 +16,7 @@
     <div id="toolbar" class="row">
         @if (Model.Name != null)
         {
-            <div class="col-md-2">
+            <div class="col-md-4">
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#editSpecialist">
                     <span class="glyphicon glyphicon-pencil" aria-hidden="true" title="Edit"></span> Edit
                 </button>
@@ -24,6 +24,16 @@
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#deleteSpecialist">
                     <span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete"></span> Delete
                 </button>
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        More <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" data-toggle="modal" data-target="#addSubject">Add a Specialist subject</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#addLink">Add a Links to...</a></li>
+                    </ul>
+                </div>
             </div>
 
             <div id="deleteSpecialist" class="modal fade" role="dialog" tabindex='-1'>
@@ -93,10 +103,7 @@
                                         <div class="col-md-7">
                                             @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
                                             @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
-                                        </div>
-
-                                        <div class="help-tip">
-                                            <p>Inline help for the edit specialist details.</p>
+                                            <span class="help-block">Say something about yourself.</span>
                                         </div>
                                     </div>
 
@@ -116,17 +123,6 @@
                 </div>
             </div>
 
-            <div class="col-md-2">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        More <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#" data-toggle="modal" data-target="#addSubject">Add a Specialist subject</a></li>
-                        <li><a href="#" data-toggle="modal" data-target="#addLink">Add a Links to...</a></li>
-                    </ul>
-                </div>
-            </div>
 
             <div id="addLink" class="modal fade" role="dialog">
                 <div class="modal-dialog">
@@ -173,8 +169,6 @@
                                                                 @Html.RadioButtonFor(m => m.DummyLink.LinkType, @linkType, new { id = @id })
                                                                 <label for="@id" class="control-label"> @type </label>
                                                             </p>
-
-
                                                         }
                                                     </div>
                                                 </div>
@@ -182,7 +176,7 @@
                                         </div>
                                     </div>
                                     <div class="help-tip">
-                                        <p>Inline help for the add links dialog</p>
+                                        <p>Provide links to your online presence, this may be a blog, websites, github repositories etc.</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-default">
@@ -231,7 +225,7 @@
                                         </div>
                                     </div>
                                     <div class="help-tip">
-                                        <p>Inline help for the add subject dialog.</p>
+                                        <p>Give details of a topic that you would like to discuss over lunch.</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-default">
@@ -286,6 +280,7 @@
                                         <div class="col-md-7">
                                             @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
                                             @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                                            <span class="help-block">Say something about yourself.</span>
                                         </div>
                                     </div>
                                 </div>
@@ -327,7 +322,9 @@
     </div>
 </div>
 
-<br />
+<br/>
+<hr/>
+<br/>
 
 <ul class="nav nav-tabs">
     @if (ViewBag.Tab ==0)
