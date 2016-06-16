@@ -5,8 +5,9 @@
 
 <h2>@ViewBag.Title.</h2>
 
-<div class="row">
-    <div id="toolbar" class="row">
+<div>
+    <div class="well well-lg">
+        <div id="toolbar" class="row">
             @if (Model.Name != null)
             {
                 <div class="col-md-2">
@@ -33,21 +34,21 @@
                             <section id="deleteForm">
                                 @using (Html.BeginForm("Delete", "Specialist", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                                 {
-                                    @Html.AntiForgeryToken()
-                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                                    <div class="modal-body">
-                                        <p> Are you sure you no longer want to be special?</p>
-                                    </div>
+                                <div class="modal-body">
+                                    <p> Are you sure you no longer want to be special?</p>
+                                </div>
 
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-default">
-                                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
-                                        </button>
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">
-                                            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel
-                                        </button>
-                                    </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-default">
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
+                                    </button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                        <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel
+                                    </button>
+                                </div>
                                 }
                             </section>
                         </div>
@@ -69,35 +70,35 @@
                             <section id="editForm">
                                 @using (Html.BeginForm("Edit", "Specialist", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                                 {
-                                    <div class="modal-body">
-                                        @Html.AntiForgeryToken()
-                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="modal-body">
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                                        <div class="form-group">
-                                            @Html.LabelFor(m => m.Name, new { @class = "col-md-3 col-md-offset-1 control-label" })
-                                            <div class="col-md-7">
-                                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-                                                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            @Html.LabelFor(m => m.Description, new { @class = "col-md-3 col-md-offset-1 control-label" })
-                                            <div class="col-md-7">
-                                                @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
-                                                @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-
-                                        <div class="modal-footer">
-                                            <button type="submit" class="btn btn-default">
-                                                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
-                                            </button>
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">
-                                                <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel
-                                            </button>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Name, new { @class = "col-md-3 col-md-offset-1 control-label" })
+                                        <div class="col-md-7">
+                                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Description, new { @class = "col-md-3 col-md-offset-1 control-label" })
+                                        <div class="col-md-7">
+                                            @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-default">
+                                            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
+                                        </button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                                            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel
+                                        </button>
+                                    </div>
+                                </div>
                                 }
                             </section>
                         </div>
@@ -131,54 +132,54 @@
                             <section id="addForm">
                                 @using (Html.BeginForm("CreateLink", "Specialist", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                                 {
-                                    @Html.AntiForgeryToken()
-                                    <div class="modal-body">
-                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                        <div class="form-group">
-                                            @Html.LabelFor(m => m.DummyLink.Text, new { @class = "col-md-2 control-label" })
-                                            <div class="col-md-10">
-                                                @Html.TextBoxFor(m => m.DummyLink.Text, new { @class = "form-control" })
-                                                @Html.ValidationMessageFor(m => m.DummyLink.Text, "", new { @class = "text-danger" })
-                                            </div>
+                                @Html.AntiForgeryToken()
+                                <div class="modal-body">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.DummyLink.Text, new { @class = "col-md-2 control-label" })
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(m => m.DummyLink.Text, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.DummyLink.Text, "", new { @class = "text-danger" })
                                         </div>
-                                        <div class="form-group">
-                                            @Html.LabelFor(m => m.DummyLink.URL, new { @class = "col-md-2 control-label" })
-                                            <div class="col-md-10">
-                                                @Html.TextBoxFor(m => m.DummyLink.URL, new { @class = "form-control" })
-                                                @Html.ValidationMessageFor(m => m.DummyLink.URL, "", new { @class = "text-danger" })
-                                            </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.DummyLink.URL, new { @class = "col-md-2 control-label" })
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(m => m.DummyLink.URL, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.DummyLink.URL, "", new { @class = "text-danger" })
                                         </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-md-6 col-md-offset-2">
-                                                    <div class="panel panel-default">
-                                                        <div class="panel-heading">Select the type of link</div>
-                                                        <div class="panel-body">
-                                                            @foreach (var linkType in Enum.GetValues(typeof(freelunch.uk.Models.LinkType)))
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-6 col-md-offset-2">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">Select the type of link</div>
+                                                    <div class="panel-body">
+                                                        @foreach (var linkType in Enum.GetValues(typeof(freelunch.uk.Models.LinkType)))
                                                             {
                                                                 string type = linkType.ToString();
                                                                 string id = "add" + linkType.ToString();
-                                                                <p>
-                                                                    @Html.RadioButtonFor(m => m.DummyLink.LinkType, @linkType, new { id = @id })
-                                                                    <label for="@id" class="control-label"> @type </label>
-                                                                </p>
+                                                            <p>
+                                                                @Html.RadioButtonFor(m => m.DummyLink.LinkType, @linkType, new { id = @id })
+                                                                <label for="@id" class="control-label"> @type </label>
+                                                            </p>
 
 
                                                             }
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="submit" class="btn btn-default">
-                                                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
-                                            </button>
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">
-                                                <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel
-                                            </button>
-                                        </div>
                                     </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-default">
+                                            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
+                                        </button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                                            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel
+                                        </button>
+                                    </div>
+                                </div>
                                 }
                             </section>
                         </div>
@@ -197,34 +198,34 @@
                             </div>
                             <p></p>
                             <section id="addForm">
-                                @using (Html.BeginForm("CreateSpecialism", "Specialist", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                @using (Html.BeginForm("CreateSubject", "Specialist", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                                 {
-                                    @Html.AntiForgeryToken()
-                                    <div class="modal-body">
-                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                        <div class="form-group">
-                                            @Html.LabelFor(m => m.DummySpecialism.Subject, new { @class = "col-md-2 control-label" })
-                                            <div class="col-md-10">
-                                                @Html.TextBoxFor(m => m.DummySpecialism.Subject, new { @class = "form-control" })
-                                                @Html.ValidationMessageFor(m => m.DummySpecialism.Subject, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            @Html.LabelFor(m => m.DummySpecialism.Description, new { @class = "col-md-2 control-label" })
-                                            <div class="col-md-10">
-                                                @Html.TextBoxFor(m => m.DummySpecialism.Description, new { @class = "form-control" })
-                                                @Html.ValidationMessageFor(m => m.DummySpecialism.Description, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="submit" class="btn btn-default">
-                                                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
-                                            </button>
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">
-                                                <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel
-                                            </button>
+                                @Html.AntiForgeryToken()
+                                <div class="modal-body">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.DummySpecialism.Subject, new { @class = "col-md-2 control-label" })
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(m => m.DummySpecialism.Subject, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.DummySpecialism.Subject, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.DummySpecialism.Description, new { @class = "col-md-2 control-label" })
+                                        <div class="col-md-10">
+                                            @Html.TextAreaFor(m => m.DummySpecialism.Description, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.DummySpecialism.Description, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-default">
+                                            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
+                                        </button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                                            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel
+                                        </button>
+                                    </div>
+                                </div>
                                 }
                             </section>
                         </div>
@@ -267,7 +268,7 @@
                                         <div class="form-group">
                                             @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
                                             <div class="col-md-7">
-                                                @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+                                                @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
                                                 @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
@@ -288,16 +289,19 @@
                 </div>
             }
 
-        <p class="text-success">@ViewBag.StatusMessage</p>
-    </div>
-    
-    <br />
+            <p class="text-success">@ViewBag.StatusMessage</p>
+        </div>
 
-    <h5>Your specialist details and some other blurb ...</h5>
+        <br />
+
+        <div>
+            As a specialist you have the chance of sharing your knowledge of a subject you are passionate about.
+        </div>
+    </div>
 
     <br/>
 
-    <div class="row">
+    <div class="row ">
         <div class="col-md-10">
             @if (Model.Name != null)
             {

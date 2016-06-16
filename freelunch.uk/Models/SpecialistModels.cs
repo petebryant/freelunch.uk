@@ -16,7 +16,9 @@ namespace freelunch.uk.Models
 
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string UserId { get; set; }
+
         public string Name { get; set; }
+
         public string Description { get; set; }
 
         public virtual ICollection<Specialism> Specialisms { get; set; }

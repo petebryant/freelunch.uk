@@ -61,7 +61,7 @@
                                             <div class="form-group">
                                                 @Html.LabelFor(m => m.Specialisms.First(l => l.Id == specialism.Id).Description, new { @class = "col-md-2 control-label" })
                                                 <div class="col-md-10">
-                                                    @Html.TextBoxFor(m => m.Specialisms.First(l => l.Id == specialism.Id).Description, new { @class = "form-control" })
+                                                    @Html.TextAreaFor(m => m.Specialisms.First(l => l.Id == specialism.Id).Description, new { @class = "form-control" })
                                                     @Html.ValidationMessageFor(m => m.Specialisms.First(l => l.Id == specialism.Id).Description, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>

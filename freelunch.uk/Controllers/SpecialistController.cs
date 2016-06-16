@@ -181,11 +181,19 @@ namespace freelunch.uk.Controllers
                 }
 
                 int count = specialist.Links.Count - 1;
-                for(int i=count; i >= 0; i--)
+                for (int i = count; i >= 0; i--)
                 {
                     Link link = specialist.Links.ElementAt(i);
                     specialist.Links.Remove(link);
                     context.Links.Remove(link);
+                }
+
+                count = specialist.Specialisms.Count - 1;
+                for (int i = count; i >= 0; i--)
+                {
+                    Specialism specialism = specialist.Specialisms.ElementAt(i);
+                    specialist.Specialisms.Remove(specialism);
+                    context.Specialisms.Remove(specialism);
                 }
 
                 context.Specialist.Attach(specialist);
