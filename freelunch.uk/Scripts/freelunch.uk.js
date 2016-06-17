@@ -9,4 +9,10 @@ $(document).ready(function () {
 	})
 });
 
+$(document).on("keypress", ":input:not(textarea):not([type=submit])", function (event) {
+    if (event.keyCode == 13) {
+        event.preventDefault();
+    }
+});
+
 
