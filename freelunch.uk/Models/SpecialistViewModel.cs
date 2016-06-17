@@ -22,6 +22,13 @@ namespace freelunch.uk.Models
         [DataType(DataType.Text)]
         public string Description { get; set; }
 
+        public virtual ICollection<Location> Locations { get; set; }
+
+        public Location DummyLocation
+        {
+            get { return new Location(); }
+        }
+
         public virtual ICollection<Specialism> Specialisms { get; set; }
 
         public Specialism DummySpecialism

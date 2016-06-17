@@ -204,6 +204,14 @@
     <Compile Include="Migrations\201606130747558_specialism.Designer.cs">
       <DependentUpon>201606130747558_specialism.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606170814292_locations.cs" />
+    <Compile Include="Migrations\201606170814292_locations.Designer.cs">
+      <DependentUpon>201606170814292_locations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606170827030_locations-update.cs" />
+    <Compile Include="Migrations\201606170827030_locations-update.Designer.cs">
+      <DependentUpon>201606170827030_locations-update.cs</DependentUpon>
+    </Compile>
     <Compile Include="RedirectOnErrorAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -266,6 +274,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="css\bootstrap-table.css" />
+    <Content Include="css\bootstrap-tagsinput.css" />
     <Content Include="css\font-awesome.css" />
     <Content Include="css\font-awesome.min.css" />
     <Content Include="favicon.ico" />
@@ -274,6 +283,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap-table.js" />
+    <Content Include="Scripts\bootstrap-tagsinput-angular.js" />
+    <Content Include="Scripts\bootstrap-tagsinput.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\fontawesome-webfont.eot" />
@@ -395,6 +406,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606130747558_specialism.resx">
       <DependentUpon>201606130747558_specialism.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606170814292_locations.resx">
+      <DependentUpon>201606170814292_locations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606170827030_locations-update.resx">
+      <DependentUpon>201606170827030_locations-update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

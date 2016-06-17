@@ -21,8 +21,27 @@ namespace freelunch.uk.Models
 
         public string Description { get; set; }
 
+        public virtual ICollection<Location> Location { get; set; }
+
         public virtual ICollection<Specialism> Specialisms { get; set; }
         public virtual ICollection<Link> Links { get; set; }
+    }
+
+    public class Location
+    {
+        public Location()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
+
+        public string Id { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "Locations")]
+        public string Name { get; set; }
+
+        public virtual Specialist Specialist { get; set; }
     }
 
     public class Specialism

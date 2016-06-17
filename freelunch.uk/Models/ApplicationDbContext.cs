@@ -14,6 +14,8 @@ namespace freelunch.uk.Models
 
         public DbSet<Specialism> Specialisms { get; set; }
 
+        public DbSet<Location> Locations { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
