@@ -15,4 +15,3 @@ $(document).on("keypress", ":input:not(textarea):not([type=submit])", function (
     }
 });
 
-

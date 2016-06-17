@@ -11,6 +11,11 @@
   line-height: 22px;
   cursor: text;
 }
+
+.bootstrap-tagsinput span {
+    background-color: #e3e3e3;
+}
+
 .bootstrap-tagsinput input {
   border: none;
   box-shadow: none;
@@ -37,7 +42,9 @@
 }
 .bootstrap-tagsinput .tag {
   margin-right: 2px;
-  color: white;
+    color: black;
+    font-size: 100%;
+    font-weight: normal;
 }
 .bootstrap-tagsinput .tag [data-role="remove"] {
   margin-left: 8px;
