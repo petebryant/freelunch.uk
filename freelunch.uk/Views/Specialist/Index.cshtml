@@ -111,10 +111,10 @@
                                         @Html.LabelFor(m => m.DummyLocation.Name, new { @class = "col-md-3 col-md-offset-1 control-label" })
                                         <div class="col-md-7">
                                             @Html.TextBoxFor(m => m.DummyLocation.Name, new { @class = "form-control", data_role = "tagsinput", placeholder = "Add tags" })
-                                            <span class="help-block">Places you are prepared to travel to e.g. "Battersea", "Clapham"</span>
+                                            <span class="help-block">Locations where you are prepared to have lunch e.g. "Battersea", "Clapham"</span>
                                         </div>
                                     </div>
-
+                                   
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-default">
                                             <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
@@ -130,8 +130,17 @@
 
                 </div>
             </div>
-
-
+     <script type="text/javascript">
+    $(function () {
+        $('input').tagsinput({
+            typeahead: {
+                source: ['Amsterdam', 'Washington', 'Sydney', 'Beijing', 'Cairo'],
+                freeInput: true
+            }
+        })
+    });
+    </script>
+            
             <div id="addLink" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <!-- Modal content-->

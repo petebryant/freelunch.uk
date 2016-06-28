@@ -21,7 +21,7 @@ namespace freelunch.uk.Models
 
         public string Description { get; set; }
 
-        public virtual ICollection<Location> Location { get; set; }
+        public virtual ICollection<Location> Locations { get; set; }
 
         public virtual ICollection<Specialism> Specialisms { get; set; }
         public virtual ICollection<Link> Links { get; set; }

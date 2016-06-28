@@ -62,6 +62,15 @@ namespace freelunch.uk.Controllers
                 model.Description = specialist.Description;
                 model.Links = specialist.Links;
                 model.Specialisms = specialist.Specialisms;
+                model.Locations = specialist.Locations;
+
+                foreach (var location in specialist.Locations)
+                {
+                    if (string.IsNullOrEmpty(model.DummyLocation.Name))
+                        model.DummyLocation.Name = location.Name;
+                    else
+                        model.DummyLocation.Name += "," + location.Name;
+                }
             }
 
             return View(model);
@@ -145,6 +154,29 @@ namespace freelunch.uk.Controllers
                     return View("Error");
                 }
 
+                if (!string.IsNullOrEmpty(model.DummyLocation.Name))
+                {
+                    string[] locations = model.DummyLocation.Name.Split(',');
+
+                    var removeThese = specialist.Locations.Where(l => !locations.Contains(l.Name)).ToList<Location>();
+
+                    foreach (var removeThis in removeThese)
+                    {
+                        specialist.Locations.Remove(removeThis);
+                        context.Locations.Remove(removeThis);
+                    }
+
+                    foreach (string location in locations)
+                    {
+                        if (!specialist.Locations.Any(l => l.Name == location))
+                        {
+                            Location newloc = new Location();
+                            newloc.Name = location;
+                            specialist.Locations.Add(newloc);
+                        }
+                    }
+                }
+
                 specialist.Name = model.Name;
                 specialist.Description = model.Description;
 
@@ -194,6 +226,14 @@ namespace freelunch.uk.Controllers
                     Specialism specialism = specialist.Specialisms.ElementAt(i);
                     specialist.Specialisms.Remove(specialism);
                     context.Specialisms.Remove(specialism);
+                }
+
+                count = specialist.Locations.Count - 1;
+                for (int i = count; i >= 0; i--)
+                {
+                    Location location = specialist.Locations.ElementAt(i);
+                    specialist.Locations.Remove(location);
+                    context.Locations.Remove(location);
                 }
 
                 context.Specialist.Attach(specialist);

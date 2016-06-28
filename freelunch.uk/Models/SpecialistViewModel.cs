@@ -12,6 +12,8 @@ namespace freelunch.uk.Models
         {
             Links = new List<Link>();
             Specialisms = new List<Specialism>();
+            Locations = new List<Location>();
+            DummyLocation = new Location();
         }
         public string UserId { get; set; }
 
@@ -24,10 +26,7 @@ namespace freelunch.uk.Models
 
         public virtual ICollection<Location> Locations { get; set; }
 
-        public Location DummyLocation
-        {
-            get { return new Location(); }
-        }
+        public Location DummyLocation { get; set; }
 
         public virtual ICollection<Specialism> Specialisms { get; set; }
 
