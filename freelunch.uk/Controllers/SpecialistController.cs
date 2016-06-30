@@ -52,7 +52,7 @@ namespace freelunch.uk.Controllers
 
             ViewBag.Tab = tab;
             var userId = User.Identity.GetUserId();
-            var specialist = context.Specialist.FirstOrDefault(x => x.UserId == userId);
+            var specialist = context.Specialists.FirstOrDefault(x => x.UserId == userId);
             var model = new SpecialistViewModel();
 
             if (specialist != null)
@@ -69,7 +69,7 @@ namespace freelunch.uk.Controllers
                     if (string.IsNullOrEmpty(model.DummyLocation.Name))
                         model.DummyLocation.Name = location.Name;
                     else
-                        model.DummyLocation.Name += "," + location.Name;
+                        model.DummyLocation.Name += ", " + location.Name;
                 }
 
                 ViewBag.Locations = context.Locations.Select(x => x.Name).ToList<string>().Distinct(StringComparer.InvariantCultureIgnoreCase).ToArray();
@@ -116,7 +116,7 @@ namespace freelunch.uk.Controllers
                 specialist.Name = model.Name;
                 specialist.Description = model.Description;
 
-                context.Specialist.Add(specialist);
+                context.Specialists.Add(specialist);
                 context.SaveChanges();
 
                 return RedirectToAction("Index", new { Message = SpecialistMessageId.UpdateSuccess });
@@ -149,7 +149,7 @@ namespace freelunch.uk.Controllers
                 }
 
 
-                var specialist = context.Specialist.FirstOrDefault(x => x.UserId == userId);
+                var specialist = context.Specialists.FirstOrDefault(x => x.UserId == userId);
 
                 if (specialist == null)
                 {
@@ -207,7 +207,7 @@ namespace freelunch.uk.Controllers
                     return View("Error");
                 }
 
-                var specialist = context.Specialist.FirstOrDefault(x => x.UserId == userId);
+                var specialist = context.Specialists.FirstOrDefault(x => x.UserId == userId);
 
                 if (specialist == null)
                 {
@@ -238,8 +238,8 @@ namespace freelunch.uk.Controllers
                     context.Locations.Remove(location);
                 }
 
-                context.Specialist.Attach(specialist);
-                context.Specialist.Remove(specialist);
+                context.Specialists.Attach(specialist);
+                context.Specialists.Remove(specialist);
 
                 string result = ValidationHelper.GetValidationResults(specialist);
 
@@ -314,7 +314,7 @@ namespace freelunch.uk.Controllers
                     return View("Error");
                 }
 
-                var specialist = context.Specialist.FirstOrDefault(x => x.UserId == userId);
+                var specialist = context.Specialists.FirstOrDefault(x => x.UserId == userId);
 
                 if (specialist == null) return View("Error");
 
@@ -324,7 +324,7 @@ namespace freelunch.uk.Controllers
                 link.LinkType = (LinkType)Enum.Parse(typeof(LinkType), collection["DummyLink.LinkType"]);
                 link.Specialist = specialist;
 
-                context.Specialist.Attach(specialist);
+                context.Specialists.Attach(specialist);
                 context.Links.Add(link);
 
                 string result = ValidationHelper.GetValidationResults(link);
@@ -355,7 +355,7 @@ namespace freelunch.uk.Controllers
                     return View("Error");
                 }
 
-                var specialist = context.Specialist.FirstOrDefault(x => x.UserId == userId);
+                var specialist = context.Specialists.FirstOrDefault(x => x.UserId == userId);
 
                 if (specialist == null) return View("Error");
 
@@ -364,7 +364,7 @@ namespace freelunch.uk.Controllers
                 specialism.Description = collection["DummySpecialism.Description"];
                 specialism.Specialist = specialist;
 
-                context.Specialist.Attach(specialist);
+                context.Specialists.Attach(specialist);
                 context.Specialisms.Add(specialism);
 
                 string result = ValidationHelper.GetValidationResults(specialism);

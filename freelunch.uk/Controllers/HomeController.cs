@@ -1,4 +1,5 @@
-﻿using System;
+﻿using freelunch.uk.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +11,8 @@ namespace freelunch.uk.Controllers
     [RequireHttps]
     public class HomeController : Controller
     {
+        private ApplicationDbContext context = new ApplicationDbContext();
+
         public ActionResult Index()
         {
             return View();
@@ -27,11 +30,14 @@ namespace freelunch.uk.Controllers
             return View();
         }
 
-        public ActionResult Specialist()
+        public ActionResult Specialists()
         {
             ViewBag.Message = "Find an specialist.";
 
-            return View();
+            SpecialistsViewModel model = new SpecialistsViewModel();
+            model.Specialists = context.Specialists.ToList();
+
+            return View(model);
         }
 
         public ActionResult Privacy()

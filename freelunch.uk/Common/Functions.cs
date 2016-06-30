@@ -27,7 +27,7 @@ namespace freelunch.uk.Common
 
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
-                var specialist = context.Specialist.FirstOrDefault(x => x.UserId == userId);
+                var specialist = context.Specialists.FirstOrDefault(x => x.UserId == userId);
 
                 return (specialist != null);
             }

@@ -34,7 +34,7 @@
                         <td class="col-md-10">
                             <div class="col-md-8">
                                 <i class="fa @iClass" aria-hidden="true"></i>
-                                <a href="@link.URL" style="text-decoration: none" title="@link.Text" target="_blank"> @link.Text</a>
+                                <a href="@Html.Encode(link.URL)" style="text-decoration: none" title="@Html.Encode(link.Text)" target="_blank"> @Html.Encode(link.Text)</a>
                             </div>
                             <div class="btn-group  col-md-2">
                                 <button type="button" class="btn btn-default btn-tool" data-toggle="modal" data-target="#@editTarget">

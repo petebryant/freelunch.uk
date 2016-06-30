@@ -130,6 +130,7 @@
 
                 </div>
             </div>
+            
      <script type="text/javascript">
 
      var locations = @Html.Raw(Json.Encode(ViewBag.Locations));
@@ -142,8 +143,6 @@
             }
         })
     });
-
-
     </script>
             
             <div id="addLink" class="modal fade" role="dialog">
@@ -339,6 +338,11 @@
                 @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
                 @Model.Description
             </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.DummyLocation.Name, new { @class = "col-md-2 control-label" })
+                @Model.DummyLocation.Name
+            </div>
+
             }
         </div>
     </div>

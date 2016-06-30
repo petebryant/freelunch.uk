@@ -9,7 +9,7 @@ namespace freelunch.uk.Models
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<Specialist> Specialist { get; set; }
+        public DbSet<Specialist> Specialists { get; set; }
         public DbSet<Link> Links { get; set; }
 
         public DbSet<Specialism> Specialisms { get; set; }

@@ -188,6 +188,7 @@
     <Compile Include="Controllers\SpecialistController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Models\SpecialistsViewModel.cs" />
     <Compile Include="Migrations\201606020746354_experttospecialist.cs" />
     <Compile Include="Migrations\201606020746354_experttospecialist.Designer.cs">
       <DependentUpon>201606020746354_experttospecialist.cs</DependentUpon>
@@ -319,7 +320,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Specialist.cshtml" />
+    <Content Include="Views\Home\Specialists.cshtml" />
     <Content Include="Views\Home\Lunch.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -349,7 +350,7 @@
     <Content Include="Views\Specialist\Create.cshtml" />
     <Content Include="Views\Specialist\_Links.cshtml" />
     <Content Include="Views\Shared\_SpecialistLink.cshtml" />
-    <Content Include="Views\Home\Terms.cshtml" />
+    <Content Include="Views\Manage\Terms.cshtml" />
     <Content Include="Views\Specialist\_Subjects.cshtml" />
   </ItemGroup>
   <ItemGroup>

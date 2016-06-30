@@ -69,7 +69,7 @@ namespace freelunch.uk.Controllers
 
             var userId = User.Identity.GetUserId();
             var user = await UserManager.FindByIdAsync(userId);
-            Specialist Specialist = context.Specialist.SingleOrDefault(e => e.UserId == userId);
+            Specialist Specialist = context.Specialists.SingleOrDefault(e => e.UserId == userId);
 
             var model = new IndexViewModel
             {
