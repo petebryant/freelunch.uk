@@ -71,6 +71,8 @@ namespace freelunch.uk.Controllers
                     else
                         model.DummyLocation.Name += "," + location.Name;
                 }
+
+                ViewBag.Locations = context.Locations.Select(x => x.Name).Distinct(StringComparer.CurrentCultureIgnoreCase).ToArray();
             }
 
             return View(model);

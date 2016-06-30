@@ -23,7 +23,8 @@ namespace freelunch.uk
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
                       "~/Scripts/bootstrap-table.js",
-                      "~/Scripts/bootstrap-tagsinput.js"));
+                      "~/Scripts/bootstrap-tagsinput.js",
+                      "~/Scripts/bootstrap3-typeahead.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
