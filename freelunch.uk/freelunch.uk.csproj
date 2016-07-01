@@ -352,6 +352,7 @@
     <Content Include="Views\Shared\_SpecialistLink.cshtml" />
     <Content Include="Views\Manage\Terms.cshtml" />
     <Content Include="Views\Specialist\_Subjects.cshtml" />
+    <Content Include="Views\Home\Terms.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
