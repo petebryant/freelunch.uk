@@ -179,7 +179,7 @@ namespace freelunch.uk.Controllers
                     // TempData["ViewBagLink"] = callbackUrl;
 
                     ViewBag.Message = "Check your email and confirm your account, you must be confirmed "
-                                    + "before you can log in.";
+                                    + "before you can sign in.";
 
                     return View("Info");
                     //return RedirectToAction("Index", "Home");
