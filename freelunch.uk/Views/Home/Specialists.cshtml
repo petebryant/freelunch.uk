@@ -4,15 +4,27 @@
      string locations = "";
 }
 
-
 <div class="well well-lg">
     <h2><i class="fa fa-users" aria-hidden="true"></i> @ViewBag.Title.</h2>
     <br />
 
-    <div>
-        Find an specialist or register your skills etc...
+    <div class="row">
+        <div class="col-md-6">
+            Find an specialist or register your skills etc...
+        </div>
+
+        <div class="input-group col-md-6">
+            <input type="text" class="form-control pull-right" placeholder="Search for...">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </button>
+            </span>
+        </div>
     </div>
 </div>
+
+<hr />
 
 @foreach (var specialist in Model.Specialists)
 {
