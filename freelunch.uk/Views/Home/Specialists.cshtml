@@ -1,0 +1,95 @@
+﻿@model freelunch.uk.Models.SpecialistsViewModel
+@{
+    ViewBag.Title = "Specialists";
+     string locations = "";
+}
+
+
+<div class="well well-lg">
+    <h2><i class="fa fa-users" aria-hidden="true"></i> @ViewBag.Title.</h2>
+    <br />
+
+    <div>
+        Find an specialist or register your skills etc...
+    </div>
+</div>
+
+@foreach (var specialist in Model.Specialists)
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">@Html.Encode(specialist.Name)</h3>
+        </div>
+        <div class="panel-body">
+            <div class="col-md-6">
+                <dl class="dl-horizontal">
+
+                    <dt>@Html.DisplayNameFor(s => s.DummySpecialist.Description)</dt>
+                    <dd>@Html.Encode(specialist.Description)</dd>
+
+
+                    @foreach (var location in specialist.Locations)
+                {
+                    if (!string.IsNullOrEmpty(locations))
+                    {
+                        locations += ", ";
+                    }
+
+                    locations += location.Name;
+                }
+
+                    <dt>@Html.DisplayNameFor(s => s.DummyLocation.Name)</dt>
+                    <dd>@Html.Encode(locations)</dd>
+
+
+                    @foreach (var link in specialist.Links)
+                {
+                    string iClass = "";
+
+                    switch (link.LinkType)
+                    {
+                        case freelunch.uk.Models.LinkType.Facebook:
+                            iClass = "fa fa-facebook";
+                            break;
+                        case freelunch.uk.Models.LinkType.LinkedIn:
+                            iClass = "fa fa-linkedin";
+                            break;
+                        case freelunch.uk.Models.LinkType.Twitter:
+                            iClass = "fa fa-twitter";
+                            break;
+                        default:
+                            iClass = "fa fa-book";
+                            break;
+                    }
+
+                        <dd>
+                            <br />
+                            <i class="fa @iClass" aria-hidden="true"></i>
+                            <a href="@Html.Encode(link.URL)" style="text-decoration: none" title="@Html.Encode(link.Text)" target="_blank"> @Html.Encode(link.Text)</a>
+                        </dd>
+                }
+                </dl>
+            </div>
+            <div class="col-md-6 bg-primary">
+                @foreach (var specialism in specialist.Specialisms)
+            {
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">@Html.Encode(specialism.Subject)</h3>
+                        </div>
+                        <div class="panel-body">
+                            @Html.Encode(specialism.Description)
+                        </div>
+                    </div>
+            }
+            </div>
+
+        </div>
+    </div>
+}
+
+
+
+
+
+
