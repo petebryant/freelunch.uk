@@ -30,6 +30,31 @@ namespace freelunch.uk.Controllers
             return View();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Search(string search)
+        {
+            ViewBag.Message = "Find an specialist.";
+
+            SpecialistsViewModel model = new SpecialistsViewModel();
+
+            if (string.IsNullOrEmpty(search))
+            {
+                model.Specialists = context.Specialists.ToList();
+            }
+            else
+            {
+                model.Specialists = context.Specialists.Where(s => s.Name.Contains(search)
+                                                                    || s.Description.Contains(search)
+                                                                    || s.Specialisms.Any(l => l.Subject.Contains(search))
+                                                                    || s.Specialisms.Any(l => l.Description.Contains(search))
+                                                                    || s.Links.Any(l => l.Text.Contains(search))
+                                                                    || s.Links.Any(l => l.URL.Contains(search))).ToList();
+            }
+
+            return View("Specialists", model);
+        }
+
         public ActionResult Specialists()
         {
             ViewBag.Message = "Find an specialist.";

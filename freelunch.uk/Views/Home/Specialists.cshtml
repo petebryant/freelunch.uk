@@ -12,15 +12,19 @@
         <div class="col-md-6">
             Find an specialist or register your skills etc...
         </div>
+        @using (Html.BeginForm("Search", "Home", FormMethod.Post, new { id = "searchForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="input-group col-md-6">
+                <input id="search" name="search" type="text" class="form-control pull-right" placeholder="Search for...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                </span>
+            </div>
+        }
 
-        <div class="input-group col-md-6">
-            <input type="text" class="form-control pull-right" placeholder="Search for...">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                </button>
-            </span>
-        </div>
     </div>
 </div>
 
