@@ -41,6 +41,9 @@
 </head>
 <body>
     <script type="text/javascript">
+        var first = "info";
+        var last = "meetfreelunch.uk";
+
     $(function () {
         if (document.cookie.indexOf("cookies") < 0) {
             $('#cookie-consent').slideDown('slow');
@@ -171,7 +174,10 @@
                     &copy; @DateTime.Now.Year - meetfreelunch.uk
                 </div>
                 <div class="col-md-6">
-                    Contact us at: <i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:info@meetfreelunch.uk" style="text-decoration: none" title="Send us an email"> info@meetfreelunch.uk</a>
+                    Contact us at: <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <script type="text/javascript">
+                        document.write('<a href="mailto:' + first + '@@' + last + '" style="text-decoration: none" title="Send us an email">' + first + '@@' + last + '<\/a>');
+                    </script>
                     | <i class="fa fa-twitter" aria-hidden="true"></i><a href="https://twitter.com/meetfreelunch" style="text-decoration: none" title="Connect with us on twitter"> @ViewBag.twitter</a>
                 </div>
                 <div class="col-md-2">

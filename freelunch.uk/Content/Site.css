@@ -147,5 +147,9 @@ table.table tr:hover td div.btn-group { display:inline-block;}
 	100% { opacity:100; }
 }
 
+.anti-spam {
+    display:none;
+}
+
 
 
