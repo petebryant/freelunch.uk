@@ -27,9 +27,9 @@ namespace freelunch.uk.Models
         public string Email { get; set; }
         [Required]
         [Display(Name = "Message:")]
-        public string Subject { get; set; }
+        public string Message { get; set; }
         public string URL { get; set; }
         public string Search { get; set; }
-        public string ContactId { get; set; }
+        public string UserId { get; set; }
     }
 }

@@ -27,7 +27,7 @@
 
     </div>
 </div>
-
+<p class="text-success">@ViewBag.StatusMessage</p>
 <hr />
 
 @foreach (var specialist in Model.Specialists)
@@ -136,7 +136,7 @@
                                 <div class="anti-spam">
                                     @Html.TextBoxFor(s => s.URL)
                                     @Html.TextBoxFor(s => s.Search)
-                                    <input id="ContactId" name="ContactId" value="@specialist.UserId" />
+                                    <input id="UserId" name="UserId" value="@specialist.UserId" />
                                 </div>
 
                                 <hr />
@@ -149,7 +149,7 @@
                                 </div>
 
                                 <div class="help-tip">
-                                    <p>Send an email to the selected specialist to arrange a meet free lunch.</p>
+                                    <p>Contact this specialist to arrange a lunch.</p>
                                 </div>
 
                                 <div class="form-group">
@@ -161,10 +161,10 @@
                                 </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(s => s.Subject, new { @class = "col-md-3 col-md-offset-1 control-label" })
+                                @Html.LabelFor(s => s.Message, new { @class = "col-md-3 col-md-offset-1 control-label" })
                                 <div class="col-md-7">
-                                    @Html.TextAreaFor(s => s.Subject, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(s => s.Subject, "", new { @class = "text-danger" })
+                                    @Html.TextAreaFor(s => s.Message, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(s => s.Message, "", new { @class = "text-danger" })
                                     <span class="help-block">Provide a description of what you are proposing.</span>
                                 </div>
                             </div>

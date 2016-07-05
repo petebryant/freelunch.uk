@@ -1,13 +1,10 @@
-﻿using freelunch.uk.Models;
-using SendGrid;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Net;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity.Owin;
+using freelunch.uk.Models;
+using freelunch.uk.Common;
 
 namespace freelunch.uk.Controllers
 {
@@ -15,7 +12,21 @@ namespace freelunch.uk.Controllers
     [RequireHttps]
     public class HomeController : Controller
     {
-        private ApplicationDbContext context = new ApplicationDbContext();
+        private ApplicationUserManager _userManager;
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
+
+        ApplicationDbContext context = new ApplicationDbContext();
 
         public ActionResult Index()
         {
@@ -29,8 +40,6 @@ namespace freelunch.uk.Controllers
 
         public ActionResult Lunch()
         {
-            ViewBag.Message = "Arrange a lunch.";
-
             return View();
         }
 
@@ -38,8 +47,6 @@ namespace freelunch.uk.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Search(string search)
         {
-            ViewBag.Message = "Find an specialist.";
-
             SpecialistsViewModel model = GetSearchResult(search);
 
             return View("Specialists", model);
@@ -72,51 +79,33 @@ namespace freelunch.uk.Controllers
             // this is a honey pot to stop spambots
             if (string.IsNullOrEmpty(vm.URL))
             {
-                //TODO get specilaist email address...
-                await ConfigSendGridAsync("pete.bryant@gmail.com", vm.Sender, vm.Email, vm.Subject);   
+                var user = await UserManager.FindByIdAsync(vm.UserId);
+
+                if (user == null)
+                {
+                    return View("Error");
+                }
+
+                string recipient = user.Email;
+
+                //TODO need to format the contact email message
+                string message = "This is a contact message from " + vm.Email;
+                message += " " + vm.Sender + " would like to arrange a lunch.";
+                message += " " + vm.Message;
+
+                await Functions.SendGridAsync(recipient, message);
+                ViewBag.StatusMessage = "Contact email was successfully sent";
             }
 
             SpecialistsViewModel model = GetSearchResult(vm.Search);
 
-
-            //TODO provide success or fail message
             return View("Specialists", model);
         }
 
-        private async Task ConfigSendGridAsync(string to, string sender, string email, string subject)
-        {
-            var myMessage = new SendGridMessage();
-            myMessage.AddTo(to);
-            myMessage.From = new System.Net.Mail.MailAddress(
-                                email, sender);
-            myMessage.Subject = "Contact message from meetfreelunch.uk";
-            myMessage.Text = subject;
-            myMessage.Html = subject;
 
-            var credentials = new NetworkCredential(
-                       System.Configuration.ConfigurationManager.AppSettings["mailAccount"],
-                       System.Configuration.ConfigurationManager.AppSettings["mailPassword"]
-                       );
-
-            // Create a Web transport for sending email.
-            var transportWeb = new Web(credentials);
-
-            // Send the email.
-            if (transportWeb != null)
-            {
-                await transportWeb.DeliverAsync(myMessage);
-            }
-            else
-            {
-                Trace.TraceError("Failed to create Web transport.");
-                await Task.FromResult(0);
-            }
-        }
 
         public ActionResult Specialists()
         {
-            ViewBag.Message = "Find an specialist.";
-
             SpecialistsViewModel model = new SpecialistsViewModel();
             model.Specialists = context.Specialists.ToList();
 
@@ -125,15 +114,11 @@ namespace freelunch.uk.Controllers
 
         public ActionResult Privacy()
         {
-            ViewBag.Message = "Privacy Statement";
-
             return View();
         }
 
         public ActionResult Terms()
         {
-            ViewBag.Message = "Terms and Conditions";
-
             return View();
         }
     }
