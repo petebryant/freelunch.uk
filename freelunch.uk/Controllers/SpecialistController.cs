@@ -40,6 +40,7 @@ namespace freelunch.uk.Controllers
         }
 
         private ApplicationDbContext context = new ApplicationDbContext();
+
         // GET: Specialist
         public ActionResult Index(SpecialistMessageId? message, int tab = 0)
         {
@@ -119,7 +120,7 @@ namespace freelunch.uk.Controllers
                 context.Specialists.Add(specialist);
                 context.SaveChanges();
 
-                return RedirectToAction("Index", new { Message = SpecialistMessageId.UpdateSuccess });
+                return RedirectToAction("Index", new { Message = SpecialistMessageId.AddSucess });
             }
             catch
             {

@@ -1,10 +1,7 @@
 ﻿@model freelunch.uk.Models.SpecialistViewModel
-@{
-    ViewBag.Title = "Specialist";
-}
 
 <div class="well well-lg">
-    <h2>@ViewBag.Title.</h2>
+    <h2>Specialist Details.</h2>
     <br />
 
     <div>
@@ -332,15 +329,15 @@
             {
             <div class="form-group">
                 @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
-                @Model.Name
+                @Html.Encode(Model.Name)
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
-                @Model.Description
+                @Html.Encode(Model.Description)
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.DummyLocation.Name, new { @class = "col-md-2 control-label" })
-                @Model.DummyLocation.Name
+                @Html.Encode(Model.DummyLocation.Name)
             </div>
 
             }

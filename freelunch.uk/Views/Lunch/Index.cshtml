@@ -1,0 +1,74 @@
+﻿@model freelunch.uk.Models.LunchViewModel
+
+
+<div class="well well-lg">
+    <h2>Lunch Details.</h2>
+    <br />
+
+    <div>
+        A hunger for knowledge.
+    </div>
+</div>
+
+<div>
+    <div id="toolbar" class="row">
+        @if (Model.Name != null)
+        {
+            <div class="col-md-4">
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#editSpecialist">
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true" title="Edit"></span> Edit
+                </button>
+
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#deleteSpecialist">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete"></span> Delete
+                </button>
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        More <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" data-toggle="modal" data-target="#addSubject">Add a Specialist subject</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#addLink">Add a Links to...</a></li>
+                    </ul>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="col-md-2">
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createSpecialist">
+                    <i class="fa fa-user" aria-hidden="true" title="Become a specialist"></i> Become a specialist
+                </button>
+            </div>
+        }
+        <p class="text-success">@ViewBag.StatusMessage</p>
+    </div>
+
+    <hr />
+
+    <div class="row ">
+        <div class="col-md-10">
+            @if (Model.Name != null)
+            {
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+                    @Html.Encode(Model.Name)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Website, new { @class = "col-md-2 control-label" })
+                    @Html.Encode(Model.Website)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ContactName, new { @class = "col-md-2 control-label" })
+                    @Html.Encode(Model.ContactName)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                    @Html.Encode(Model.Email)
+                </div>
+
+            }
+        </div>
+    </div>
+</div>

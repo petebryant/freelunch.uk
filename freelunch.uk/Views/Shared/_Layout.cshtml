@@ -144,6 +144,22 @@
                         </div>
                     </div>
                     @Html.Partial("_SpecialistLink")
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>
+                                @if (Functions.HasLunch(_userid))
+                                {
+                                    @Html.ActionLink("Lunch details", "Index", "Lunch", null, htmlAttributes: new { @style = "text-decoration: none" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Propose a lunch", "Create", "Lunch", null, htmlAttributes: new { @style = "text-decoration: none" })
+                                }
+                            </p>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))

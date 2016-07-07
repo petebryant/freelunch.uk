@@ -1,11 +1,10 @@
 ﻿@model freelunch.uk.Models.SpecialistsViewModel
 @{
-    ViewBag.Title = "Specialists";
      string locations = "";
 }
 
 <div class="well well-lg">
-    <h2><i class="fa fa-users" aria-hidden="true"></i> @ViewBag.Title.</h2>
+    <h2><i class="fa fa-users" aria-hidden="true"></i> Specialists.</h2>
 
     <div class="row">
         <div class="col-md-6">
@@ -146,7 +145,7 @@
                             <div class="anti-spam">
                                 @Html.TextBoxFor(s => s.URL)
                                 @Html.TextBoxFor(s => s.Search)
-                                <input id="UserId" name="UserId" value="@specialist.UserId" />
+                                @Html.Hidden(specialist.UserId)
                             </div>
 
                             <hr />

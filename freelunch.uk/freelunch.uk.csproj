@@ -185,6 +185,7 @@
     <Compile Include="Common\Functions.cs" />
     <Compile Include="Common\ValidationHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\LunchController.cs" />
     <Compile Include="Controllers\SpecialistController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -196,8 +197,13 @@
     <Compile Include="Migrations\201607070743225_lunch-key.Designer.cs">
       <DependentUpon>201607070743225_lunch-key.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607071708261_user-lunch.cs" />
+    <Compile Include="Migrations\201607071708261_user-lunch.Designer.cs">
+      <DependentUpon>201607071708261_user-lunch.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\LocationsViewModel.cs" />
     <Compile Include="Models\LunchModels.cs" />
+    <Compile Include="Models\LunchViewModel.cs" />
     <Compile Include="Models\SpecialistsViewModel.cs" />
     <Compile Include="Migrations\201606020746354_experttospecialist.cs" />
     <Compile Include="Migrations\201606020746354_experttospecialist.Designer.cs">
@@ -362,6 +368,8 @@
     <Content Include="Views\Manage\Terms.cshtml" />
     <Content Include="Views\Specialist\_Subjects.cshtml" />
     <Content Include="Views\Home\Terms.cshtml" />
+    <Content Include="Views\Lunch\Index.cshtml" />
+    <Content Include="Views\Lunch\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -430,6 +438,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607070743225_lunch-key.resx">
       <DependentUpon>201607070743225_lunch-key.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607071708261_user-lunch.resx">
+      <DependentUpon>201607071708261_user-lunch.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
