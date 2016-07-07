@@ -38,21 +38,16 @@ namespace freelunch.uk.Controllers
             return View();
         }
 
-        public ActionResult Lunch()
-        {
-            return View();
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Search(string search)
+        public ActionResult SearchSpecialists(string search)
         {
-            SpecialistsViewModel model = GetSearchResult(search);
+            SpecialistsViewModel model = GetSearchSpecialistsResult(search);
 
             return View("Specialists", model);
         }
 
-        private SpecialistsViewModel GetSearchResult(string search)
+        private SpecialistsViewModel GetSearchSpecialistsResult(string search)
         {
             SpecialistsViewModel model = new SpecialistsViewModel();
 
@@ -74,7 +69,8 @@ namespace freelunch.uk.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Contact(SpecialistsViewModel vm)
+        [Authorize]
+        public async Task<ActionResult> ContactSpecialist(SpecialistsViewModel vm)
         {
             // this is a honey pot to stop spambots
             if (string.IsNullOrEmpty(vm.URL))
@@ -97,7 +93,7 @@ namespace freelunch.uk.Controllers
                 ViewBag.StatusMessage = "Contact email was successfully sent";
             }
 
-            SpecialistsViewModel model = GetSearchResult(vm.Search);
+            SpecialistsViewModel model = GetSearchSpecialistsResult(vm.Search);
 
             return View("Specialists", model);
         }
@@ -110,6 +106,27 @@ namespace freelunch.uk.Controllers
             model.Specialists = context.Specialists.ToList();
 
             return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SearchLunch(string search)
+        {
+            LocationsViewModel model = GetSearchLunchResult(search);
+
+            return View("Lunch", model);
+        }
+
+        private LocationsViewModel GetSearchLunchResult(string search)
+        {
+            LocationsViewModel model = new LocationsViewModel();
+
+            return model;
+        }
+
+        public ActionResult Lunch()
+        {
+            return View();
         }
 
         public ActionResult Privacy()

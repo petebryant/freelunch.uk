@@ -11,7 +11,7 @@
         <div class="col-md-6">
             Find a specialist...
         </div>
-        @using (Html.BeginForm("Search", "Home", FormMethod.Post, new { id = "searchForm" }))
+        @using (Html.BeginForm("SearchSpecialists", "Home", FormMethod.Post, new { id = "searchSpecialistsForm" }))
         {
             @Html.AntiForgeryToken()
             <div class="input-group col-md-6">
@@ -29,6 +29,11 @@
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 
+@if (!Request.IsAuthenticated) 
+{ 
+    <p class="text-success">You will need to be a registered user and signed in to contact any of our specialists.</p>
+}
+
 @foreach (var specialist in Model.Specialists)
 {
     string contactSpecialist = "contactSpecialist" + specialist.UserId;
@@ -37,9 +42,13 @@
         <div class="panel-heading">
             <h3 class="panel-title">
                 @Html.Encode(specialist.Name) 
+
+                @if (Request.IsAuthenticated)
+                {
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#@contactSpecialist">
                     <span class="fa fa-envelope" aria-hidden="true"></span> Contact
                 </button>
+                }
             </h3>
         </div>
         <div class="panel-body">
@@ -108,7 +117,9 @@
         </div>
     </div>
 
-    <div id="@contactSpecialist" class="modal fade" role="dialog">
+   if (Request.IsAuthenticated)
+    {
+        <div id="@contactSpecialist" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
@@ -120,7 +131,7 @@
                 </div>
                 <p></p>
                 <section id="editForm">
-                    @using (Html.BeginForm("Contact", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    @using (Html.BeginForm("ContactSpecialist", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                     {
                         <div class="modal-body">
                             @Html.AntiForgeryToken()
@@ -131,32 +142,33 @@
                                 <dt>@Html.DisplayNameFor(s => s.DummySpecialist.Description)</dt>
                                 <dd>@Html.Encode(specialist.Description)</dd>
                             </dl>
-                                <div class="anti-spam">
-                                    @Html.TextBoxFor(s => s.URL)
-                                    @Html.TextBoxFor(s => s.Search)
-                                    <input id="UserId" name="UserId" value="@specialist.UserId" />
-                                </div>
 
-                                <hr />
-                                <div class="form-group">
-                                    @Html.LabelFor(s => s.Sender, new { @class = "col-md-3 col-md-offset-1 control-label" })
-                                    <div class="col-md-7">
-                                        @Html.TextBoxFor(s => s.Sender, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(s => s.Sender, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
+                            <div class="anti-spam">
+                                @Html.TextBoxFor(s => s.URL)
+                                @Html.TextBoxFor(s => s.Search)
+                                <input id="UserId" name="UserId" value="@specialist.UserId" />
+                            </div>
 
-                                <div class="help-tip">
-                                    <p>Contact this specialist to arrange a lunch.</p>
+                            <hr />
+                            <div class="form-group">
+                                @Html.LabelFor(s => s.Sender, new { @class = "col-md-3 col-md-offset-1 control-label" })
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(s => s.Sender, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(s => s.Sender, "", new { @class = "text-danger" })
                                 </div>
+                            </div>
 
-                                <div class="form-group">
-                                    @Html.LabelFor(s => s.Email, new { @class = "col-md-3 col-md-offset-1 control-label" })
-                                    <div class="col-md-7">
-                                        @Html.TextBoxFor(s => s.Email, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(s => s.Email, "", new { @class = "text-danger" })
-                                    </div>
+                            <div class="help-tip">
+                                <p>The details you provide here will be passed on to the selected specialist.</p>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(s => s.Email, new { @class = "col-md-3 col-md-offset-1 control-label" })
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(s => s.Email, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(s => s.Email, "", new { @class = "text-danger" })
                                 </div>
+                            </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(s => s.Message, new { @class = "col-md-3 col-md-offset-1 control-label" })
@@ -181,6 +193,7 @@
             </div>
         </div>
     </div>
+    }
 }
 
 

@@ -188,6 +188,7 @@
     <Compile Include="Controllers\SpecialistController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Models\LocationsViewModel.cs" />
     <Compile Include="Models\SpecialistsViewModel.cs" />
     <Compile Include="Migrations\201606020746354_experttospecialist.cs" />
     <Compile Include="Migrations\201606020746354_experttospecialist.Designer.cs">

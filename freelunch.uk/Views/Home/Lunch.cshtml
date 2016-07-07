@@ -1,13 +1,28 @@
-﻿@{
+﻿@model freelunch.uk.Models.LocationsViewModel
+@{
     ViewBag.Title = "Lunch";
 }
 
 <div class="well well-lg">
     <h2><i class="fa fa-cutlery" aria-hidden="true"></i> @ViewBag.Title.</h2>
-    <br />
 
-    <div>
-        Register your interest in hosting a lunch or find a proposed lunch etc....
+    <div class="row">
+        <div class="col-md-6">
+            Find a lunch...
+        </div>
+
+        @using (Html.BeginForm("SearchLunch", "Home", FormMethod.Post, new { id = "searchLunchForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="input-group col-md-6">
+                @Html.TextBoxFor(s => s.Search, new { @class = "form-control pull-right", @placeholder = "Search for... " })
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                </span>
+            </div>
+        }
     </div>
 </div>
 
