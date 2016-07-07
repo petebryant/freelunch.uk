@@ -188,7 +188,16 @@
     <Compile Include="Controllers\SpecialistController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Migrations\201607070738402_lunch.cs" />
+    <Compile Include="Migrations\201607070738402_lunch.Designer.cs">
+      <DependentUpon>201607070738402_lunch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607070743225_lunch-key.cs" />
+    <Compile Include="Migrations\201607070743225_lunch-key.Designer.cs">
+      <DependentUpon>201607070743225_lunch-key.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\LocationsViewModel.cs" />
+    <Compile Include="Models\LunchModels.cs" />
     <Compile Include="Models\SpecialistsViewModel.cs" />
     <Compile Include="Migrations\201606020746354_experttospecialist.cs" />
     <Compile Include="Migrations\201606020746354_experttospecialist.Designer.cs">
@@ -415,6 +424,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606170827030_locations-update.resx">
       <DependentUpon>201606170827030_locations-update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607070738402_lunch.resx">
+      <DependentUpon>201607070738402_lunch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607070743225_lunch-key.resx">
+      <DependentUpon>201607070743225_lunch-key.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
