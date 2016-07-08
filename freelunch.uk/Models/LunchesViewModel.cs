@@ -11,6 +11,7 @@ namespace freelunch.uk.Models
         {
             Lunches = new List<Lunch>();
             DummyLunch = new Lunch();
+            DummyTopic = new Topic();
         }
 
         public virtual ICollection<Lunch> Lunches { get; set; }
@@ -19,5 +20,6 @@ namespace freelunch.uk.Models
 
         //This is only used to get the Display text for it's properties
         public Lunch DummyLunch { get; private set; }
+        public Topic DummyTopic { get; private set; }
     }
 }

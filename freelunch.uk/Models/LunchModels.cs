@@ -27,7 +27,11 @@ namespace freelunch.uk.Models
         [Required]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+
+        [Display(Name = "Type of Audience")]
         public string Audience { get; set; }
+
+        [Display(Name = "Size")]
         public string AudienceNumber { get; set; }
 
         public virtual ICollection<Topic> Topics { get; set; }

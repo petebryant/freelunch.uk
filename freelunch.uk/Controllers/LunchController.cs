@@ -60,20 +60,23 @@ namespace freelunch.uk.Controllers
                 model.UserId = lunch.UserId;
                 model.Name = lunch.Name;
                 model.ContactName = lunch.ContactName;
+                model.Email = lunch.Email;
                 model.Website = lunch.Website;
                 model.Image = lunch.Image;
                 model.Audience = lunch.Audience;
                 model.AudienceNumber = lunch.AudienceNumber;
 
-                //foreach (var location in lunch.Locations)
-                //{
-                //    if (string.IsNullOrEmpty(model.DummyLocation.Name))
-                //        model.DummyLocation.Name = location.Name;
-                //    else
-                //        model.DummyLocation.Name += ", " + location.Name;
-                //}
+                foreach (var topic in lunch.Topics)
+                {
+                    if (string.IsNullOrEmpty(model.DisplayTopic.Name))
+                        model.DisplayTopic.Name = topic.Name;
+                    else
+                        model.DisplayTopic.Name += ", " + topic.Name;
+                }
+                model.DisplayTopic.Name = "SOLID, C#, Clean Code";
 
-                ViewBag.Locations = context.Locations.Select(x => x.Name).ToList<string>().Distinct(StringComparer.InvariantCultureIgnoreCase).ToArray();
+                //create an array of distinct topic names for type ahead
+                ViewBag.Topics = context.Topics.Select(x => x.Name).ToList<string>().Distinct(StringComparer.InvariantCultureIgnoreCase).ToArray();
             }
 
             return View(model);
@@ -109,6 +112,9 @@ namespace freelunch.uk.Controllers
                 lunch.Website = model.Website;
                 lunch.ContactName = model.ContactName;
                 lunch.Email = model.Email;
+                lunch.Image = model.Image;
+                lunch.Audience = model.Audience;
+                lunch.AudienceNumber = model.AudienceNumber;
 
                 context.Lunches.Add(lunch);
                 context.SaveChanges();

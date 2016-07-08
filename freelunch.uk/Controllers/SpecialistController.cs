@@ -73,6 +73,7 @@ namespace freelunch.uk.Controllers
                         model.DisplayLocation.Name += ", " + location.Name;
                 }
 
+                //create an array of distinct location names for type ahead
                 ViewBag.Locations = context.Locations.Select(x => x.Name).ToList<string>().Distinct(StringComparer.InvariantCultureIgnoreCase).ToArray();
             }
 

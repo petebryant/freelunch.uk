@@ -1,5 +1,7 @@
 ﻿@model freelunch.uk.Models.LunchesViewModel
-
+@{
+    string topics = "";
+}
 <div class="well well-lg">
     <h2><i class="fa fa-cutlery" aria-hidden="true"></i> Lunch.</h2>
 
@@ -48,19 +50,43 @@
             </h3>
         </div>
         <div class="panel-body">
-            <div class="col-md-6">
-                <dl class="dl-horizontal">
+            <div class="row">
+                <div class="col-md-6">
+                    <dl class="dl-horizontal">
 
-                    <dt>@Html.DisplayNameFor(l => l.DummyLunch.ContactName)</dt>
-                    <dd>@Html.Encode(lunch.ContactName)</dd>
+                        <dt>@Html.DisplayNameFor(l => l.DummyLunch.Website)</dt>
+                        <dd>@Html.Encode(lunch.Website)</dd>
 
-                    @{
-                        //TODO don't display email addresses
-                    }
-                    <dt>@Html.DisplayNameFor(l => l.DummyLunch.Email)</dt>
-                    <dd>@Html.Encode(lunch.Email)</dd>
+                        <dt>@Html.DisplayNameFor(l => l.DummyLunch.ContactName)</dt>
+                        <dd>@Html.Encode(lunch.ContactName)</dd>
+                    </dl>
+                </div>
+                <div class="col-md-6">
+                    <dl class="dl-horizontal">
+                        @foreach (var topic in lunch.Topics)
+                        {
+                            if (!string.IsNullOrEmpty(topics))
+                            {
+                                topics += ", ";
+                            }
 
-                </dl>
+                            topics += topic.Name;
+                        }
+
+                        @{                          
+                            topics = "SOLID, C#, Clean Code";
+                        }
+
+                        <dt>@Html.DisplayNameFor(s => s.DummyTopic.Name)</dt>
+                        <dd>@Html.Encode(topics)</dd>
+
+                        <dt>@Html.DisplayNameFor(l => l.DummyLunch.Audience)</dt>
+                        <dd>@Html.Encode(lunch.Audience)</dd>
+                        <dt>@Html.DisplayNameFor(l => l.DummyLunch.AudienceNumber)</dt>
+                        <dd>@Html.Encode(lunch.AudienceNumber)</dd>
+                    </dl>
+
+                </div>
             </div>
         </div>
     </div>

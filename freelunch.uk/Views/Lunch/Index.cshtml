@@ -48,26 +48,34 @@
     <hr />
 
     <div class="row ">
-        <div class="col-md-10">
-            @if (Model.Name != null)
-            {
+        @if (Model.Name != null)
+        {
+            <div class="col-md-6">
                 <dl class="dl-horizontal">
                     <dt>@Html.DisplayNameFor(m => m.Name)</dt>
                     <dd>@Html.Encode(Model.Name)</dd>
                     <dt>@Html.DisplayNameFor(m => m.Website)</dt>
                     <dd>@Html.Encode(Model.Website)</dd>
-                    <dt>@Html.DisplayNameFor(m => m.Image)</dt>
-                    <dd>@Html.Encode(Model.Image)</dd>
-                    <dt>@Html.DisplayNameFor(m => m.Audience)</dt>
-                    <dd>@Html.Encode(Model.Audience)</dd>
-                    <dt>@Html.DisplayNameFor(m => m.AudienceNumber)</dt>
-                    <dd>@Html.Encode(Model.AudienceNumber)</dd>
                     <dt>@Html.DisplayNameFor(m => m.ContactName)</dt>
                     <dd>@Html.Encode(Model.ContactName)</dd>
                     <dt>@Html.DisplayNameFor(m => m.Email)</dt>
                     <dd>@Html.Encode(Model.Email)</dd>
+
+                    <dt>@Html.DisplayNameFor(m => m.Image)</dt>
+                    <dd>@Html.Encode(Model.Image)</dd>
                 </dl>
-            }
-        </div>
+            </div>
+            <div class="col-md-6">
+                <dl class="dl-horizontal">
+                    <dt>@Html.DisplayNameFor(m => m.Audience)</dt>
+                    <dd>@Html.Encode(Model.Audience)</dd>
+                    <dt>@Html.DisplayNameFor(m => m.AudienceNumber)</dt>
+                    <dd>@Html.Encode(Model.AudienceNumber)</dd>
+
+                    <dt>@Html.DisplayNameFor(m => m.DisplayTopic.Name)</dt>
+                    <dd>@Html.Encode(Model.DisplayTopic.Name)</dd>
+                </dl>
+            </div>
+        }
     </div>
 </div>

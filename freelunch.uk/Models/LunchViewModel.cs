@@ -8,6 +8,11 @@ namespace freelunch.uk.Models
 {
     public class LunchViewModel
     {
+        public LunchViewModel()
+        {
+            DisplayTopic = new Topic();
+        }
+
         public string UserId { get; set; }
 
         [Required]
@@ -38,5 +43,7 @@ namespace freelunch.uk.Models
 
         [Url]
         public string Image { get; set; }
+
+        public Topic DisplayTopic { get; set; }
     }
 }
