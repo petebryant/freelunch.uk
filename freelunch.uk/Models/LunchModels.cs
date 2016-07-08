@@ -22,6 +22,7 @@ namespace freelunch.uk.Models
         public string Image { get; set; }
         [Required]
         [DataType(DataType.Text)]
+        [Display(Name = "Contact Name")]
         public string ContactName { get; set; }
         [Required]
         [DataType(DataType.EmailAddress)]

@@ -61,10 +61,11 @@ namespace freelunch.uk.Controllers
                 model.Name = lunch.Name;
                 model.ContactName = lunch.ContactName;
                 model.Website = lunch.Website;
-                //model.Specialisms = lunch.Specialisms;
-                //model.Locations = lunch.Locations;
+                model.Image = lunch.Image;
+                model.Audience = lunch.Audience;
+                model.AudienceNumber = lunch.AudienceNumber;
 
-                //foreach (var location in specialist.Locations)
+                //foreach (var location in lunch.Locations)
                 //{
                 //    if (string.IsNullOrEmpty(model.DummyLocation.Name))
                 //        model.DummyLocation.Name = location.Name;

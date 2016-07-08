@@ -28,5 +28,15 @@ namespace freelunch.uk.Models
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Email Address")]
         public string Email { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "Type of Audience")]
+        public string Audience { get; set; }
+
+        [Display(Name = "Size of Audience")]
+        public string AudienceNumber { get; set; }
+
+        [Url]
+        public string Image { get; set; }
     }
 }

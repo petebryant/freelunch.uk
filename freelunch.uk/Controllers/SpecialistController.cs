@@ -67,10 +67,10 @@ namespace freelunch.uk.Controllers
 
                 foreach (var location in specialist.Locations)
                 {
-                    if (string.IsNullOrEmpty(model.DummyLocation.Name))
-                        model.DummyLocation.Name = location.Name;
+                    if (string.IsNullOrEmpty(model.DisplayLocation.Name))
+                        model.DisplayLocation.Name = location.Name;
                     else
-                        model.DummyLocation.Name += ", " + location.Name;
+                        model.DisplayLocation.Name += ", " + location.Name;
                 }
 
                 ViewBag.Locations = context.Locations.Select(x => x.Name).ToList<string>().Distinct(StringComparer.InvariantCultureIgnoreCase).ToArray();
@@ -157,9 +157,9 @@ namespace freelunch.uk.Controllers
                     return View("Error");
                 }
 
-                if (!string.IsNullOrEmpty(model.DummyLocation.Name))
+                if (!string.IsNullOrEmpty(model.DisplayLocation.Name))
                 {
-                    string[] locations = model.DummyLocation.Name.Split(',');
+                    string[] locations = model.DisplayLocation.Name.Split(',');
 
                     var removeThese = specialist.Locations.Where(l => !locations.Contains(l.Name)).ToList<Location>();
 

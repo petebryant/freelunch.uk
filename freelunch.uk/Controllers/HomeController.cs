@@ -112,21 +112,35 @@ namespace freelunch.uk.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SearchLunch(string search)
         {
-            LocationsViewModel model = GetSearchLunchResult(search);
+            LunchesViewModel model = GetSearchLunchResult(search);
 
             return View("Lunch", model);
         }
 
-        private LocationsViewModel GetSearchLunchResult(string search)
+        private LunchesViewModel GetSearchLunchResult(string search)
         {
-            LocationsViewModel model = new LocationsViewModel();
+            LunchesViewModel model = new LunchesViewModel();
+
+            if (string.IsNullOrEmpty(search))
+            {
+                model.Lunches = context.Lunches.ToList();
+            }
+            else
+            {
+                model.Lunches = context.Lunches.Where(s => s.Name.Contains(search)
+                                                                    || s.ContactName.Contains(search)
+                                                                    || s.Email.Contains(search)).ToList();
+            }
 
             return model;
         }
 
         public ActionResult Lunch()
         {
-            return View();
+            LunchesViewModel model = new LunchesViewModel();
+            model.Lunches = context.Lunches.ToList();
+
+            return View(model);
         }
 
         public ActionResult Privacy()

@@ -22,7 +22,6 @@
                 </span>
             </div>
         }
-
     </div>
 </div>
 
@@ -30,7 +29,7 @@
 
 @if (!Request.IsAuthenticated) 
 { 
-    <p class="text-success">You will need to be a registered user and signed in to contact any of our specialists.</p>
+    <p class="text-success">You need to be a registered user and signed in to contact any of our specialists.</p>
 }
 
 @foreach (var specialist in Model.Specialists)

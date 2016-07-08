@@ -11,13 +11,16 @@ namespace freelunch.uk.Models
         public SpecialistsViewModel()
         {
             Specialists = new List<Specialist>();
+            DummySpecialist = new Specialist();
+            DummyLocation = new Location();
         }
 
         public virtual ICollection<Specialist> Specialists { get; set; }
 
 
-        public Specialist DummySpecialist { get { return new Specialist(); } }
-        public Location DummyLocation { get { return new Location(); } }
+        //These are only used to get the Display text for their properties
+        public Specialist DummySpecialist { get; private set; }
+        public Location DummyLocation { get; private set; }
 
         [Required]
         [Display(Name = "Name:")]

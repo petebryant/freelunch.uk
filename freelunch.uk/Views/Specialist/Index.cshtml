@@ -105,9 +105,9 @@
                                     </div>
 
                                     <div class="form-group">
-                                        @Html.LabelFor(m => m.DummyLocation.Name, new { @class = "col-md-3 col-md-offset-1 control-label" })
+                                        @Html.LabelFor(m => m.DisplayLocation.Name, new { @class = "col-md-3 col-md-offset-1 control-label" })
                                         <div class="col-md-7">
-                                            @Html.TextBoxFor(m => m.DummyLocation.Name, new { @class = "form-control", data_role = "tagsinput", placeholder = "Add tags" })
+                                            @Html.TextBoxFor(m => m.DisplayLocation.Name, new { @class = "form-control", data_role = "tagsinput", placeholder = "Add tags" })
                                             <span class="help-block">Locations where you are prepared to have lunch e.g. "Battersea", "Clapham"</span>
                                         </div>
                                     </div>
@@ -336,8 +336,8 @@
                 @Html.Encode(Model.Description)
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.DummyLocation.Name, new { @class = "col-md-2 control-label" })
-                @Html.Encode(Model.DummyLocation.Name)
+                @Html.LabelFor(m => m.DisplayLocation.Name, new { @class = "col-md-2 control-label" })
+                @Html.Encode(Model.DisplayLocation.Name)
             </div>
 
             }

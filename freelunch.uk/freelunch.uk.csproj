@@ -201,7 +201,7 @@
     <Compile Include="Migrations\201607071708261_user-lunch.Designer.cs">
       <DependentUpon>201607071708261_user-lunch.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\LocationsViewModel.cs" />
+    <Compile Include="Models\LunchesViewModel.cs" />
     <Compile Include="Models\LunchModels.cs" />
     <Compile Include="Models\LunchViewModel.cs" />
     <Compile Include="Models\SpecialistsViewModel.cs" />
