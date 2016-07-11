@@ -98,6 +98,37 @@ namespace freelunch.uk.Controllers
             return View("Specialists", model);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public async Task<ActionResult> ContactLunch(LunchesViewModel vm)
+        {
+            // this is a honey pot to stop spambots
+            if (string.IsNullOrEmpty(vm.URL))
+            {
+                var user = await UserManager.FindByIdAsync(vm.UserId);
+
+                if (user == null)
+                {
+                    return View("Error");
+                }
+
+                string recipient = user.Email;
+
+                //TODO need to format the contact email message
+                string message = "This is a contact message from " + vm.Email;
+                message += " " + vm.Sender + " would like to arrange a lunch.";
+                message += " " + vm.Message;
+
+                await Functions.SendGridAsync(recipient, message);
+                ViewBag.StatusMessage = "Contact email was successfully sent";
+            }
+
+            LunchesViewModel model = GetSearchLunchResult(vm.Search);
+
+            return View("Lunches", model);
+        }
+
 
 
         public ActionResult Specialists()

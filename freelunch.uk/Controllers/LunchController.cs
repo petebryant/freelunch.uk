@@ -127,5 +127,34 @@ namespace freelunch.uk.Controllers
             }
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Delete()
+        {
+            try
+            {
+                var userId = User.Identity.GetUserId();
+                var user = await UserManager.FindByIdAsync(userId);
+
+                if (user == null)
+                {
+                    return View("Error");
+                }
+
+                var lunch = context.Lunches.FirstOrDefault(x => x.UserId == userId);
+
+                if (lunch == null) return View("Error");
+
+                context.Lunches.Remove(lunch);
+                context.SaveChanges();
+
+                return RedirectToAction("Index", new { Message = LunchMessageId.DeleteSuccess });
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
     }
 }
