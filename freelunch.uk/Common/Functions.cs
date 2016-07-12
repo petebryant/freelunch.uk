@@ -13,7 +13,7 @@ namespace freelunch.uk.Common
     {
         public static bool IsSpecialist(string userId)
         {
-            if (userId == null) return false;
+            if (string.IsNullOrEmpty(userId)) return false;
 
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
@@ -25,7 +25,7 @@ namespace freelunch.uk.Common
 
         public static bool HasLunch(string userId)
         {
-            if (userId == null) return false;
+            if (string.IsNullOrEmpty(userId)) return false;
 
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
@@ -37,6 +37,8 @@ namespace freelunch.uk.Common
 
         public static bool HasPassword(string userId)
         {
+            if (string.IsNullOrEmpty(userId)) return false;
+
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
                 var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
@@ -51,6 +53,8 @@ namespace freelunch.uk.Common
 
         public static bool HasPhoneNumber(string userId)
         {
+            if (string.IsNullOrEmpty(userId)) return false;
+
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
                 var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
@@ -62,6 +66,8 @@ namespace freelunch.uk.Common
 
         public static bool HasTwoFactorEnabled(string userId)
         {
+            if (string.IsNullOrEmpty(userId)) return false;
+
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
                 var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
