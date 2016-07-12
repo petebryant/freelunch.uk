@@ -45,7 +45,7 @@
                         </div>
                         <p></p>
                         <section id="deleteForm">
-                            @using (Html.BeginForm("Delete", "Specialist", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            @using (Html.BeginForm("Delete", "Specialist",  FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                             {
                                 @Html.AntiForgeryToken()
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -81,7 +81,7 @@
                         </div>
                         <p></p>
                         <section id="editForm">
-                            @using (Html.BeginForm("Edit", "Specialist", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            @using (Html.BeginForm("Edit", "Specialist",  FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                             {
                                 <div class="modal-body">
                                     @Html.AntiForgeryToken()
@@ -154,7 +154,7 @@
                         </div>
                         <p></p>
                         <section id="addForm">
-                            @using (Html.BeginForm("CreateLink", "Specialist", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            @using (Html.BeginForm("CreateLink", "Specialist",  FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                             {
                                 @Html.AntiForgeryToken()
                                 <div class="modal-body">
@@ -223,7 +223,7 @@
                         </div>
                         <p></p>
                         <section id="addForm">
-                            @using (Html.BeginForm("CreateSubject", "Specialist", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            @using (Html.BeginForm("CreateSubject", "Specialist",  FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                             {
                                 @Html.AntiForgeryToken()
                                 <div class="modal-body">

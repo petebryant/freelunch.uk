@@ -3,6 +3,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using SendGrid;
 using System.Net;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
+
 
 namespace freelunch.uk.Common
 {
@@ -29,6 +32,40 @@ namespace freelunch.uk.Common
                 var specialist = context.Lunches.FirstOrDefault(x => x.UserId == userId);
 
                 return (specialist != null);
+            }
+        }
+
+        public static bool HasPassword(string userId)
+        {
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
+                var user = manager.FindById(userId);
+                if (user != null)
+                {
+                    return user.PasswordHash != null;
+                }
+                return false;
+            }
+        }
+
+        public static bool HasPhoneNumber(string userId)
+        {
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
+                var phoneNumber = manager.GetPhoneNumber(userId);
+
+                return (phoneNumber != null);
+            }
+        }
+
+        public static bool HasTwoFactorEnabled(string userId)
+        {
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
+                return manager.GetTwoFactorEnabled(userId);
             }
         }
 

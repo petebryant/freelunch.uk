@@ -1,0 +1,16 @@
+﻿@{
+    string _userid = @User.Identity.GetUserId();
+}
+
+@using Microsoft.AspNet.Identity
+@using freelunch.uk.Common
+
+@if (Functions.HasLunch(_userid))
+{
+    @Html.ActionLink("Lunch details", "Index", "Lunch", null, htmlAttributes: new { @style = "text-decoration: none" })
+}
+else
+{
+    @Html.ActionLink("Propose a lunch", "Create", "Lunch", null, htmlAttributes: new { @style = "text-decoration: none" })
+}
+

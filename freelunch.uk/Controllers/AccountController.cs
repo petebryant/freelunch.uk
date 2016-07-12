@@ -59,7 +59,15 @@ namespace freelunch.uk.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            ViewBag.ReturnUrl = returnUrl;
+            //So that the user can be referred back to where they were when they click logon
+            if (string.IsNullOrEmpty(returnUrl) && Request.UrlReferrer != null)
+                returnUrl = Request.UrlReferrer.AbsolutePath;
+
+            if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+            {
+                ViewBag.ReturnURL = returnUrl;
+            }
+
             return View();
         }
 

@@ -5,18 +5,12 @@
 @using Microsoft.AspNet.Identity
 @using freelunch.uk.Common
 
-<div class="row">
-    <div class="col-md-12">
-        <p>
-            @if (Functions.IsSpecialist(_userid))
-            {
-                @Html.ActionLink("We already know you're special", "Index", "Specialist", null, htmlAttributes: new { @style = "text-decoration: none" })
-            }
-            else
-            {
-                @Html.ActionLink("Become a specialist", "Create", "Specialist", null, htmlAttributes: new { @style = "text-decoration: none" })
-            }
-        </p>
-    </div>
-</div>
+@if (Functions.IsSpecialist(_userid))
+{
+    @Html.ActionLink("We know you're special", "Index", "Specialist", null, htmlAttributes: new { @style = "text-decoration: none" })
+}
+else
+{
+    @Html.ActionLink("Become a specialist", "Create", "Specialist", null, htmlAttributes: new { @style = "text-decoration: none" })
+}
 

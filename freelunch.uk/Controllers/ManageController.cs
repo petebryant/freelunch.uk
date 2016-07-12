@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using freelunch.uk.Models;
+using freelunch.uk.Common;
 
 namespace freelunch.uk.Controllers
 {
@@ -74,7 +75,7 @@ namespace freelunch.uk.Controllers
             var model = new IndexViewModel
             {
                 UserId = userId,
-                HasPassword = HasPassword(),
+                HasPassword = Functions.HasPassword(userId),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
@@ -358,26 +359,6 @@ namespace freelunch.uk.Controllers
             {
                 ModelState.AddModelError("", error);
             }
-        }
-
-        private bool HasPassword()
-        {
-            var user = UserManager.FindById(User.Identity.GetUserId());
-            if (user != null)
-            {
-                return user.PasswordHash != null;
-            }
-            return false;
-        }
-
-        private bool HasPhoneNumber()
-        {
-            var user = UserManager.FindById(User.Identity.GetUserId());
-            if (user != null)
-            {
-                return user.PhoneNumber != null;
-            }
-            return false;
         }
 
         public enum ManageMessageId

@@ -370,6 +370,7 @@
     <Content Include="Views\Home\Terms.cshtml" />
     <Content Include="Views\Lunch\Index.cshtml" />
     <Content Include="Views\Lunch\Create.cshtml" />
+    <Content Include="Views\Shared\_LunchLink.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

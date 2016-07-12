@@ -156,5 +156,46 @@ namespace freelunch.uk.Controllers
             }
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(LunchViewModel model)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View("Index", model);
+                }
+
+                var userId = User.Identity.GetUserId();
+                var user = await UserManager.FindByIdAsync(userId);
+
+                if (user == null)
+                {
+                    return View("Error");
+                }
+
+                var lunch = context.Lunches.FirstOrDefault(x => x.UserId == userId);
+
+                if (lunch == null) return View("Error");
+
+                lunch.Name = model.Name;
+                lunch.Website = model.Website;
+                lunch.ContactName = model.ContactName;
+                lunch.Email = model.Email;
+                lunch.Image = model.Image;
+                lunch.Audience = model.Audience;
+                lunch.AudienceNumber = model.AudienceNumber;
+
+                context.SaveChanges();
+
+                return RedirectToAction("Index", new { Message = LunchMessageId.UpdateSuccess });
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
     }
 }
