@@ -80,7 +80,8 @@ namespace freelunch.uk.Controllers
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
-                IsSpecialist = Specialist != null
+                IsSpecialist = Specialist != null,
+                Preferences = Functions.UserPreferences(userId)
             };
             return View(model);
         }
@@ -168,6 +169,115 @@ namespace freelunch.uk.Controllers
                 await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
             }
             return RedirectToAction("Index", "Manage");
+        }
+
+        //
+        // POST: /Manage/MFLMailingOptOut
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult MFLMailingOptOut()
+        {
+            try
+            {
+                MFLMailingOption(false);
+
+                return RedirectToAction("Index", new { Message = ManageMessageId.UpdateSuccess });
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // POST: /Manage/MFLMailingOptIn
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult MFLMailingOptIn()
+        {
+            try
+            {
+                MFLMailingOption(true);
+
+                return RedirectToAction("Index", new { Message = ManageMessageId.UpdateSuccess });
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        private void MFLMailingOption(bool optIn)
+        {
+            string userId = User.Identity.GetUserId();
+            var pref = context.Preferences.FirstOrDefault(x => x.UserId == userId);
+
+            if (pref == null)
+            {
+                pref = new UserPreference();
+                pref.UserId = userId;
+                pref.ReceiveMFLMailing = optIn;
+                context.Preferences.Add(pref);
+            }
+            else
+            {
+                pref.ReceiveMFLMailing = optIn;
+            }
+
+            context.SaveChanges();
+        }
+
+        // POST: /Manage/PartnerMailingOptOut
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PartnerMailingOptOut()
+        {
+            try
+            {
+                PartnerMailingOption(false);
+
+                return RedirectToAction("Index", new { Message = ManageMessageId.UpdateSuccess });
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // POST: /Manage/PartnerMailingOptIn
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PartnerMailingOptIn()
+        {
+            try
+            {
+                PartnerMailingOption(true);
+
+                return RedirectToAction("Index", new { Message = ManageMessageId.UpdateSuccess });
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        private void PartnerMailingOption(bool optIn)
+        {
+            string userId = User.Identity.GetUserId();
+            var pref = context.Preferences.FirstOrDefault(x => x.UserId == userId);
+
+            if (pref == null)
+            {
+                pref = new UserPreference();
+                pref.UserId = userId;
+                pref.ReceivePartnerMailing = optIn;
+                context.Preferences.Add(pref);
+            }
+            else
+            {
+                pref.ReceivePartnerMailing = optIn;
+            }
+
+            context.SaveChanges();
         }
 
         //

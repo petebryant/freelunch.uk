@@ -58,8 +58,7 @@
                     using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                     {
                         @Html.AntiForgeryToken()
-                        <text>Enabled
-                            <input type="submit" value="Disable" class="btn btn-link" />
+                        <text>Enabled <input type="submit" value="Disable" class="btn btn-link" style="padding:0px; margin:0px; border:0px" />
                         </text>
                     }
                 }
@@ -68,9 +67,52 @@
                     using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                     {
                         @Html.AntiForgeryToken()
-                        <text>Disabled
-                            <input type="submit" value="Enable" class="btn btn-link" />
+                        <text>Disabled <input type="submit" value="Enable" class="btn btn-link" style="padding:0px; margin:0px; border:0px" />
                         </text>
+                    }
+                }
+            </dd>
+        </dl>
+        
+        <h5>Receive information from...</h5>
+
+        <dl class="dl-horizontal">
+            <dt>MeetFreeLunch.uk:</dt>
+            <dd>
+                @if (Model.Preferences.ReceiveMFLMailing)
+                {
+                    using (Html.BeginForm("MFLMailingOptOut", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <text>Yes <input type="submit" value="No" class="btn btn-link" style="padding:0px; margin:0px; border:0px" />
+                        </text>
+                    }
+                }
+                else
+                {
+                    using (Html.BeginForm("MFLMailingOptIn", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <text>No <input type="submit" value="Yes" class="btn btn-link" style="padding:0px; margin:0px; border:0px" /></text>
+                    }
+                }
+            </dd>
+            <dt>Our partners:</dt>
+            <dd>
+                @if (Model.Preferences.ReceivePartnerMailing)
+                {
+                    using (Html.BeginForm("PartnerMailingOptOut", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <text>Yes <input type="submit" value="No" class="btn btn-link" style="padding:0px; margin:0px; border:0px" /></text>
+                    }
+                }
+                else
+                {
+                    using (Html.BeginForm("PartnerMailingOptIn", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <text>No <input type="submit" value="Yes" class="btn btn-link" style="padding:0px; margin:0px; border:0px" /></text>
                     }
                 }
             </dd>
@@ -82,3 +124,5 @@
         @Html.Partial("_LunchLink")
     </div>
 </div>
+
+

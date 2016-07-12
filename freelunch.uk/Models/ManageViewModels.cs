@@ -14,6 +14,7 @@ namespace freelunch.uk.Models
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
         public bool IsSpecialist { get; set; }
+        public UserPreference Preferences { get; set; }
     }
 
     public class ManageLoginsViewModel

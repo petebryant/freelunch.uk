@@ -201,6 +201,10 @@
     <Compile Include="Migrations\201607071708261_user-lunch.Designer.cs">
       <DependentUpon>201607071708261_user-lunch.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607121650465_userpreferences.cs" />
+    <Compile Include="Migrations\201607121650465_userpreferences.Designer.cs">
+      <DependentUpon>201607121650465_userpreferences.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\LunchesViewModel.cs" />
     <Compile Include="Models\LunchModels.cs" />
     <Compile Include="Models\LunchViewModel.cs" />
@@ -229,6 +233,7 @@
     <Compile Include="Migrations\201606170827030_locations-update.Designer.cs">
       <DependentUpon>201606170827030_locations-update.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserPreference.cs" />
     <Compile Include="RedirectOnErrorAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -442,6 +447,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607071708261_user-lunch.resx">
       <DependentUpon>201607071708261_user-lunch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607121650465_userpreferences.resx">
+      <DependentUpon>201607121650465_userpreferences.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

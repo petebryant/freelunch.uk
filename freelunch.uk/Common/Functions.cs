@@ -103,5 +103,18 @@ namespace freelunch.uk.Common
                 await Task.FromResult(0);
             }
         }
+
+        public static UserPreference UserPreferences(string userId)
+        {
+            if (string.IsNullOrEmpty(userId)) return new UserPreference();
+
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                UserPreference pref = context.Preferences.SingleOrDefault(p => p.UserId == userId);
+
+                if (pref == null) pref = new UserPreference();
+                return pref;
+            }
+        }
     }
 }

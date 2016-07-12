@@ -21,6 +21,8 @@ namespace freelunch.uk.Models
 
         public DbSet<Topic> Topics { get; set; }
 
+        public DbSet<UserPreference> Preferences { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
