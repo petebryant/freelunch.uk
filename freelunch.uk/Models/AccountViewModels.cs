@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using freelunch.uk.Common;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace freelunch.uk.Models
@@ -64,6 +65,11 @@ namespace freelunch.uk.Models
 
     public class RegisterViewModel
     {
+        public RegisterViewModel()
+        {
+            Preferences = new UserPreference();
+        }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -79,6 +85,12 @@ namespace freelunch.uk.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public UserPreference Preferences { get; set; }
+
+        [MustBeTrue(ErrorMessage = "Tick the box to accept our terms and condfitions!")]
+        [Display(Name = "Accept our terms and condictions")]
+        public bool TermsAndConditions { get; set; }
     }
 
     public class ResetPasswordViewModel

@@ -77,7 +77,7 @@
         <h5>Receive information from...</h5>
 
         <dl class="dl-horizontal">
-            <dt>MeetFreeLunch.uk:</dt>
+            <dt>@Html.DisplayNameFor(m => m.Preferences.ReceiveMFLMailing)</dt>
             <dd>
                 @if (Model.Preferences.ReceiveMFLMailing)
                 {
@@ -97,7 +97,7 @@
                     }
                 }
             </dd>
-            <dt>Our partners:</dt>
+            <dt>@Html.DisplayNameFor(m => m.Preferences.ReceivePartnerMailing)</dt>
             <dd>
                 @if (Model.Preferences.ReceivePartnerMailing)
                 {
