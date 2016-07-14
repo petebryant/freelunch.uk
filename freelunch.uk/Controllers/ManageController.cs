@@ -68,6 +68,13 @@ namespace freelunch.uk.Controllers
                 : message == ManageMessageId.UpdateSuccess ? "You details have been updated."
                 : "";
 
+            var model = await CreateIndexViewModel();
+
+            return View(model);
+        }
+
+        private async Task<IndexViewModel> CreateIndexViewModel()
+        {
             var userId = User.Identity.GetUserId();
             var user = await UserManager.FindByIdAsync(userId);
             Specialist Specialist = context.Specialists.SingleOrDefault(e => e.UserId == userId);
@@ -83,7 +90,7 @@ namespace freelunch.uk.Controllers
                 IsSpecialist = Specialist != null,
                 Preferences = Functions.UserPreferences(userId)
             };
-            return View(model);
+            return model;
         }
 
         //
@@ -112,9 +119,12 @@ namespace freelunch.uk.Controllers
 
         //
         // GET: /Manage/AddPhoneNumber
-        public ActionResult AddPhoneNumber()
+        public async Task<ActionResult> AddPhoneNumber()
         {
-            return View();
+            ViewBag.Modal = "show";
+            var model = await CreateIndexViewModel();
+
+            return View("Index", model);
         }
 
         //
@@ -128,17 +138,17 @@ namespace freelunch.uk.Controllers
                 return View(model);
             }
             // Generate the token and send it
-            var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), model.Number);
+            var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), model.PhoneNumber);
             if (UserManager.SmsService != null)
             {
                 var message = new IdentityMessage
                 {
-                    Destination = model.Number,
+                    Destination = model.PhoneNumber,
                     Body = "Your security code is: " + code
                 };
                 await UserManager.SmsService.SendAsync(message);
             }
-            return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
+            return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.PhoneNumber });
         }
 
         //

@@ -10,6 +10,9 @@ namespace freelunch.uk.Models
         public string UserId { get; set; }
         public bool HasPassword { get; set; }
         public IList<UserLoginInfo> Logins { get; set; }
+        [Required]
+        [Phone]
+        [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
@@ -66,7 +69,7 @@ namespace freelunch.uk.Models
         [Required]
         [Phone]
         [Display(Name = "Phone Number")]
-        public string Number { get; set; }
+        public string PhoneNumber { get; set; }
     }
 
     public class VerifyPhoneNumberViewModel
