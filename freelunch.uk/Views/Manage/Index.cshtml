@@ -84,7 +84,7 @@
                     using (Html.BeginForm("MFLMailingOptOut", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                     {
                         @Html.AntiForgeryToken()
-                        <text>Yes <input type="submit" value="No" class="btn btn-link" style="padding:0px; margin:0px; border:0px" />
+                        <text>Yes - change to <input type="submit" value="No" class="btn btn-link" style="padding:0px; margin:0px; border:0px" />
                         </text>
                     }
                 }
@@ -93,7 +93,7 @@
                     using (Html.BeginForm("MFLMailingOptIn", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                     {
                         @Html.AntiForgeryToken()
-                        <text>No <input type="submit" value="Yes" class="btn btn-link" style="padding:0px; margin:0px; border:0px" /></text>
+                        <text>No - change to  <input type="submit" value="Yes" class="btn btn-link" style="padding:0px; margin:0px; border:0px" /></text>
                     }
                 }
             </dd>
@@ -104,7 +104,7 @@
                     using (Html.BeginForm("PartnerMailingOptOut", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                     {
                         @Html.AntiForgeryToken()
-                        <text>Yes <input type="submit" value="No" class="btn btn-link" style="padding:0px; margin:0px; border:0px" /></text>
+                        <text>Yes - change to  <input type="submit" value="No" class="btn btn-link" style="padding:0px; margin:0px; border:0px" /></text>
                     }
                 }
                 else
@@ -112,7 +112,7 @@
                     using (Html.BeginForm("PartnerMailingOptIn", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                     {
                         @Html.AntiForgeryToken()
-                        <text>No <input type="submit" value="Yes" class="btn btn-link" style="padding:0px; margin:0px; border:0px" /></text>
+                        <text>No - change to  <input type="submit" value="Yes" class="btn btn-link" style="padding:0px; margin:0px; border:0px" /></text>
                     }
                 }
             </dd>

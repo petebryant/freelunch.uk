@@ -88,8 +88,8 @@ namespace freelunch.uk.Models
 
         public UserPreference Preferences { get; set; }
 
-        [MustBeTrue(ErrorMessage = "Tick the box to accept our terms and condfitions!")]
-        [Display(Name = "Accept our terms and condictions")]
+        [BooleanRequired(ErrorMessage = "You must accept the terms and conditions.")]
+        [Display(Name = "I accept the terms and conditions")]
         public bool TermsAndConditions { get; set; }
     }
 

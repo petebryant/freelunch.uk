@@ -15,3 +15,8 @@ $(document).on("keypress", ":input:not(textarea):not([type=submit])", function (
     }
 });
 
+$(document).ready(function () {
+    $.validator.unobtrusive.adapters.addBool("booleanrequired", "required");
+});
+
+

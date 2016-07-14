@@ -183,7 +183,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Common\Functions.cs" />
-    <Compile Include="Common\MustBeTrueAttribute.cs" />
+    <Compile Include="Common\ValidationAttributes.cs" />
     <Compile Include="Common\ValidationHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\LunchController.cs" />
@@ -366,7 +366,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\Privacy.cshtml" />
     <Content Include="Views\Specialist\Index.cshtml" />
     <Content Include="Views\Specialist\Create.cshtml" />
     <Content Include="Views\Specialist\_Links.cshtml" />
