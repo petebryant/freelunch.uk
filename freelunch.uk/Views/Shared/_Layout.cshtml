@@ -131,7 +131,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-10">
+                        <div class="col-md-12">
                             <h4>
                                 @_username
                             </h4>
@@ -141,7 +141,17 @@
                     <div class="row">
                         <div class="col-md-6">
                             @Html.ActionLink("Manage your account", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @style = "text-decoration: none" })
-                            <dl class="dl-horizontal">
+                        </div>
+                        <div class="col-md-6">
+                            @Html.Partial("_SpecialistLink")
+                            <br />
+                            @Html.Partial("_LunchLink")
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <dl class="dl-horizontal col-md-12">
                                 <dt>Password:</dt>
                                 <dd>
                                     @if (Functions.HasPassword(_userid))
@@ -161,9 +171,9 @@
                                 <dd>
                                     @if (Functions.HasPhoneNumber(_userid))
                                     {
-                                        @Html.ActionLink("Change", "AddPhoneNumber", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @style = "text-decoration: none" })
+                                        @Html.ActionLink("Edit", "ChangePhoneNumber", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @style = "text-decoration: none" })
                                         @: &nbsp;|&nbsp;
-                                        @Html.ActionLink("Remove", "RemovePhoneNumber", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @style = "text-decoration: none" })
+                                        @Html.ActionLink("Delete", "RemovePhoneNumber", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @style = "text-decoration: none" })
                                     }
                                     else
                                     {
@@ -181,11 +191,6 @@
                                     @Html.ActionLink("Manage", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @style = "text-decoration: none" })
                                 </dd>
                             </dl>
-                        </div>
-                        <div class="col-md-6">
-                            @Html.Partial("_SpecialistLink")
-                            <br/>
-                            @Html.Partial("_LunchLink")
                         </div>
                     </div>
 

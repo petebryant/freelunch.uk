@@ -121,11 +121,52 @@ namespace freelunch.uk.Controllers
         // GET: /Manage/AddPhoneNumber
         public async Task<ActionResult> AddPhoneNumber()
         {
-            ViewBag.Modal = "show";
+            ViewBag.AddPhoneModal = "show";
             var model = await CreateIndexViewModel();
 
             return View("Index", model);
         }
+
+                //
+        // GET: /Manage/ChangePhoneNumber
+        public async Task<ActionResult> ChangePhoneNumber()
+        {
+            ViewBag.ChangePhoneModal = "show";
+            var model = await CreateIndexViewModel();
+
+            return View("Index", model);
+        }
+
+                //
+        // GET: /Manage/RemovePhoneNumber
+        public async Task<ActionResult> RemovePhoneNumber()
+        {
+            ViewBag.RemovePhoneModal = "show";
+            var model = await CreateIndexViewModel();
+
+            return View("Index", model);
+        }
+
+        //
+        // POST: /Manage/RemovePhoneNumber
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RemovePhoneNumber(AddPhoneNumberViewModel model)
+        {
+            var result = await UserManager.SetPhoneNumberAsync(User.Identity.GetUserId(), null);
+            if (!result.Succeeded)
+            {
+                return RedirectToAction("Index", new { Message = ManageMessageId.Error });
+            }
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            if (user != null)
+            {
+                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+            }
+            return RedirectToAction("Index", new { Message = ManageMessageId.RemovePhoneSuccess });
+        }
+
+        
 
         //
         // POST: /Manage/AddPhoneNumber
@@ -322,23 +363,6 @@ namespace freelunch.uk.Controllers
             // If we got this far, something failed, redisplay form
             ModelState.AddModelError("", "Failed to verify phone");
             return View(model);
-        }
-
-        //
-        // GET: /Manage/RemovePhoneNumber
-        public async Task<ActionResult> RemovePhoneNumber()
-        {
-            var result = await UserManager.SetPhoneNumberAsync(User.Identity.GetUserId(), null);
-            if (!result.Succeeded)
-            {
-                return RedirectToAction("Index", new { Message = ManageMessageId.Error });
-            }
-            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-            if (user != null)
-            {
-                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-            }
-            return RedirectToAction("Index", new { Message = ManageMessageId.RemovePhoneSuccess });
         }
 
         //

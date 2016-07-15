@@ -3,8 +3,13 @@
     ViewBag.Title = "Manage";
 }
 <script type="text/javascript">
-    $(window).load(function(){
-        $('#addPhoneDialog').modal('@ViewBag.Modal');
+    $(window).load(function () {
+        if ('@ViewBag.AddPhoneModal' == 'show')
+            $('#addPhoneDialog').modal('show');
+        else if ('@ViewBag.ChangePhoneModal' == 'show')
+            $('#changePhoneDialog').modal('show');
+        else if ('@ViewBag.RemovePhoneModal' == 'show')
+            $('#removePhoneDialog').modal('show');
     });
 </script>
 
@@ -44,14 +49,87 @@
                                         @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
                                     </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-default">
-                                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
-                                    </button>
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">
-                                        <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel
-                                    </button>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
+                                </button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel
+                                </button>
+                            </div>
+                        }
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <div id="changePhoneDialog" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close close-button" data-dismiss="modal">
+                            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                        </button>
+                        <h4 class="modal-title">Edit your phone number</h4>
+                    </div>
+                    <p></p>
+                    <section id="editForm">
+                        @using (Html.BeginForm("AddPhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            <div class="modal-body">
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary("", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-4 control-label" })
+                                    <div class="col-md-8">
+                                        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+                                    </div>
                                 </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
+                                </button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel
+                                </button>
+                            </div>
+                        }
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <div id="removePhoneDialog" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close close-button" data-dismiss="modal">
+                            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                        </button>
+                        <h4 class="modal-title">Delete your phone number</h4>
+                    </div>
+                    <p></p>
+                    <section id="editForm">
+                        @using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary("", new { @class = "text-danger" })
+                            @Html.HiddenFor(m => m.PhoneNumber);
+                            
+                            <div class="modal-body">
+                                <p>Delete this Phone Number <b>@Model.PhoneNumber</b> ?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
+                                </button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel
+                                </button>
                             </div>
                         }
                     </section>
@@ -85,13 +163,13 @@
                 @(Model.PhoneNumber ?? "None") [
                 @if (Model.PhoneNumber != null)
                 {
-                    @Html.ActionLink("Change", "AddPhoneNumber")
+                    <a data-target="#changePhoneDialog" data-toggle="modal" href="">Edit</a>
                     @: &nbsp;|&nbsp;
-                    @Html.ActionLink("Remove", "RemovePhoneNumber")
+                    <a data-target="#removePhoneDialog" data-toggle="modal" href="">Delete</a>
                 }
                 else
                 {
-                    @Html.ActionLink("Add", "", null, new {data_toggle="modal", data_target="#addPhoneDialog"})
+                    <a data-target="#addPhoneDialog" data-toggle="modal" href="">Add</a>
                 }
                 ]
             </dd>
