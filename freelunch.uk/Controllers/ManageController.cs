@@ -367,9 +367,12 @@ namespace freelunch.uk.Controllers
 
         //
         // GET: /Manage/ChangePassword
-        public ActionResult ChangePassword()
+        public async Task<ActionResult> ChangePassword()
         {
-            return View();
+            ViewBag.ChangePasswordModal = "show";
+            var model = await CreateIndexViewModel();
+
+            return View("Index", model);
         }
 
         //

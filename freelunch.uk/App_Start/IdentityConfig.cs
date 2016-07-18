@@ -67,7 +67,8 @@ namespace freelunch.uk
              
             var result = Twilio.SendMessage(
                System.Configuration.ConfigurationManager.AppSettings["SMSAccountFrom"],
-               message.Destination, message.Body
+               message.Destination, 
+               message.Body
              );
              // Status is one of Queued, Sending, Sent, Failed or null if the number is not valid
              Trace.TraceInformation(result.Status);
