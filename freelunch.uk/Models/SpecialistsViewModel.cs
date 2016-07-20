@@ -23,13 +23,13 @@ namespace freelunch.uk.Models
         public Location DummyLocation { get; private set; }
 
         [Required]
-        [Display(Name = "Name:")]
+        [Display(Name = "Name")]
         public string Sender { get; set; }
         [Required, EmailAddress]
-        [Display(Name = "Email:")]
+        [Display(Name = "Email")]
         public string Email { get; set; }
         [Required]
-        [Display(Name = "Message:")]
+        [Display(Name = "Message")]
         public string Message { get; set; }
         public string URL { get; set; }
         public string Search { get; set; }

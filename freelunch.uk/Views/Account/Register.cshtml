@@ -30,40 +30,43 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <h5>I am happy to receive information from...</h5>
-        @{
-        var mflAttrib = Model.Preferences.ReceiveMFLMailing ?
+    <h5>I am happy to receive information from...</h5>
+        <div class="col-md-8 col-md-offset-2">
+            <div class="form-group">
+
+                @{
+    var mflAttrib = Model.Preferences.ReceiveMFLMailing ?
             (object)new { @class = "", @checked = "checked" } :
             (object)new { @class = "" };
-        }
-        @Html.CheckBoxFor(m => m.Preferences.ReceiveMFLMailing, mflAttrib)
-        @Html.LabelFor(m => m.Preferences.ReceiveMFLMailing, new { @class = "control-label" })
-    </div>
-    
-    <div class="form-group">
-        @{
+                }
+                @Html.CheckBoxFor(m => m.Preferences.ReceiveMFLMailing, mflAttrib)
+                @Html.LabelFor(m => m.Preferences.ReceiveMFLMailing, new { @class = "control-label" })
+            </div>
+
+            <div class="form-group">
+                @{
         var partAttrib = Model.Preferences.ReceivePartnerMailing ?
             (object)new { @class = "", @checked = "checked" } :
             (object)new { @class = "" };
-        }
-        @Html.CheckBoxFor(m => m.Preferences.ReceivePartnerMailing, partAttrib)
-        @Html.LabelFor(m => m.Preferences.ReceivePartnerMailing)
-    </div>
-    <div class="form-group">
-        @Html.CheckBoxFor(m => m.TermsAndConditions)
-        I accept the @Html.ActionLink("terms", "Terms", "Home", null, new  { @target="_blank"}) and conditions
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <button type="submit" class="btn btn-default">
-                <span class="glyphicon glyphicon-book" aria-hidden="true"></span>  Register
-            </button>
+                }
+                @Html.CheckBoxFor(m => m.Preferences.ReceivePartnerMailing, partAttrib)
+                @Html.LabelFor(m => m.Preferences.ReceivePartnerMailing)
+            </div>
+            <div class="form-group">
+                @Html.CheckBoxFor(m => m.TermsAndConditions)
+                I accept the @Html.ActionLink("terms", "Terms", "Home", null, new  { @target="_blank"}) and conditions
+            </div>
         </div>
-    </div>
-}
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-default">
+                    <span class="glyphicon glyphicon-book" aria-hidden="true"></span>  Register
+                </button>
+            </div>
+        </div>
+        }
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
 

@@ -59,11 +59,11 @@ namespace freelunch.uk
             //   appId: "test",
             //   appSecret: "test");
 
-            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            {
-                ClientId = System.Configuration.ConfigurationManager.AppSettings["GoogleClientId"],
-                ClientSecret = System.Configuration.ConfigurationManager.AppSettings["GoogleSecret"]
-            });
+            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            //{
+            //    ClientId = System.Configuration.ConfigurationManager.AppSettings["GoogleClientId"],
+            //    ClientSecret = System.Configuration.ConfigurationManager.AppSettings["GoogleSecret"]
+            //});
         }
     }
 }

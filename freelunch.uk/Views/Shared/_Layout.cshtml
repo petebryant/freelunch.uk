@@ -150,51 +150,6 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <dl class="dl-horizontal col-md-12">
-                                <dt>Password:</dt>
-                                <dd>
-                                    @if (Functions.HasPassword(_userid))
-                                    {
-                                        @Html.ActionLink("Change", "ChangePassword", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @style = "text-decoration: none" })
-                                    }
-                                    else
-                                    {
-                                        @Html.ActionLink("Create", "SetPassword", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @style = "text-decoration: none" })
-                                    }
-                                </dd>
-                                <dt>External Logins:</dt>
-                                <dd>
-                                    @Html.ActionLink("Manage", "ManageLogins")
-                                </dd>
-                                <dt>Phone Number:</dt>
-                                <dd>
-                                    @if (Functions.HasPhoneNumber(_userid))
-                                    {
-                                        @Html.ActionLink("Edit", "ChangePhoneNumber", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @style = "text-decoration: none" })
-                                        @: &nbsp;|&nbsp;
-                                        @Html.ActionLink("Delete", "RemovePhoneNumber", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @style = "text-decoration: none" })
-                                    }
-                                    else
-                                    {
-                                        @Html.ActionLink("Add", "AddPhoneNumber", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @style = "text-decoration: none" })
-                                    }
-                                </dd>
-
-                                <dt>Two-Factor Authentication:</dt>
-                                <dd>
-                                    @Html.ActionLink("Manage", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @style = "text-decoration: none" })
-                                </dd>
-
-                                <dt>Receive Mailing Preferences:</dt>
-                                <dd>
-                                    @Html.ActionLink("Manage", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @style = "text-decoration: none" })
-                                </dd>
-                            </dl>
-                        </div>
-                    </div>
-
                 </div>
                 <div class="modal-footer">
                     @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
@@ -233,5 +188,6 @@
             </div>
         </footer>
     </div>
+    @RenderSection("scripts", required: false)
 </body>
 </html>

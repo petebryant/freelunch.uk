@@ -1,10 +1,11 @@
 ﻿@model freelunch.uk.Models.IndexViewModel
+@using Microsoft.Owin.Security
 @{
     ViewBag.Title = "Manage";
 }
 <script type="text/javascript">
     $(window).load(function () {
-        if ('@ViewBag.AddPhoneModal' == 'show') 
+        if ('@ViewBag.AddPhoneModal' == 'show')
             $('#addPhoneDialog').modal('show');
         else if ('@ViewBag.ChangePhoneModal' == 'show')
             $('#changePhoneDialog').modal('show');
@@ -190,7 +191,7 @@
         </div>
 
         <dl class="dl-horizontal">
-            <dt>Password:</dt>
+            <dt>Password</dt>
             <dd>
                 [
                 @if (Model.HasPassword)
@@ -203,12 +204,12 @@
                 }
                 ]
             </dd>
-            <dt>External Logins:</dt>
+            @*<dt>External Logins:</dt>
             <dd>
                 @Model.Logins.Count [
                 @Html.ActionLink("Manage", "ManageLogins") ]
-            </dd>
-            <dt>Phone Number:</dt>
+            </dd>*@
+            <dt>Phone Number</dt>
             <dd>
                 @(Model.PhoneNumber ?? "None") [
                 @if (Model.PhoneNumber != null)
@@ -224,7 +225,7 @@
                 ]
             </dd>
 
-            <dt>Two-Factor Authentication:</dt>
+            <dt>Two-Factor Authentication</dt>
             <dd>
                 @if (Model.TwoFactor)
             {
