@@ -178,9 +178,11 @@
                 <div class="col-md-6">
                     Contact us at: <i class="fa fa-envelope" aria-hidden="true"></i>
                     <script type="text/javascript">
-                        document.write('<a href="mailto:' + first + '@@' + last + '" style="text-decoration: none" title="Send us an email">' + first + '@@' + last + '<\/a>');
+                        //document.write('<a href="mailto:' + first + '@@' + last + '" style="text-decoration: none" title="Send us an email">' + first + '@@' + last + '<\/a>');
+                        document.write(first + '@@' + last);
                     </script>
-                    | <i class="fa fa-twitter" aria-hidden="true"></i><a href="https://twitter.com/meetfreelunch" style="text-decoration: none" title="Connect with us on twitter" target="_blank"> @ViewBag.twitter</a>
+                    | <i class="fa fa-twitter" aria-hidden="true"></i>
+                    <a href="https://twitter.com/meetfreelunch" style="text-decoration: none" title="Connect with us on twitter" target="_blank"> @ViewBag.twitter</a>
                 </div>
                 <div class="col-md-2">
                     @Html.ActionLink("Terms and conditions", "Terms", "Home", null, new { @target="_blank" })

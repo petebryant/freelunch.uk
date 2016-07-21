@@ -17,6 +17,7 @@ namespace freelunch.uk.Controllers
     [Authorize]
     public class LunchController : Controller
     {
+
         public enum LunchMessageId
         {
             UpdateSuccess,
@@ -74,7 +75,7 @@ namespace freelunch.uk.Controllers
                         model.DisplayTopic.Name += ", " + topic.Name;
                 }
                 model.DisplayTopic.Name = "SOLID, C#, Clean Code";
-
+                // TODO hook up topics to Lunch CRUD pages 
                 //create an array of distinct topic names for type ahead
                 ViewBag.Topics = context.Topics.Select(x => x.Name).ToList<string>().Distinct(StringComparer.InvariantCultureIgnoreCase).ToArray();
             }

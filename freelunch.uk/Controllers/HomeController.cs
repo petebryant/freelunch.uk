@@ -12,6 +12,10 @@ namespace freelunch.uk.Controllers
     [RequireHttps]
     public class HomeController : Controller
     {
+        // TODO do not show you need to be registered message if no specialists on system
+        // TODO do not show you need to be registered message if no lunches on system
+        // TODO add message when there are no lunches or specialists - good for search results.
+        // TODO put back contact email address on _Layout page once on has been set up to reccieve
         private ApplicationUserManager _userManager;
 
         public ApplicationUserManager UserManager
