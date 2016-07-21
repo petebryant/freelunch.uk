@@ -17,7 +17,8 @@ namespace freelunch.uk.Controllers
     [Authorize]
     public class SpecialistController : Controller
     {
-        //TODO can add the same link more than once
+        // TODO can add the same link more than once
+        // TODO add a description to the link 
         public enum SpecialistMessageId
         {
             UpdateSuccess,

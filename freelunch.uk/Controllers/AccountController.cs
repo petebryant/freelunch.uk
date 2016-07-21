@@ -17,6 +17,7 @@ namespace freelunch.uk.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        // TODO there is a URL called from loop when you register and need to confirm you email. Not sure steps to repeat!!!
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -176,26 +177,27 @@ namespace freelunch.uk.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+            //TODO put back registration code
+            //if (ModelState.IsValid)
+            //{
+            //    var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+            //    var result = await UserManager.CreateAsync(user, model.Password);
 
-                if (result.Succeeded)
-                {
-                    string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account");
+            //    if (result.Succeeded)
+            //    {
+            //        string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account");
 
-                    // Uncomment to debug locally 
-                    // TempData["ViewBagLink"] = callbackUrl;
+            //        // Uncomment to debug locally 
+            //        // TempData["ViewBagLink"] = callbackUrl;
 
-                    ViewBag.Message = "Check your email and confirm your account, you must be confirmed "
-                                    + "before you can sign in.";
+            //        ViewBag.Message = "Check your email and confirm your account, you must be confirmed "
+            //                        + "before you can sign in.";
 
-                    return View("Info");
-                    //return RedirectToAction("Index", "Home");
-                }
-                AddErrors(result);
-            }
+            //        return View("Info");
+            //        //return RedirectToAction("Index", "Home");
+            //    }
+            //    AddErrors(result);
+            //}
 
             // If we got this far, something failed, redisplay form
             return View(model);
@@ -210,7 +212,7 @@ namespace freelunch.uk.Controllers
             {
                 return View("Error");
             }
-
+            
             var result = await UserManager.ConfirmEmailAsync(userId, code);
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
