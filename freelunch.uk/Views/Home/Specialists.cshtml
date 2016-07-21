@@ -29,9 +29,14 @@
 <p class="text-success">@ViewBag.StatusMessage</p>
 <hr />
 
-@if (!Request.IsAuthenticated) 
-{ 
-    <p class="text-success">You need to be a registered user and signed in to contact any of our specialists.</p>
+@if (!Request.IsAuthenticated && Model.Specialists.Count > 0)
+{
+    <p class="text-info">You need to be a registered user and signed in to contact any of our specialists.</p>
+}
+
+@if (Model.Specialists.Count == 0)
+{
+    <p class="text-info">No specialists were found.</p>
 }
 
 @foreach (var specialist in Model.Specialists)

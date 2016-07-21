@@ -17,10 +17,9 @@ namespace freelunch.uk.Controllers
     [Authorize]
     public class SpecialistController : Controller
     {
-        // TODO can add the same link more than once
-        // TODO add a description to the link 
         public enum SpecialistMessageId
         {
+            LinkExists,
             UpdateSuccess,
             DeleteSuccess,
             AddSucess,
@@ -51,6 +50,7 @@ namespace freelunch.uk.Controllers
                 : message == SpecialistMessageId.DeleteSuccess ? "The record has been deleted."
                 : message == SpecialistMessageId.AddSucess ? "The record has been created."
                 : message == SpecialistMessageId.UpdateSuccess ? "The record have been updated."
+                : message == SpecialistMessageId.LinkExists ? "You already have a link to that resource."
                 : "";
 
             ViewBag.Tab = tab;
@@ -273,6 +273,11 @@ namespace freelunch.uk.Controllers
                 link.URL = collection["URL"];
                 link.LinkType = (LinkType)Enum.Parse(typeof(LinkType), collection["LinkType"]);
 
+                if (NotDuplicateLinlk(link))
+                {
+                    return RedirectToAction("Index", new { Message = SpecialistMessageId.LinkExists, Tab = 1 });
+                }
+
                 context.SaveChanges();
 
                 return RedirectToAction("Index", new { Message = SpecialistMessageId.UpdateSuccess, Tab = 1 });
@@ -281,6 +286,26 @@ namespace freelunch.uk.Controllers
             {
                 return View();
             }
+        }
+
+        private bool NotDuplicateLinlk(Link link)
+        {
+            bool duplicate = false;
+            var links = context.Links.Where(l => l.Id != link.Id).ToList();
+
+            foreach (var specl in links)
+            {
+                if (specl.Specialist.UserId.Equals(link.Specialist.UserId))
+                {
+                    duplicate = specl.LinkType.Equals(link.LinkType) &&
+                                   specl.Text.Equals(link.Text, StringComparison.InvariantCultureIgnoreCase) &&
+                                   specl.URL.Equals(link.URL, StringComparison.InvariantCultureIgnoreCase);
+                }
+
+                if (duplicate) return duplicate;
+            }
+
+            return duplicate;
         }
 
         [HttpPost]
@@ -329,6 +354,10 @@ namespace freelunch.uk.Controllers
                 link.Specialist = specialist;
 
                 context.Specialists.Attach(specialist);
+
+                if (UserHasLink(link))
+                    return RedirectToAction("Index", new { Message = SpecialistMessageId.LinkExists, Tab = 1 });
+                    
                 context.Links.Add(link);
 
                 string result = ValidationHelper.GetValidationResults(link);
@@ -343,6 +372,26 @@ namespace freelunch.uk.Controllers
             {
                 return View();
             }
+        }
+
+        private bool UserHasLink(Link link)
+        {
+            bool exists = false;
+            var links = context.Links.ToList();
+
+            foreach (var specl in links)
+            {
+                if (specl.Specialist.UserId.Equals(link.Specialist.UserId))
+                {
+                    exists = specl.LinkType.Equals(link.LinkType) &&
+                                   specl.Text.Equals(link.Text, StringComparison.InvariantCultureIgnoreCase) &&
+                                   specl.URL.Equals(link.URL, StringComparison.InvariantCultureIgnoreCase);
+                }
+
+                if (exists) return exists;
+            }
+
+            return exists;
         }
 
         [HttpPost]
