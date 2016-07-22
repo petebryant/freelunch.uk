@@ -8,6 +8,7 @@ using freelunch.uk.Common;
 
 namespace freelunch.uk.Controllers
 {
+    // TODO add https://support.google.com/ - AdSense must be up and running to 6 months so. 23/01/2017/
     [RedirectOnError]
     [RequireHttps]
     public class HomeController : Controller
