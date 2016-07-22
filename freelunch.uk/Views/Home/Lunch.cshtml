@@ -54,11 +54,13 @@
                 <div class="col-md-6">
                     <dl class="dl-horizontal">
 
-                        <dt>@Html.DisplayNameFor(l => l.DummyLunch.Website)</dt>
-                        <dd>@Html.Encode(lunch.Website)</dd>
-
                         <dt>@Html.DisplayNameFor(l => l.DummyLunch.ContactName)</dt>
                         <dd>@Html.Encode(lunch.ContactName)</dd>
+                        
+                        <dt>@Html.DisplayNameFor(l => l.DummyLunch.Website)</dt>
+                        <dd>
+                            <a href="@Html.Encode(lunch.Website)" style="text-decoration: none" target="_blank", title="Open the comapny website in a seperate window"> @Html.Encode(lunch.Website)</a>
+                        </dd>
                     </dl>
                     @if (Request.IsAuthenticated)
                     {

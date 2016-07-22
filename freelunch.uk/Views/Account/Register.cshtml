@@ -54,7 +54,7 @@
             </div>
             <div class="form-group">
                 @Html.CheckBoxFor(m => m.TermsAndConditions)
-                I accept the @Html.ActionLink("terms", "Terms", "Home", null, new  { @target="_blank"}) and conditions
+                I accept the @Html.ActionLink("terms", "Terms", "Home", null, new  { @target="_blank",  title="Open our terms and conditions in a seperate window"}) and conditions
             </div>
         </div>
         <div class="form-group">
@@ -65,7 +65,7 @@
             </div>
         </div>
 
-        <p class="text-info">We are sorry but we are not accept registeration at the moment.</p>
+        <p class="text-info">We are sorry but we are not accepting registerations at the moment.</p>
 }
 
         @section Scripts {
