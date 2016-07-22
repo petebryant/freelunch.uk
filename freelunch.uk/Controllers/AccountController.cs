@@ -165,6 +165,7 @@ namespace freelunch.uk.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            RegisterViewModel model = new RegisterViewModel();
             return View(model);
         }
 
