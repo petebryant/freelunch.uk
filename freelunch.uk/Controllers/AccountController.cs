@@ -165,8 +165,6 @@ namespace freelunch.uk.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            //TODO disable submit button until accept terms etc is checked
-            RegisterViewModel model = new RegisterViewModel();
             return View(model);
         }
 
