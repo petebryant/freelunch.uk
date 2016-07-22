@@ -50,9 +50,9 @@
                                     <!-- Modal content-->
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <button type="button" class="close close-button" data-dismiss="modal">
+                                            <a href="@Url.Action("Index", "Specialist", new { SpecialistMessageId = "", tab = 1 })" class="close close-button" role="button">
                                                 <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
-                                            </button>
+                                            </a>
                                             <h4 class="modal-title">Edit the link</h4>
                                         </div>
                                         <p></p>
@@ -104,9 +104,10 @@
                                                         <button type="submit" class="btn btn-default">
                                                             <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
                                                         </button>
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                        <a href="@Url.Action("Index", "Specialist", new { SpecialistMessageId = "", tab = 1 })" 
+                                                           class="btn btn-default" role="button">
                                                             <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel
-                                                        </button>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             }

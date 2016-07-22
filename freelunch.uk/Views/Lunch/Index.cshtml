@@ -62,7 +62,107 @@
                 </div>
             </div>
 
-    <div id="editLunch" class="modal fade" role="dialog">
+            <div id="editLunch" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <a href="@Url.Action("Index", "Lunch")" class="close close-button" role="button">
+                                <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                            </a>
+                            <h4 class="modal-title">Edit the details</h4>
+                        </div>
+                        <p></p>
+                        <section id="editForm">
+                            @using (Html.BeginForm("Edit", "Lunch",  FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            {
+                                <div class="modal-body">
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Name, new { @class = "col-md-4 control-label" })
+                                        <div class="col-md-6">
+                                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Website, new { @class = "col-md-4 control-label" })
+                                        <div class="col-md-6">
+                                            @Html.TextBoxFor(m => m.Website, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.Website, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Image, new { @class = "col-md-4 control-label" })
+                                        <div class="col-md-6">
+                                            @Html.TextBoxFor(m => m.Image, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.Image, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Audience, new { @class = "col-md-4 control-label" })
+                                        <div class="col-md-6">
+                                            @Html.TextBoxFor(m => m.Audience, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.Audience, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.AudienceNumber, new { @class = "col-md-4 control-label" })
+                                        <div class="col-md-6">
+                                            @Html.TextBoxFor(m => m.AudienceNumber, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.AudienceNumber, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.ContactName, new { @class = "col-md-4 control-label" })
+                                        <div class="col-md-6">
+                                            @Html.TextBoxFor(m => m.ContactName, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.ContactName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Email, new { @class = "col-md-4 control-label" })
+                                        <div class="col-md-6">
+                                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.DisplayTopic.Name, new { @class = "col-md-3 col-md-offset-1 control-label" })
+                                        <div class="col-md-7">
+                                            @Html.TextBoxFor(m => m.DisplayTopic.Name, new { @class = "form-control", data_role = "tagsinput", placeholder = "Add tags" })
+                                            <span class="help-block">Topics that you would like to discuss over lunch e.g. "SOLID", "Agile"</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-default">
+                                            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
+                                        </button>
+                                        <a href="@Url.Action("Index", "Lunch")" class="btn btn-default" role="button">
+                                            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                        </section>
+                    </div>
+
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="col-md-2">
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createLunch">
+                    <i class="fa fa-user" aria-hidden="true" title="Become a specialist"></i> Propose a lunch
+                </button>
+            </div>
+
+    <div id="createLunch" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
@@ -74,7 +174,7 @@
                 </div>
                 <p></p>
                 <section id="editForm">
-                    @using (Html.BeginForm("Edit", "Lunch",  FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    @using (Html.BeginForm("Create", "Lunch", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                     {
                         <div class="modal-body">
                             @Html.AntiForgeryToken()
@@ -130,6 +230,14 @@
                                 </div>
                             </div>
 
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.DisplayTopic.Name, new { @class = "col-md-3 col-md-offset-1 control-label" })
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(m => m.DisplayTopic.Name, new { @class = "form-control", data_role = "tagsinput", placeholder = "Add tags" })
+                                    <span class="help-block">Topics that you would like to discuss over lunch e.g. "SOLID", "Agile"</span>
+                                </div>
+                            </div>
+
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-default">
                                     <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
@@ -145,14 +253,6 @@
 
         </div>
     </div>
-        }
-        else
-        {
-            <div class="col-md-2">
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createLunch">
-                    <i class="fa fa-user" aria-hidden="true" title="Become a specialist"></i> Propose a lunch
-                </button>
-            </div>
         }
         <p class="text-success">@ViewBag.StatusMessage</p>
     </div>
@@ -179,13 +279,12 @@
             </div>
             <div class="col-md-6">
                 <dl class="dl-horizontal">
+                    <dt>@Html.DisplayNameFor(m => m.DisplayTopic.Name)</dt>
+                    <dd>@Html.Encode(Model.DisplayTopic.Name)</dd>
                     <dt>@Html.DisplayNameFor(m => m.Audience)</dt>
                     <dd>@Html.Encode(Model.Audience)</dd>
                     <dt>@Html.DisplayNameFor(m => m.AudienceNumber)</dt>
                     <dd>@Html.Encode(Model.AudienceNumber)</dd>
-
-                    <dt>@Html.DisplayNameFor(m => m.DisplayTopic.Name)</dt>
-                    <dd>@Html.Encode(Model.DisplayTopic.Name)</dd>
                 </dl>
             </div>
         }

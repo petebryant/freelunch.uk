@@ -74,8 +74,7 @@ namespace freelunch.uk.Controllers
                     else
                         model.DisplayTopic.Name += ", " + topic.Name;
                 }
-                model.DisplayTopic.Name = "SOLID, C#, Clean Code";
-                // TODO hook up topics to Lunch CRUD pages 
+
                 //create an array of distinct topic names for type ahead
                 ViewBag.Topics = context.Topics.Select(x => x.Name).ToList<string>().Distinct(StringComparer.InvariantCultureIgnoreCase).ToArray();
             }
@@ -116,6 +115,29 @@ namespace freelunch.uk.Controllers
                 lunch.Image = model.Image;
                 lunch.Audience = model.Audience;
                 lunch.AudienceNumber = model.AudienceNumber;
+
+                if (!string.IsNullOrEmpty(model.DisplayTopic.Name))
+                {
+                    string[] topics = model.DisplayTopic.Name.Split(',');
+
+                    var removeThese = lunch.Topics.Where(l => !topics.Contains(l.Name)).ToList<Topic>();
+
+                    foreach (var removeThis in removeThese)
+                    {
+                        lunch.Topics.Remove(removeThis);
+                        context.Topics.Remove(removeThis);
+                    }
+
+                    foreach (string topic in topics)
+                    {
+                        if (!lunch.Topics.Any(l => l.Name == topic))
+                        {
+                            Topic newTopic = new Topic();
+                            newTopic.Name = topic;
+                            lunch.Topics.Add(newTopic);
+                        }
+                    }
+                }
 
                 context.Lunches.Add(lunch);
                 context.SaveChanges();
@@ -187,6 +209,29 @@ namespace freelunch.uk.Controllers
                 lunch.Image = model.Image;
                 lunch.Audience = model.Audience;
                 lunch.AudienceNumber = model.AudienceNumber;
+
+                if (!string.IsNullOrEmpty(model.DisplayTopic.Name))
+                {
+                    string[] topics = model.DisplayTopic.Name.Split(',');
+
+                    var removeThese = lunch.Topics.Where(l => !topics.Contains(l.Name)).ToList<Topic>();
+
+                    foreach (var removeThis in removeThese)
+                    {
+                        lunch.Topics.Remove(removeThis);
+                        context.Topics.Remove(removeThis);
+                    }
+
+                    foreach (string topic in topics)
+                    {
+                        if (!lunch.Topics.Any(l => l.Name == topic))
+                        {
+                            Topic newTopic = new Topic();
+                            newTopic.Name = topic;
+                            lunch.Topics.Add(newTopic);
+                        }
+                    }
+                }
 
                 context.SaveChanges();
 
